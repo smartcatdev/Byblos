@@ -1,0 +1,68 @@
+/* 
+    Created on : Nov 17, 2014, 3:49:41 PM
+    Author     : Bilal
+*/
+
+a,a:visited {
+  color: #79f0ff;
+}
+a:hover,#site-navigation.main-navigation li a:hover,
+.site-branding.dark #site-navigation.main-navigation li a:hover{
+    color: #79f0ff;
+}
+.site-branding .site-title a{
+    color: #79f0ff;
+}
+.primary-color{ color: #79f0ff;}
+.btn-primary {
+    background-color: #79f0ff;
+    border-color: #EB5E00;
+    color: #ffffff !important;    
+}
+a.button-primary{
+    background-color: #79f0ff;
+    color: #fff;
+}
+.button-primary:hover{
+    background-color: rgb(101, 219, 234);
+    color: #fff;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+
+}
+fieldset[disabled] .btn-primary.active {
+  background-color: #79f0ff;
+}
+.btn-primary .badge {
+  color: #79f0ff;
+}
+.btn-link {
+  color: #79f0ff;
+}
+.sc-primary-color{ color: #79f0ff;}
+.sc-primary-border{ border-color: #79f0ff;}
+.site-branding .search-bar .search-field:focus{
+    border-bottom: 1px solid #79f0ff;
+}
+.icon404{
+    color: #79f0ff;
+}
+.nav-menu > li a:hover{
+    color: #79f0ff;
+}
+.scroll-top:hover{
+    border-color: #79f0ff;
+}
+#site-toolbar{
+    /*border-bottom: 1px solid #79f0ff;*/
+}
+@media(max-width: 600px){
+    .nav-menu > li.current_page_item a{
+        color: #79f0ff;
+    }      
+}
+

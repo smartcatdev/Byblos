@@ -1,0 +1,66 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 8, 2015, 1:15:17 AM
+    Author     : Bilal
+*/
+
+a,a:visited {
+  color: #2980B9;
+}
+a:hover,#site-navigation.main-navigation li a:hover,
+.site-branding.dark #site-navigation.main-navigation li a:hover{
+    color: #2980B9;
+}
+
+.site-branding .site-title a{
+    color: #2980B9;
+}
+.primary-color{ color: #2980B9;}
+a.button-primary {
+    background-color: #2980B9;
+    color: #ffffff;
+}
+.button-primary:hover,
+.button-primary:focus,
+.button-primary:active,
+.button-primary.active,
+.open .dropdown-toggle.button-primary {
+  background-color: #3498DB;
+}
+fieldset[disabled] .button-primary.active {
+  background-color: #3498DB;
+}
+.button-primary .badge {
+  color: #2980B9;
+}
+.button-link {
+  color: #2980B9;
+}
+.sc-primary-color{ color: #2980B9;}
+.sc-primary-border{ border-color: #2980B9;}
+.site-branding .search-bar .search-field:focus{
+    border-bottom: 1px solid #2980B9;
+}
+.icon404{
+    color: #2980B9;
+}
+.nav-menu > li a:hover{
+    color: #2980B9;
+}
+.scroll-top:hover{
+    border-color: #2980B9;
+}
+#site-toolbar{
+    /*border-bottom: 7px solid #2980B9;*/
+}
+
+
+@media(max-width: 600px){
+    .nav-menu > li.current_page_item a{
+        color: #2980B9;
+    }      
+}

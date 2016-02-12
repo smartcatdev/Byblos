@@ -1,0 +1,64 @@
+/* 
+    Document   : orange
+    Created on : Jul 6, 2014, 2:28:39 AM
+    Author     : Bilal
+    Description:
+        Purpose of the stylesheet follows.
+*/
+a,a:visited {
+  color: #699120;
+}
+a:hover,#site-navigation.main-navigation li a:hover,
+.site-branding.dark #site-navigation.main-navigation li a:hover{
+    color: #699120;
+}
+
+.site-branding .site-title a{
+    color: #699120;
+}
+.primary-color{ color: #699120;}
+a.button-primary {
+    background-color: #699120;
+    color: #ffffff;
+}
+.button-primary:hover,
+.button-primary:focus,
+.button-primary:active,
+.button-primary.active,
+.open .dropdown-toggle.button-primary {
+  background-color: rgb(83, 116, 24);
+}
+fieldset[disabled] .button-primary.active {
+  background-color: #699120;
+}
+.button-primary .badge {
+  color: #699120;
+}
+.button-link {
+  color: #699120;
+}
+.sc-primary-color{ color: #699120;}
+.sc-primary-border{ border-color: #699120;}
+.site-branding .search-bar .search-field:focus{
+    border-bottom: 1px solid #699120;
+}
+.icon404{
+    color: #699120;
+}
+.nav-menu > li a:hover{
+    color: #699120;
+}
+.scroll-top:hover{
+    border-color: #699120;
+}
+#site-toolbar{
+    /*border-bottom: 7px solid #699120;*/
+}
+
+
+@media(max-width: 600px){
+    .nav-menu > li.current_page_item a{
+        color: #699120;
+    }      
+}
+

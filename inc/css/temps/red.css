@@ -1,0 +1,68 @@
+/* 
+    Created on : Nov 17, 2014, 3:49:41 PM
+    Author     : Bilal
+*/
+
+a,a:visited {
+  color: #cd133f;
+}
+a:hover,#site-navigation.main-navigation li a:hover,
+.site-branding.dark #site-navigation.main-navigation li a:hover{
+    color: #C2113B;
+}
+.site-branding .site-title a{
+    color: #C2113B;
+}
+.primary-color{ color: #cd133f;}
+.btn-primary {
+    background-color: #cd133f;
+    border-color: #EB5E00;
+    color: #ffffff !important;    
+}
+a.button-primary{
+    background-color: #cd133f;
+    color: #fff;
+}
+.button-primary:hover{
+    background-color: rgb(168, 16, 52);
+    color: #fff;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+
+}
+fieldset[disabled] .btn-primary.active {
+  background-color: #cd133f;
+}
+.btn-primary .badge {
+  color: #cd133f;
+}
+.btn-link {
+  color: #cd133f;
+}
+.sc-primary-color{ color: #cd133f;}
+.sc-primary-border{ border-color: #cd133f;}
+.site-branding .search-bar .search-field:focus{
+    border-bottom: 1px solid #cd133f;
+}
+.icon404{
+    color: #cd133f;
+}
+.nav-menu > li a:hover{
+    color: #cd133f;
+}
+.scroll-top:hover{
+    border-color: #cd133f;
+}
+#site-toolbar{
+    /*border-bottom: 1px solid #cd133f;*/
+}
+@media(max-width: 600px){
+    .nav-menu > li.current_page_item a{
+        color: #cd133f;
+    }      
+}
+
