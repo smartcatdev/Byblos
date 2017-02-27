@@ -750,7 +750,7 @@ a.button-primary{
 }
 
 #site-toolbar .contact-bar a{
-    display: inline-block;
+    display: block;
     text-align: center;
     transition: 0.2s all ease;
     -webkit-transition: 0.2s all ease;
@@ -783,7 +783,6 @@ a.button-primary{
     /*background: #666;*/
     color: #E8E8E8;
     border-radius: 100%;
-
 }
 #site-toolbar .social-bar a:hover{
     background: #000;
@@ -963,7 +962,7 @@ a.button-primary{
     border-color: #00abdc;
 }
 #site-toolbar .social-bar a.icon-twitter:hover{
-    background-color: #00abdc;   
+    color: #00abdc;   
 }
 #site-toolbar .social-bar a.icon-facebook{
     /*color: #3b5998;*/
@@ -971,16 +970,16 @@ a.button-primary{
 
 }
 #site-toolbar .social-bar a.icon-facebook:hover{
-    background-color: #3b5998;   
+    color: #3b5998;   
 }
 #site-toolbar .social-bar a.icon-pinterest:hover{
-    background-color: #C92228;   
+    color: #C92228;   
 }
 #site-toolbar .social-bar a.icon-instagram:hover{
-    background-color: #125688;   
+    color: #125688;   
 }
 #site-toolbar .social-bar a.icon-soundcloud:hover{
-    background-color: #ff7700;   
+    color: #ff7700;   
 }
 #site-toolbar .social-bar a.icon-linkedin{
     /*color: #007bb6;*/
@@ -988,7 +987,7 @@ a.button-primary{
 
 }
 #site-toolbar .social-bar a.icon-linkedin:hover{
-    background-color: #007bb6;
+    color: #007bb6;
 }
 #site-toolbar .social-bar a.icon-gplus{
     /*color: #dd4b39;*/
@@ -996,7 +995,7 @@ a.button-primary{
 
 }
 #site-toolbar .social-bar a.icon-gplus:hover{
-    background-color: #dd4b39;
+    color: #dd4b39;
 }
 /*-- 404 --*/
 .icon404{
@@ -1052,8 +1051,8 @@ div#branding-wrap {
 .sc-slider-wrapper .camera_caption{
     text-transform: uppercase;
     max-width: 500px;
-    right: 0;
-    bottom: 240px;    
+    right: 0 !important;
+    bottom: 245px;    
     background: #fff;
     opacity: 1;
     color: #313131;
@@ -1072,6 +1071,10 @@ div#branding-wrap {
 }
 .sc-slider-wrapper .cameraContent{
     
+}
+
+.camera_bar span.camera_bar_cont {
+    background-color: rgba(34, 34, 34, 0) !important;
 }
 
 #sc-slider-banner {

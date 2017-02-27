@@ -186,47 +186,46 @@ function byblos_slider() {
 
 </script>
     <div class="sc-slider-wrapper">
+        
 	<div class="fluid_container">
 
-        <div class="camera_wrap" id="camera_wrap_1">
-                
-                <?php if ('' != $byblos_options['sc_slide1_image'] ) : ?>
-                <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>">
-                        <div class="camera_caption moveFromRight">
-                            <span><?php echo esc_attr( $byblos_options['sc_slide1_text'] );?></span>
+            <div class="camera_wrap" id="camera_wrap_1">
+
+                    <?php if ('' != $byblos_options['sc_slide1_image'] ) : ?>
+                    <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>">
+                                <span><?php echo esc_attr( $byblos_options['sc_slide1_text'] );?></span>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-                
-                <?php if ('' != $byblos_options['sc_slide2_image'] ) : ?>
-                <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>">
-                        <div class="camera_caption moveFromRight">
-                            <span><?php echo esc_attr( $byblos_options['sc_slide2_text'] );?></span>
+                    <?php endif; ?>
+
+                    <?php if ('' != $byblos_options['sc_slide2_image'] ) : ?>
+                    <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>">
+                                <span><?php echo esc_attr( $byblos_options['sc_slide2_text'] );?></span>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-                
-                <?php if ('' != $byblos_options['sc_slide3_image'] ) : ?>
-                <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>">
-                        <div class="camera_caption moveFromRight">
-                            <span><?php echo esc_attr( $byblos_options['sc_slide3_text'] );?></span>
+                    <?php endif; ?>
+
+                    <?php if ('' != $byblos_options['sc_slide3_image'] ) : ?>
+                    <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>">
+                                <span><?php echo esc_attr( $byblos_options['sc_slide3_text'] );?></span>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-   
-      
-        </div><!-- #camera_wrap_1 -->
+                    <?php endif; ?>
+
+
+            </div><!-- #camera_wrap_1 -->
+
         </div>
         
-    <?php if( $byblos_options['sc_banner_bool'] == 'yes' ) : ?>
-    <div id="sc-slider-banner">
-        <div class="sc-slider-banner">
-            <?php get_sidebar('banner'); ?>
-        </div>
-    </div>
+        <?php if( $byblos_options['sc_banner_bool'] == 'yes' ) : ?>
+        
+            <div id="sc-slider-banner">
+                <div class="sc-slider-banner">
+                    <?php get_sidebar('banner'); ?>
+                </div>
+            </div>
 
-    <?php
-    endif; ?>
+        <?php endif; ?>
         
     </div>
 
@@ -351,8 +350,7 @@ function sc_toolbar() {
             </div>
             
             <?php endif; ?>
-            
-
+           
             <div class="social-bar">
                 
                 <h3><?php echo $byblos_options['social_title']; ?></h3>
@@ -387,13 +385,11 @@ function sc_toolbar() {
                     </a>
                 <?php endif; ?>
 
-
                 <?php if ('' != $byblos_options['sc_linkedin_url'] ) : ?>
                     <a href="<?php echo esc_url( $byblos_options['sc_linkedin_url'] ); ?>" target="_blank" class="icon-linkedin">
                         <i class="fa fa-linkedin"></i>                            
                     </a>
                 <?php endif; ?>
-
 
                 <?php if ('' != $byblos_options['sc_gplus_url'] ) : ?>
                     <a href="<?php echo esc_url( $byblos_options['sc_gplus_url'] ); ?>" target="_blank" class="icon-gplus">
@@ -401,8 +397,6 @@ function sc_toolbar() {
                     </a>
                 <?php endif; ?>
 
-            
-                
             </div>
         </div>
         <?php
