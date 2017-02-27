@@ -193,6 +193,7 @@ function byblos_slider() {
 
                     <?php if ('' != $byblos_options['sc_slide1_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>">
+                            <div class="camera_caption moveFromRight">
                                 <span><?php echo esc_attr( $byblos_options['sc_slide1_text'] );?></span>
                             </div>
                         </div>
@@ -200,6 +201,7 @@ function byblos_slider() {
 
                     <?php if ('' != $byblos_options['sc_slide2_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>">
+                            <div class="camera_caption moveFromRight">
                                 <span><?php echo esc_attr( $byblos_options['sc_slide2_text'] );?></span>
                             </div>
                         </div>
@@ -207,6 +209,7 @@ function byblos_slider() {
 
                     <?php if ('' != $byblos_options['sc_slide3_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>">
+                            <div class="camera_caption moveFromRight">
                                 <span><?php echo esc_attr( $byblos_options['sc_slide3_text'] );?></span>
                             </div>
                         </div>

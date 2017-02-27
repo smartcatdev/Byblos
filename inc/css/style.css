@@ -1671,12 +1671,6 @@ article{
 /*    .site-branding .row [class*="col-"], .site-title{
         line-height: initial;
     }*/
-
-    .site-title{
-        display: inline-block;
-        line-height: 80px;
-        margin-left: 15px;
-    }
     #comments{
         padding: 0 15px;
     }
@@ -1727,6 +1721,7 @@ article{
         font-size: 28px;
         position: relative;
         text-align: center;
+        height: 80px;
     }
     #tasty-mobile-toggle .menu{
         display: none;
@@ -1740,6 +1735,7 @@ article{
         z-index: 99;
         padding-left: 0px;
         list-style: none;
+        top: 80px !important;
     }
     #tasty-mobile-toggle .menu > ul {
         margin: 0;
@@ -1769,8 +1765,8 @@ article{
         
     }
     #tasty-mobile-toggle .fa{
-        line-height: 82px;
-        height: 82px;
+        line-height: 80px;
+        height: 80px;
         width: 80px;
         font-size: 35px;
     }
@@ -1789,11 +1785,13 @@ article{
     .site-branding-mobile{
         /*display: block;*/
         overflow: hidden;
-        height: 82px;
+        height: 80px;
     } 
     .site-branding-mobile .site-title-mobile{
-        line-height: 82px;
+        line-height: 80px;
+        height: 80px;
         text-align: center;
+        padding-right: 16.66666667%;
         
     }
     .site-branding-mobile.dark #tasty-mobile-toggle .fa{
