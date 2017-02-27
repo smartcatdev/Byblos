@@ -11,14 +11,14 @@ if (!function_exists('byblos_setup')) :
             $content_width = 1060;
         }
 
-        define('SC_AVENUE_VERSION', '1.1.1');
+        define('BYBLOS_VERSION', '3.0.3');
         load_theme_textdomain('byblos', get_template_directory() . '/languages');
 
         // Add default posts and comments RSS feed links to head.
         add_theme_support('automatic-feed-links');
         add_theme_support('post-thumbnails');
         add_theme_support( "title-tag" );
-        add_theme_support( 'woocommerce' );
+        
         
         /*
          * Enable support for Post Thumbnails on posts and pages.
@@ -28,9 +28,7 @@ if (!function_exists('byblos_setup')) :
         register_nav_menus(array(
             'primary' => __('Primary Menu', 'byblos'),
         ));
-
-        // Enable support for Post Formats.
-        add_theme_support('post-formats', array('aside', 'image', 'video', 'quote', 'link'));
+        add_editor_style('');
 
         // Setup the WordPress core custom background feature.
         add_theme_support('custom-background', apply_filters('byblos_custom_background_args', array(
@@ -43,17 +41,20 @@ if (!function_exists('byblos_setup')) :
             'comment-list',
             'search-form',
             'comment-form',
-            'gallery',
             'caption',
         ));
         add_filter('widget_text', 'do_shortcode');
+        
+        if( ! get_option('byblos') ) :
+            
+            add_option('byblos', byblos_get_options() );
+            
+        endif;
     }
 endif; 
 add_action('after_setup_theme', 'byblos_setup');
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/extras.php';
-require get_template_directory() . '/inc/customizer.php';
+include_once get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
-define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/inc/');
-require_once dirname(__FILE__) . '/inc/options-framework.php';
 require_once dirname(__FILE__) . '/inc/engine/byblos.php';

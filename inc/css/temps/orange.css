@@ -12,10 +12,24 @@ a:hover,#site-navigation.main-navigation li a:hover,
 .site-branding.dark #site-navigation.main-navigation li a:hover{
     color: #D85904;
 }
+
+.sc-slider-wrapper .camera_caption{
+    background: #ff6600;
+    color: #fff;
+}
+
 #site-navigation.main-navigation li a:hover,
 #site-navigation.main-navigation li.current_page_item > a{
-    background:#D85904;
-    color: #fff !important;
+    /*background:#D85904;*/
+    color: #D85904;
+    transition: 0.3s all ease;
+    -moz-transition: 0.3s all ease;
+    -webkit-transition: 0.3s all ease;
+}
+
+.site-branding #site-navigation.main-navigation .menu li.current_page_item > a,
+.site-branding #site-navigation.main-navigation .menu li.current-menu-ancestor > a{
+    color: #D85904;
 }
 
 .site-branding .site-title a{
@@ -74,4 +88,3 @@ fieldset[disabled] .btn-primary.active {
         color: #ff6600;
     }      
 }
-

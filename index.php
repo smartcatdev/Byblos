@@ -15,7 +15,7 @@ get_header();
 
 <div class="site-content-wrapper">
     <div id="content" class="blog-content">
-        <div class="col-md-9  site-content item-page bs_nopad <?php echo of_get_option('sc_blog_layout'); ?>">
+        <div class="col-md-<?php echo bylbos_get_width(); ?>  site-content item-page bs_nopad">
             <?php if (have_posts()) : ?>
                 <?php /* Start the Loop */ ?>
                 <?php while (have_posts()) : the_post(); ?>
@@ -28,27 +28,6 @@ get_header();
                             <h2 class="post-title"><?php the_title(); ?></h2>
                         </a>
                         
-<!--                        <?php if( 'on' == of_get_option('sc_blog_featured', 'on')) : ?>
-                        <div class="post-thumb col-sm-4">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('large'); ?>
-                            </a>
-                        </div>
-                        <?php endif; ?>
-                        
-                        <div class="col-sm-8 <?php echo 'on' == of_get_option('sc_blog_featured', 'on') ? '' : 'featured_none'; ?>">
-                            <h2 class="post-title">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_title(); ?>
-                                </a>
-                            </h2>
-                            <div class="post-content">
-                                <?php the_excerpt(); ?>
-                            </div>
-                            <div class="text-right">
-                                <a class="button button-primary" href="<?php the_permalink(); ?>">Read More</a>
-                            </div>                        
-                        </div>-->
                     </div>
                 <?php endwhile; ?>
             <?php else : ?>
@@ -57,18 +36,13 @@ get_header();
             
         </div>
         
-        <?php if( 'col2r' == of_get_option('sc_blog_layout', 'col2r')) : ?>
         <div class="col-md-3 byblos-sidebar">
             <?php get_sidebar(); ?>
         </div>
-        <?php endif; ?>
+        
         <?php byblos_paging_nav(); ?>
     </div>
-    
 
-    <div class="col-md-12">
-        
-    </div>
     <div class="clear"></div>
 <?php get_footer(); ?>
 </div>

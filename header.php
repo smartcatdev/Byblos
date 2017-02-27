@@ -6,12 +6,12 @@
  *
  * @package byblos
  */
+$byblos_options = byblos_get_options();
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
     <head>
         <meta charset="<?php bloginfo('charset'); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title><?php wp_title('|', true, 'right'); ?></title>
         <link rel="profile" href="http://gmpg.org/xfn/11">
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
@@ -26,14 +26,14 @@
                             <div class="col-xs-12 center">
                                 <h2 class="site-title">
                                     <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                                        <?php if (get_option('byblos_logo') != '') : ?>
-                                        <img src="<?php echo get_option('byblos_logo'); ?>" alt="" id="sc_logo"/>
+                                        <?php if ( $byblos_options['sc_logo_image'] != '') : ?>
+                                        <img src="<?php echo esc_url( $byblos_options['sc_logo_image'] ); ?>" alt="" id="sc_logo"/>
                                         <?php else : ?>
                                         <?php bloginfo('name');?>
                                         <?php endif; ?>                                        
                                     </a>
                                 </h2>
-                                <?php if (get_option('byblos_logo') == '') : ?>
+                                <?php if ( $byblos_options['sc_logo_image'] == '') : ?>
                                     <h3 class="site-description"><?php bloginfo('description'); ?></h3>
                                 <?php endif; ?>
                             </div>
@@ -67,8 +67,8 @@
                     <div class="col-xs-10">
                         <h2 class="site-title-mobile">
                             <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                                <?php if (get_option('byblos_logo') != '') : ?>
-                                <img src="<?php echo get_option('byblos_logo'); ?>" alt="" id="sc_logo"/>
+                                <?php if ( $byblos_options['sc_logo_image'] != '') : ?>
+                                <img src="<?php echo esc_url( $byblos_options['sc_logo_image'] ); ?>" alt="" id="sc_logo"/>
                                 <?php else : ?>
                                 <?php bloginfo('name');?>
                                 <?php endif; ?>                                        

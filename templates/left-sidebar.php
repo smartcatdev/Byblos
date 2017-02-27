@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: Right Sidebar
+ * Template Name: Left Sidebar
  */
 get_header();
 ?>
@@ -8,6 +8,11 @@ get_header();
     <div id="content" class="site-content">
         <?php while (have_posts()) : the_post(); ?>
             <div class="page-content">
+                
+                <div class="col-md-3 byblos-sidebar">
+                    <?php get_sidebar(); ?>
+                </div>
+                
                 <article class="col-md-9 item-page">
                     <h2 class="post-title"><?php the_title(); ?></h2>
                     <div class="byblos-underline"></div>
@@ -21,10 +26,7 @@ get_header();
                     endif;
                     ?>
                 </article>
-                <div class="col-md-3 byblos-sidebar">
-                    <?php get_sidebar(); ?>
-                </div>
-                
+
                 <div class="clear"></div>
                 
             </div>

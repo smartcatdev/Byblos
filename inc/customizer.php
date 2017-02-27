@@ -8,7 +8,7 @@
 
 function byblos_get_options() {
     
-    return get_option('_byblos', array(
+    return get_option('byblos', array(
         'sc_logo_image'         => '',
         'sc_facebook_url'       => '#',
         'sc_twitter_url'        => '#',
@@ -17,8 +17,8 @@ function byblos_get_options() {
         'sc_instagram_url'      => '#',
         'sc_pinterest_url'      => '#',
         'sc_soundcloud_url'     => '#',
-        'sc_theme_color'        => 'orange',
-        'sc_font_size'          => '16px',
+        'sc_theme_color'        => 'yellow',
+        'sc_font_size'          => '20px',
         'sc_font_family'        => 'Raleway, sans-serif',
         'sc_slider_bool'        => 'yes',
         'sc_slide1_image'       => get_template_directory_uri() . '/inc/images/bride.jpg',
@@ -32,22 +32,31 @@ function byblos_get_options() {
         'sc_cta1_title'         => __( 'Responsive', 'byblos'),
         'sc_cta1_text'          => __( 'Byblos is a reponsive theme that looks great on desktop, tablet and mobile', 'byblos' ),
         'sc_cta1_url'           => '#',
+        'sc_cta1_button'           => __('Learn More', 'byblos' ),
         'sc_box1_image'         => get_template_directory_uri() . '/inc/images/bride.jpg',
         'sc_cta2_title'         => __( 'Appealing', 'byblos' ),
         'sc_cta2_text'          => __( 'Byblos is a reponsive theme that looks great on desktop, tablet and mobile', 'byblos' ),
         'sc_cta2_url'           => '#',
+        'sc_cta2_button'           => __('Learn More', 'byblos' ),
         'sc_box2_image'         => get_template_directory_uri() . '/inc/images/bride.jpg',
         'sc_cta3_title'         => __( 'Customizable', 'byblos' ),
         'sc_cta3_text'          => __( 'Byblos is a reponsive theme that looks great on desktop, tablet and mobile', 'byblos' ),
         'sc_cta3_url'           => '#',
+        'sc_cta3_button'           => __('Learn More', 'byblos' ),
         'sc_box3_image'         => get_template_directory_uri() . '/inc/images/bride.jpg',
-        'sc_footer_text'        => __( 'Company Name', 'byblos' )
+        'sc_footer_text'        => __( 'Company Name', 'byblos' ),
+        'sc_cta_section_title'  => __( 'Our Specialities', 'byblos' ),
+        'phone'                 => '#',
+        'email'                 => 'info@domain.com',
+        'social_title'          => __( 'Follow Us', 'byblos' ),
+        
         
     ) );
     
 }
 
 function byblos_customize_register($wp_customize) {
+    
     
     $byblos_options = byblos_get_options();
     
@@ -58,7 +67,7 @@ function byblos_customize_register($wp_customize) {
     $wp_customize->remove_section('header_image');
     $wp_customize->remove_section('background_image');
     $wp_customize->remove_section('colors');
-    $wp_customize->remove_section('static_front_page');
+//    $wp_customize->remove_section('static_front_page');
     $wp_customize->remove_section('title_tagline');
 
     // *********************************************
@@ -72,7 +81,7 @@ function byblos_customize_register($wp_customize) {
     ));
     
     $wp_customize->add_section( 'title_tagline', array (
-        'title' => __( 'Site Title & Icon', 'athena' ),
+        'title' => __( 'Site Title & Icon', 'byblos' ),
         'panel' => 'logo',
     ) );
 
@@ -85,35 +94,19 @@ function byblos_customize_register($wp_customize) {
     $wp_customize->add_setting( 'byblos[sc_logo_image]', array (
         'default'               => get_template_directory_uri() . '/inc/images/logo.png',
         'transport'             => 'refresh',
-        'sanitize_callback'     => 'byblos_sanitize',
+        'sanitize_callback'     => 'byblos_text_sanitize',
         'type'                  => 'option'
     ) );
 
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'image_control4', array (
-        'label' =>              __( 'Logo', 'athena' ),
+        'label' =>              __( 'Logo', 'byblos' ),
         'section'               => 'logo',
         'mime_type'             => 'image',
         'settings'              => 'byblos[sc_logo_image]',
-        'description'           => __( 'Image for your site - Leave blank to use the Site Title & Tagline instead.', 'athena' ),        
+        'description'           => __( 'Image for your site - Leave blank to use the Site Title & Tagline instead.', 'byblos' ),        
     ) ) );
 
     
-    // *********************************************
-    // ****************** Frontpage *****************
-    // *********************************************
-
-    $wp_customize->add_panel('frontpage', array(
-        'title' => __('Frontpage', 'byblos'),
-        'description' => __('Customize the frontpage', 'byblos'),
-        'priority' => 10
-    ));
-
-    $wp_customize->add_section('callouts', array(
-        'title' => __('Callout Boxes', 'byblos'),
-        'description' => __('Use these settings to enable/disable the callouts, as well as set titles & images', 'byblos'),
-        'panel' => 'frontpage',
-    ));
-
     
     
     // *********************************************
@@ -122,7 +115,7 @@ function byblos_customize_register($wp_customize) {
 
     $wp_customize->add_panel('slider', array(
         'title' => __('Slider', 'byblos'),
-        'description' => __('Customize the slider. Athena includes 2 slides, and the pro version supports up to 5', 'byblos'),
+        'description' => __('Customize the slider. Byblos includes 2 slides, and the pro version supports up to 5', 'byblos'),
         'priority' => 10
     ));
 
@@ -145,29 +138,31 @@ function byblos_customize_register($wp_customize) {
     ));
 
     // 1st slide
-    $wp_customize->add_setting('sc_slide1_image', array(
+    $wp_customize->add_setting('byblos[sc_slide1_image]', array(
         'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
         'transport' => 'refresh',
         'type'  => 'option',
-        'sanitize_callback' => 'byblos_sanitize'
+        'sanitize_callback' => 'byblos_text_sanitize'
     ));
 
+    
+    
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control1', array(
         'label' => __('Background Image', 'byblos'),
         'section' => 'slide1',
         'mime_type' => 'image',
-        'settings' => 'sc_slide1_image',
+        'settings' => 'byblos[sc_slide1_image]',
         'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
     )));
 
-    $wp_customize->add_setting('byblos_slide1_text', array(
-        'default' => __('Welcome to Athena', 'byblos'),
-        'transport' => 'postMessage',
+    $wp_customize->add_setting('byblos[sc_slide1_text]', array(
+        'default' => __('Welcome to Byblos', 'byblos'),
+        'transport' => 'refresh',
         'type'  => 'option',
-        'sanitize_callback' => 'byblos_sanitize'
+        'sanitize_callback' => 'byblos_text_sanitize'
     ));
 
-    $wp_customize->add_control('byblos_slide1_text', array(
+    $wp_customize->add_control('byblos[sc_slide1_text]', array(
         'type' => 'text',
         'section' => 'slide1',
         'label' => __('Header Text', 'byblos'),
@@ -176,29 +171,29 @@ function byblos_customize_register($wp_customize) {
 
 
     // 2nd slide
-    $wp_customize->add_setting('byblos_slide2_image', array(
+    $wp_customize->add_setting('byblos[sc_slide2_image]', array(
         'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
-        'transport' => 'postMessage',
+        'transport' => 'refresh',
         'type'  => 'option',
-        'sanitize_callback' => 'byblos_sanitize'
+        'sanitize_callback' => 'byblos_text_sanitize'
     ));
 
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control2', array(
         'label' => __('Background Image', 'byblos'),
         'section' => 'slide2',
         'mime_type' => 'image',
-        'settings' => 'byblos_slide2_image',
+        'settings' => 'byblos[sc_slide2_image]',
         'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
     )));
 
-    $wp_customize->add_setting('byblos_slide2_text', array(
-        'default' => __('Welcome to Athena', 'byblos'),
-        'transport' => 'postMessage',
+    $wp_customize->add_setting('byblos[sc_slide2_text]', array(
+        'default' => __('Welcome to Byblos', 'byblos'),
+        'transport' => 'refresh',
         'type'  => 'option',
-        'sanitize_callback' => 'byblos_sanitize'
+        'sanitize_callback' => 'byblos_text_sanitize'
     ));
 
-    $wp_customize->add_control('byblos_slide2_text', array(
+    $wp_customize->add_control('byblos[sc_slide2_text]', array(
         'type' => 'text',
         'section' => 'slide2',
         'label' => __('Header Text', 'byblos'),
@@ -206,76 +201,408 @@ function byblos_customize_register($wp_customize) {
     ));
 
     // 3rd slide
-    $wp_customize->add_setting('byblos_slide3_image', array(
+    $wp_customize->add_setting('byblos[sc_slide3_image]', array(
         'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
-        'transport' => 'postMessage',
+        'transport' => 'refresh',
         'type'  => 'option',
-        'sanitize_callback' => 'byblos_sanitize'
+        'sanitize_callback' => 'byblos_text_sanitize'
     ));
 
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control3', array(
         'label' => __('Background Image', 'byblos'),
         'section' => 'slide3',
         'mime_type' => 'image',
-        'settings' => 'byblos_slide3_image',
+        'settings' => 'byblos[sc_slide3_image]',
         'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
     )));
 
-    $wp_customize->add_setting('byblos_slide3_text', array(
-        'default' => __('Welcome to Athena', 'byblos'),
-        'transport' => 'postMessage',
+    $wp_customize->add_setting('byblos[sc_slide3_text]', array(
+        'default' => __('Welcome to Byblos', 'byblos'),
+        'transport' => 'refresh',
         'type'  => 'option',
-        'sanitize_callback' => 'byblos_sanitize'
+        'sanitize_callback' => 'byblos_text_sanitize'
     ));
 
-    $wp_customize->add_control('byblos_slide3_text', array(
+    $wp_customize->add_control('byblos[sc_slide3_text]', array(
         'type' => 'text',
         'section' => 'slide3',
         'label' => __('Header Text', 'byblos'),
         'description' => __('The main heading text, leave blank to hide', 'byblos'),
     ));
 
+
+    // *********************************************
+    // ****************** Homepage Banner *****************
+    // *********************************************
+    $wp_customize->add_panel('homepage_banner', array(
+        'title' => __('Homepage Banner', 'byblos'),
+        'description' => __('Settings for the homepage banner', 'byblos'),
+        'priority' => 10
+    ));
+
+    $wp_customize->add_section('banner_settings', array(
+        'title' => __('Settings', 'byblos'),
+        'panel' => 'homepage_banner',
+    ));
+    
+    // Settings
+    $wp_customize->add_setting( 'byblos[sc_banner_bool]', array (
+        'default'               => 'yes',
+        'transport'             => 'refresh',
+        'sanitize_callback'     => 'byblos_text_sanitize',
+        'type'                  => 'option'
+    ) );
+    
+    $wp_customize->add_control( 'byblos[sc_banner_bool]', array(
+        'type'                  => 'radio',
+        'section'               => 'banner_settings',
+        'label'                 => __( 'Enable/disable the callouts', 'byblos' ),
+        'choices'               => array(
+            'yes'              => __( 'Show', 'byblos' ),
+            'no'               => __( 'Hide', 'byblos' ),
+        )
+        
+    ) );
+
+    
+    // *********************************************
+    // ****************** Callouts *****************
+    // *********************************************
+    $wp_customize->add_panel('callouts', array(
+        'title' => __('Callout Boxes', 'byblos'),
+        'description' => __('Customize the 3 callouts on the Frontpage', 'byblos'),
+        'priority' => 10
+    ));
+    
+    // Sections
+    $wp_customize->add_section('callout1', array(
+        'title' => __('Callout 1', 'byblos'),
+        'description' => __('Set the image, title and content of the callout', 'byblos'),
+        'panel' => 'callouts',
+    ));
+
+    $wp_customize->add_section('callout2', array(
+        'title' => __('Callout 2', 'byblos'),
+        'description' => __('Set the image, title and content of the callout', 'byblos'),
+        'panel' => 'callouts',
+    ));
+
+    $wp_customize->add_section('callout3', array(
+        'title' => __('Callout 3', 'byblos'),
+        'description' => __('Set the image, title and content of the callout', 'byblos'),
+        'panel' => 'callouts',
+    ));
+
+    $wp_customize->add_section('callout_setting', array(
+        'title' => __('Settings', 'byblos'),
+        'description' => __('Enable or disable the callouts', 'byblos'),
+        'panel' => 'callouts',
+    ));
+    
+    // Settings
+    $wp_customize->add_setting( 'byblos[sc_cta_bool]', array (
+        'default'               => 'yes',
+        'transport'             => 'refresh',
+        'sanitize_callback'     => 'byblos_text_sanitize',
+        'type'                  => 'option'
+    ) );
+    
+    $wp_customize->add_control( 'byblos[sc_cta_bool]', array(
+        'type'                  => 'radio',
+        'section'               => 'callout_setting',
+        'label'                 => __( 'Enable/disable the callouts', 'byblos' ),
+        'choices'               => array(
+            'yes'              => __( 'Show', 'byblos' ),
+            'no'               => __( 'Hide', 'byblos' ),
+        )
+        
+    ) );
+    
+    // Section Title
+    $wp_customize->add_setting('byblos[sc_cta_section_title]', array(
+        'default' => __('Our Specialities', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta_section_title]', array(
+        'type' => 'text',
+        'section' => 'callout_setting',
+        'label' => __('Header Text', 'byblos'),
+    ));
+    
+    
+    // Callout #1
+    // Image
+    $wp_customize->add_setting('byblos[sc_box1_image]', array(
+        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control5', array(
+        'label' => __('Background Image', 'byblos'),
+        'section' => 'callout1',
+        'mime_type' => 'image',
+        'settings' => 'byblos[sc_box1_image]',
+        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+    )));
+
+    // Title
+    $wp_customize->add_setting('byblos[sc_cta1_title]', array(
+        'default' => __('Welcome to Byblos', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta1_title]', array(
+        'type' => 'text',
+        'section' => 'callout1',
+        'label' => __('Header Text', 'byblos'),
+        'description' => __('The main heading text, leave blank to hide', 'byblos'),
+    ));
+
+    // Details
+    $wp_customize->add_setting('byblos[sc_cta1_text]', array(
+        'default' => __('This theme can be used for all sorts of things', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta1_text]', array(
+        'type' => 'textarea',
+        'section' => 'callout1',
+        'label' => __('Callout Description', 'byblos'),
+        'description' => __('The text for the callout', 'byblos'),
+    ));
+    
+    // URL
+    $wp_customize->add_setting('byblos[sc_cta1_url]', array(
+        'default' => __('#', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'esc_url_raw'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta1_url]', array(
+        'type' => 'text',
+        'section' => 'callout1',
+        'label' => __('Button URL', 'byblos'),
+        'description' => __('Clicking the button goes to this URL', 'byblos'),
+    ));
+    
+    // Button Text
+    $wp_customize->add_setting('byblos[sc_cta1_button]', array(
+        'default' => __('Click Here', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta1_button]', array(
+        'type' => 'text',
+        'section' => 'callout1',
+        'label' => __('Button Text', 'byblos'),
+        'description' => __('The button text', 'byblos'),
+    ));
+    
+    // Callout #2
+    // Image
+    $wp_customize->add_setting('byblos[sc_box2_image]', array(
+        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control6', array(
+        'label' => __('Background Image', 'byblos'),
+        'section' => 'callout2',
+        'mime_type' => 'image',
+        'settings' => 'byblos[sc_box2_image]',
+        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+    )));
+
+    // Title
+    $wp_customize->add_setting('byblos[sc_cta2_title]', array(
+        'default' => __('Welcome to Byblos', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta2_title]', array(
+        'type' => 'text',
+        'section' => 'callout2',
+        'label' => __('Header Text', 'byblos'),
+        'description' => __('The main heading text, leave blank to hide', 'byblos'),
+    ));
+
+    // Details
+    $wp_customize->add_setting('byblos[sc_cta2_text]', array(
+        'default' => __('This theme can be used for all sorts of things', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta2_text]', array(
+        'type' => 'textarea',
+        'section' => 'callout2',
+        'label' => __('Callout Description', 'byblos'),
+        'description' => __('The text for the callout', 'byblos'),
+    ));
+    
+    // URL
+    $wp_customize->add_setting('byblos[sc_cta2_url]', array(
+        'default' => __('#', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'esc_url_raw'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta2_url]', array(
+        'type' => 'text',
+        'section' => 'callout2',
+        'label' => __('Button URL', 'byblos'),
+        'description' => __('Clicking the button goes to this URL', 'byblos'),
+    ));
+    
+    // Button Text
+    $wp_customize->add_setting('byblos[sc_cta2_button]', array(
+        'default' => __('Click Here', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta2_button]', array(
+        'type' => 'text',
+        'section' => 'callout2',
+        'label' => __('Button Text', 'byblos'),
+        'description' => __('The button text', 'byblos'),
+    ));
+    
+    // Callout #3
+    // Image
+    $wp_customize->add_setting('byblos[sc_box3_image]', array(
+        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control7', array(
+        'label' => __('Background Image', 'byblos'),
+        'section' => 'callout3',
+        'mime_type' => 'image',
+        'settings' => 'byblos[sc_box3_image]',
+        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+    )));
+
+    // Title
+    $wp_customize->add_setting('byblos[sc_cta3_title]', array(
+        'default' => __('Welcome to Byblos', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta3_title]', array(
+        'type' => 'text',
+        'section' => 'callout3',
+        'label' => __('Header Text', 'byblos'),
+        'description' => __('The main heading text, leave blank to hide', 'byblos'),
+    ));
+
+    // Details
+    $wp_customize->add_setting('byblos[sc_cta3_text]', array(
+        'default' => __('This theme can be used for all sorts of things', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta3_text]', array(
+        'type' => 'textarea',
+        'section' => 'callout3',
+        'label' => __('Callout Description', 'byblos'),
+        'description' => __('The text for the callout', 'byblos'),
+    ));
+    
+    // URL
+    $wp_customize->add_setting('byblos[sc_cta3_url]', array(
+        'default' => __('#', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'esc_url_raw'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta3_url]', array(
+        'type' => 'text',
+        'section' => 'callout3',
+        'label' => __('Button URL', 'byblos'),
+        'description' => __('Clicking the button goes to this URL', 'byblos'),
+    ));
+    
+    // Button Text
+    $wp_customize->add_setting('byblos[sc_cta3_button]', array(
+        'default' => __('Click Here', 'byblos'),
+        'transport' => 'refresh',
+        'type'  => 'option',
+        'sanitize_callback' => 'byblos_text_sanitize'
+    ));
+
+    $wp_customize->add_control('byblos[sc_cta3_button]', array(
+        'type' => 'text',
+        'section' => 'callout3',
+        'label' => __('Button Text', 'byblos'),
+        'description' => __('The button text', 'byblos'),
+    ));
+    
     
     // *********************************************
     // ****************** Appearance *****************
     // *********************************************
     
     $wp_customize->add_panel( 'appearance', array (
-        'title'                 => __( 'Appearance', 'athena' ),
-        'description'           => __( 'Customize your site colros, fonts and other appearance settings', 'athena' ),
+        'title'                 => __( 'Appearance', 'byblos' ),
+        'description'           => __( 'Customize your site colros, fonts and other appearance settings', 'byblos' ),
         'priority'              => 10
     ) );
     
     $wp_customize->add_section( 'color', array (
-        'title'                 => __( 'Skin Color', 'athena' ),
+        'title'                 => __( 'Skin Color', 'byblos' ),
         'panel'                 => 'appearance',
     ) );
     
     $wp_customize->add_section( 'font', array (
-        'title'                 => __( 'Fonts', 'athena' ),
+        'title'                 => __( 'Fonts', 'byblos' ),
         'panel'                 => 'appearance',
     ) );
     
     $wp_customize->add_setting( 'byblos[sc_theme_color]', array (
-        'default'               => 'green',
+        'default'               => 'yellow',
         'transport'             => 'refresh',
-        'sanitize_callback'     => 'byblos_sanitize',
-        'type'  => 'option'
+        'sanitize_callback'     => 'byblos_text_sanitize',
+        'type'                  => 'option'
     ) );
     
     $wp_customize->add_control( 'byblos[sc_theme_color]', array(
         'type'                  => 'radio',
         'section'               => 'color',
-        'label'                 => __( 'Theme Skin Color', 'athena' ),
-        'description'           => __( 'Select the theme main color', 'athena' ),
+        'label'                 => __( 'Theme Skin Color', 'byblos' ),
+        'description'           => __( 'Select the theme main color', 'byblos' ),
         'choices'               => array(
-            'orange'             => __( 'Orange', 'athena' ),
-            'green'             => __( 'Green', 'athena' ),
-            'blue'              => __( 'Blue', 'athena' ),
-            'red'               => __( 'Red', 'athena' ),
-            'pink'              => __( 'Pink', 'athena' ),
-            'yellow'            => __( 'Yellow', 'athena' ),
-            'darkblue'          => __( 'Dark Blue', 'athena' ),
+            'blue'              => __( 'Blue', 'byblos' ),
+            'red'               => __( 'Red', 'byblos' ),
+            'green'               => __( 'Green', 'byblos' ),
+            'yellow'            => __( 'Yellow', 'byblos' ),
+            'orange'            => __( 'Orange', 'byblos' ),
         )
         
     ) );
@@ -284,303 +611,201 @@ function byblos_customize_register($wp_customize) {
     $wp_customize->add_setting( 'byblos[sc_font_family]', array (
         'default'               => 'Josefin Sans, sans-serif',
         'transport'             => 'refresh',
-        'sanitize_callback'     => 'byblos_sanitize',
+        'sanitize_callback'     => 'byblos_text_sanitize',
         'type'  => 'option'
     ) );
     
     $wp_customize->add_control( 'byblos[sc_font_family]', array(
         'type'                  => 'select',
         'section'               => 'font',
-        'label'                 => __( 'Menu Font', 'athena' ),
+        'label'                 => __( 'Website Font', 'byblos' ),
         'choices'               => byblos_fonts()
         
     ) );
     
     
     $wp_customize->add_setting( 'byblos[sc_font_size]', array (
-        'default'               => '18px',
+        'default'               => '20px',
         'transport'             => 'refresh',
-        'sanitize_callback'     => 'byblos_sanitize',
+        'sanitize_callback'     => 'byblos_text_sanitize',
         'type'  => 'option'
     ) );
     
     $wp_customize->add_control( 'byblos[sc_font_size]', array(
         'type'                  => 'select',
         'section'               => 'font',
-        'label'                 => __( 'Menu Font Size', 'athena' ),
-        'choices'               => athena_font_sizes()
+        'label'                 => __( 'General Font Size', 'byblos' ),
+        'choices'               => byblos_font_sizes()
         
     ) );
-    
-    $wp_customize->add_setting( 'byblos_main_font_size', array (
-        'default'               => '20px',
-        'transport'             => 'refresh',
-        'sanitize_callback'     => 'byblos_sanitize',
-        'type'  => 'option'
-    ) );
-    
-    $wp_customize->add_control( 'byblos_main_font_size', array(
-        'type'                  => 'select',
-        'section'               => 'font',
-        'label'                 => __( 'Content Font Size', 'athena' ),
-        'choices'               => athena_font_sizes()
-        
-    ) );
-    
+
     
 
     // *********************************************
     // ****************** Vertical Bar *****************
     // *********************************************
     $wp_customize->add_panel('social', array(
-        'title' => __('Vertical Menu', 'athena'),
-        'description' => __('Social Icons, Links, Credits', 'athena'),
+        'title' => __('Vertical Menu', 'byblos'),
+        'description' => __('Social Icons, Links, Credits', 'byblos'),
         'priority' => 10
     ));
 
     // Social Links Section
     $wp_customize->add_section('social_links', array(
-        'title' => __('Social Icons & Links', 'athena'),
+        'title' => __('Social Icons & Links', 'byblos'),
         'panel' => 'social',
     ));
 
-    $wp_customize->add_setting('byblos_social_title', array(
-        'default' => __( 'Find Us', 'byblos'),
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+    $wp_customize->add_setting('byblos[social_title]', array(
+        'default' => __( 'Follow Us', 'byblos'),
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
-    $wp_customize->add_control('byblos_social_title', array(
+    $wp_customize->add_control('byblos[social_title]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Social Section Title', 'athena')
+        'label' => __('Social Section Title', 'byblos')
     ));
 
-    $wp_customize->add_setting('byblos_phone', array(
+    $wp_customize->add_setting('byblos[phone]', array(
         'default' => '888.989.1111',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
-    $wp_customize->add_control('byblos_phone', array(
+    $wp_customize->add_control('byblos[phone]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Phone Number', 'athena')
+        'label' => __('Phone Number', 'byblos')
     ));
 
-    $wp_customize->add_setting('byblos_email', array(
+    $wp_customize->add_setting('byblos[email]', array(
         'default' => 'info@domain.com',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
-    $wp_customize->add_control('byblos_email', array(
+    $wp_customize->add_control('byblos[email]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Email Address', 'athena')
+        'label' => __('Email Address', 'byblos')
     ));
 
     $wp_customize->add_setting('byblos[sc_facebook_url]', array(
         'default' => '#',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
     $wp_customize->add_control('byblos[sc_facebook_url]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Facebook URL', 'athena')
+        'label' => __('Facebook URL', 'byblos')
     ));
 
     $wp_customize->add_setting('byblos[sc_gplus_url]', array(
         'default' => '#',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
     $wp_customize->add_control('byblos[sc_gplus_url]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Google Plus URL', 'athena')
+        'label' => __('Google Plus URL', 'byblos')
     ));
 
     $wp_customize->add_setting('byblos[sc_instagram_url]', array(
         'default' => '#',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
     $wp_customize->add_control('byblos[sc_instagram_url]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Instagram URL', 'athena')
+        'label' => __('Instagram URL', 'byblos')
     ));
 
     $wp_customize->add_setting('byblos[sc_linkedin_url]', array(
         'default' => '#',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
     $wp_customize->add_control('byblos[sc_linkedin_url]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Linkedin URL', 'athena')
+        'label' => __('Linkedin URL', 'byblos')
     ));
 
     $wp_customize->add_setting('byblos[sc_pinterest_url]', array(
         'default' => '#',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
     $wp_customize->add_control('byblos[sc_pinterest_url]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Pinterest URL', 'athena')
+        'label' => __('Pinterest URL', 'byblos')
     ));
 
     $wp_customize->add_setting('byblos[sc_soundcloud_url]', array(
         'default' => '#',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
     $wp_customize->add_control('byblos[sc_soundcloud_url]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Soundcloud URL', 'athena')
+        'label' => __('Soundcloud URL', 'byblos')
     ));
 
     $wp_customize->add_setting('byblos[sc_twitter_url]', array(
         'default' => '#',
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
     $wp_customize->add_control('byblos[sc_twitter_url]', array(
         'type' => 'text',
         'section' => 'social_links',
-        'label' => __('Twitter URL', 'athena')
+        'label' => __('Twitter URL', 'byblos')
     ));
     
     // Company Name
     $wp_customize->add_section('credits', array(
-        'title' => __('Company Name & Branding', 'athena'),
+        'title' => __('Company Name & Branding', 'byblos'),
         'panel' => 'social',
     ));
     
-    $wp_customize->add_setting('byblos_company', array(
-        'default' => __( '&copy; Comapny Name 2016', 'byblos' ),
-        'transport' => 'postMessage',
-        'sanitize_callback' => 'byblos_sanitize',
+    
+    $wp_customize->add_setting('byblos[sc_footer_text]', array(
+        'default' => '#',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'byblos_text_sanitize',
         'type'  => 'option'
     ));
 
-    $wp_customize->add_control('byblos_company', array(
+    $wp_customize->add_control('byblos[sc_footer_text]', array(
         'type' => 'text',
         'section' => 'credits',
-        'label' => __('Company Name', 'athena')
+        'label' => __('Company Name', 'byblos')
     ));
-    
-    // *********************************************
-    // ****************** Templates *****************
-    // *********************************************
-    $wp_customize->add_panel('templates', array(
-        'title' => __('Templates', 'athena'),
-        'description' => __('Modify the appearance of your WordPress templates', 'athena'),
-        'priority' => 10
-    ));
-
-    // Single post Section
-    $wp_customize->add_section('single', array(
-        'title' => __('Social post template', 'athena'),
-        'panel' => 'templates',
-    ));
-    
-    $wp_customize->add_setting('single_date', array(
-        'default' => __( 'on', 'byblos' ),
-        'transport' => 'refresh',
-        'sanitize_callback' => 'byblos_sanitize',
-        'type'  => 'option'
-    ));
-
-    $wp_customize->add_control('single_date', array(
-        'type' => 'radio',
-        'section' => 'single',
-        'label' => __('Post Date', 'athena'),
-        'choices'   => array(
-            'on'    => 'Show',
-            'off'   => 'Hide'
-        )
-    ));
-    
-    $wp_customize->add_setting('single_image', array(
-        'default' => __( 'on', 'byblos' ),
-        'transport' => 'refresh',
-        'sanitize_callback' => 'byblos_sanitize',
-        'type'  => 'option'
-    ));
-
-    $wp_customize->add_control('single_image', array(
-        'type' => 'radio',
-        'section' => 'single',
-        'label' => __('Post Image', 'athena'),
-        'choices'   => array(
-            'on'    => 'Show',
-            'off'   => 'Hide'
-        )
-    ));
-    
-    $wp_customize->add_setting('single_author', array(
-        'default' => __( 'on', 'byblos' ),
-        'transport' => 'refresh',
-        'sanitize_callback' => 'byblos_sanitize',
-        'type'  => 'option'
-    ));
-
-    $wp_customize->add_control('single_author', array(
-        'type' => 'radio',
-        'section' => 'single',
-        'label' => __('Post Author', 'athena'),
-        'choices'   => array(
-            'on'    => __( 'Show','byblos' ),
-            'off'   => __( 'Hide','byblos')
-        )
-    ));
-    
-    // Blog Section
-    $wp_customize->add_section('blog', array(
-        'title' => __('Blog template', 'athena'),
-        'panel' => 'templates',
-    ));
-    
-    $wp_customize->add_setting('blog_sidebar', array(
-        'default' => __( 'on', 'byblos' ),
-        'transport' => 'refresh',
-        'sanitize_callback' => 'byblos_sanitize',
-        'type'  => 'option'
-    ));
-
-    $wp_customize->add_control('blog_sidebar', array(
-        'type' => 'radio',
-        'section' => 'blog',
-        'label' => __('Blog Sidebar', 'athena'),
-        'choices'   => array(
-            'col1'    => __( 'Full Width', 'byblos' ),
-            'col2r'   => __( 'Sidebar', 'byblos' )
-        )
-    ));
+   
     
 }
 
@@ -596,13 +821,13 @@ function byblos_customize_preview_js() {
 add_action('customize_preview_init', 'byblos_customize_preview_js');
 
 
-function athena_icons(){
+function byblos_icons(){
     
     return array( 
-        'fa fa-clock' => __( 'Select One', 'athena'), 
-        'fa fa-500px' => __( ' 500px', 'athena'), 
-        'fa fa-amazon' => __( ' amazon', 'athena'), 
-        'fa fa-balance-scale' => __( ' balance-scale', 'athena'), 'fa fa-battery-0' => __( ' battery-0', 'athena'), 'fa fa-battery-1' => __( ' battery-1', 'athena'), 'fa fa-battery-2' => __( ' battery-2', 'athena'), 'fa fa-battery-3' => __( ' battery-3', 'athena'), 'fa fa-battery-4' => __( ' battery-4', 'athena'), 'fa fa-battery-empty' => __( ' battery-empty', 'athena'), 'fa fa-battery-full' => __( ' battery-full', 'athena'), 'fa fa-battery-half' => __( ' battery-half', 'athena'), 'fa fa-battery-quarter' => __( ' battery-quarter', 'athena'), 'fa fa-battery-three-quarters' => __( ' battery-three-quarters', 'athena'), 'fa fa-black-tie' => __( ' black-tie', 'athena'), 'fa fa-calendar-check-o' => __( ' calendar-check-o', 'athena'), 'fa fa-calendar-minus-o' => __( ' calendar-minus-o', 'athena'), 'fa fa-calendar-plus-o' => __( ' calendar-plus-o', 'athena'), 'fa fa-calendar-times-o' => __( ' calendar-times-o', 'athena'), 'fa fa-cc-diners-club' => __( ' cc-diners-club', 'athena'), 'fa fa-cc-jcb' => __( ' cc-jcb', 'athena'), 'fa fa-chrome' => __( ' chrome', 'athena'), 'fa fa-clone' => __( ' clone', 'athena'), 'fa fa-commenting' => __( ' commenting', 'athena'), 'fa fa-commenting-o' => __( ' commenting-o', 'athena'), 'fa fa-contao' => __( ' contao', 'athena'), 'fa fa-creative-commons' => __( ' creative-commons', 'athena'), 'fa fa-expeditedssl' => __( ' expeditedssl', 'athena'), 'fa fa-firefox' => __( ' firefox', 'athena'), 'fa fa-fonticons' => __( ' fonticons', 'athena'), 'fa fa-genderless' => __( ' genderless', 'athena'), 'fa fa-get-pocket' => __( ' get-pocket', 'athena'), 'fa fa-gg' => __( ' gg', 'athena'), 'fa fa-gg-circle' => __( ' gg-circle', 'athena'), 'fa fa-hand-grab-o' => __( ' hand-grab-o', 'athena'), 'fa fa-hand-lizard-o' => __( ' hand-lizard-o', 'athena'), 'fa fa-hand-paper-o' => __( ' hand-paper-o', 'athena'), 'fa fa-hand-peace-o' => __( ' hand-peace-o', 'athena'), 'fa fa-hand-pointer-o' => __( ' hand-pointer-o', 'athena'), 'fa fa-hand-rock-o' => __( ' hand-rock-o', 'athena'), 'fa fa-hand-scissors-o' => __( ' hand-scissors-o', 'athena'), 'fa fa-hand-spock-o' => __( ' hand-spock-o', 'athena'), 'fa fa-hand-stop-o' => __( ' hand-stop-o', 'athena'), 'fa fa-hourglass' => __( ' hourglass', 'athena'), 'fa fa-hourglass-1' => __( ' hourglass-1', 'athena'), 'fa fa-hourglass-2' => __( ' hourglass-2', 'athena'), 'fa fa-hourglass-3' => __( ' hourglass-3', 'athena'), 'fa fa-hourglass-end' => __( ' hourglass-end', 'athena'), 'fa fa-hourglass-half' => __( ' hourglass-half', 'athena'), 'fa fa-hourglass-o' => __( ' hourglass-o', 'athena'), 'fa fa-hourglass-start' => __( ' hourglass-start', 'athena'), 'fa fa-houzz' => __( ' houzz', 'athena'), 'fa fa-i-cursor' => __( ' i-cursor', 'athena'), 'fa fa-industry' => __( ' industry', 'athena'), 'fa fa-internet-explorer' => __( ' internet-explorer', 'athena'), 'fa fa-map' => __( ' map', 'athena'), 'fa fa-map-o' => __( ' map-o', 'athena'), 'fa fa-map-pin' => __( ' map-pin', 'athena'), 'fa fa-map-signs' => __( ' map-signs', 'athena'), 'fa fa-mouse-pointer' => __( ' mouse-pointer', 'athena'), 'fa fa-object-group' => __( ' object-group', 'athena'), 'fa fa-object-ungroup' => __( ' object-ungroup', 'athena'), 'fa fa-odnoklassniki' => __( ' odnoklassniki', 'athena'), 'fa fa-odnoklassniki-square' => __( ' odnoklassniki-square', 'athena'), 'fa fa-opencart' => __( ' opencart', 'athena'), 'fa fa-opera' => __( ' opera', 'athena'), 'fa fa-optin-monster' => __( ' optin-monster', 'athena'), 'fa fa-registered' => __( ' registered', 'athena'), 'fa fa-safari' => __( ' safari', 'athena'), 'fa fa-sticky-note' => __( ' sticky-note', 'athena'), 'fa fa-sticky-note-o' => __( ' sticky-note-o', 'athena'), 'fa fa-television' => __( ' television', 'athena'), 'fa fa-trademark' => __( ' trademark', 'athena'), 'fa fa-tripadvisor' => __( ' tripadvisor', 'athena'), 'fa fa-tv' => __( ' tv', 'athena'), 'fa fa-vimeo' => __( ' vimeo', 'athena'), 'fa fa-wikipedia-w' => __( ' wikipedia-w', 'athena'), 'fa fa-y-combinator' => __( ' y-combinator', 'athena'), 'fa fa-yc' => __( ' yc', 'athena'), 'fa fa-adjust' => __( ' adjust', 'athena'), 'fa fa-anchor' => __( ' anchor', 'athena'), 'fa fa-archive' => __( ' archive', 'athena'), 'fa fa-area-chart' => __( ' area-chart', 'athena'), 'fa fa-arrows' => __( ' arrows', 'athena'), 'fa fa-arrows-h' => __( ' arrows-h', 'athena'), 'fa fa-arrows-v' => __( ' arrows-v', 'athena'), 'fa fa-asterisk' => __( ' asterisk', 'athena'), 'fa fa-at' => __( ' at', 'athena'), 'fa fa-automobile' => __( ' automobile', 'athena'), 'fa fa-balance-scale' => __( ' balance-scale', 'athena'), 'fa fa-ban' => __( ' ban', 'athena'), 'fa fa-bank' => __( ' bank', 'athena'), 'fa fa-bar-chart' => __( ' bar-chart', 'athena'), 'fa fa-bar-chart-o' => __( ' bar-chart-o', 'athena'), 'fa fa-barcode' => __( ' barcode', 'athena'), 'fa fa-bars' => __( ' bars', 'athena'), 'fa fa-battery-0' => __( ' battery-0', 'athena'), 'fa fa-battery-1' => __( ' battery-1', 'athena'), 'fa fa-battery-2' => __( ' battery-2', 'athena'), 'fa fa-battery-3' => __( ' battery-3', 'athena'), 'fa fa-battery-4' => __( ' battery-4', 'athena'), 'fa fa-battery-empty' => __( ' battery-empty', 'athena'), 'fa fa-battery-full' => __( ' battery-full', 'athena'), 'fa fa-battery-half' => __( ' battery-half', 'athena'), 'fa fa-battery-quarter' => __( ' battery-quarter', 'athena'), 'fa fa-battery-three-quarters' => __( ' battery-three-quarters', 'athena'), 'fa fa-bed' => __( ' bed', 'athena'), 'fa fa-beer' => __( ' beer', 'athena'), 'fa fa-bell' => __( ' bell', 'athena'), 'fa fa-bell-o' => __( ' bell-o', 'athena'), 'fa fa-bell-slash' => __( ' bell-slash', 'athena'), 'fa fa-bell-slash-o' => __( ' bell-slash-o', 'athena'), 'fa fa-bicycle' => __( ' bicycle', 'athena'), 'fa fa-binoculars' => __( ' binoculars', 'athena'), 'fa fa-birthday-cake' => __( ' birthday-cake', 'athena'), 'fa fa-bolt' => __( ' bolt', 'athena'), 'fa fa-bomb' => __( ' bomb', 'athena'), 'fa fa-book' => __( ' book', 'athena'), 'fa fa-bookmark' => __( ' bookmark', 'athena'), 'fa fa-bookmark-o' => __( ' bookmark-o', 'athena'), 'fa fa-briefcase' => __( ' briefcase', 'athena'), 'fa fa-bug' => __( ' bug', 'athena'), 'fa fa-building' => __( ' building', 'athena'), 'fa fa-building-o' => __( ' building-o', 'athena'), 'fa fa-bullhorn' => __( ' bullhorn', 'athena'), 'fa fa-bullseye' => __( ' bullseye', 'athena'), 'fa fa-bus' => __( ' bus', 'athena'), 'fa fa-cab' => __( ' cab', 'athena'), 'fa fa-calculator' => __( ' calculator', 'athena'), 'fa fa-calendar' => __( ' calendar', 'athena'), 'fa fa-calendar-check-o' => __( ' calendar-check-o', 'athena'), 'fa fa-calendar-minus-o' => __( ' calendar-minus-o', 'athena'), 'fa fa-calendar-o' => __( ' calendar-o', 'athena'), 'fa fa-calendar-plus-o' => __( ' calendar-plus-o', 'athena'), 'fa fa-calendar-times-o' => __( ' calendar-times-o', 'athena'), 'fa fa-camera' => __( ' camera', 'athena'), 'fa fa-camera-retro' => __( ' camera-retro', 'athena'), 'fa fa-car' => __( ' car', 'athena'), 'fa fa-caret-square-o-down' => __( ' caret-square-o-down', 'athena'), 'fa fa-caret-square-o-left' => __( ' caret-square-o-left', 'athena'), 'fa fa-caret-square-o-right' => __( ' caret-square-o-right', 'athena'), 'fa fa-caret-square-o-up' => __( ' caret-square-o-up', 'athena'), 'fa fa-cart-arrow-down' => __( ' cart-arrow-down', 'athena'), 'fa fa-cart-plus' => __( ' cart-plus', 'athena'), 'fa fa-cc' => __( ' cc', 'athena'), 'fa fa-certificate' => __( ' certificate', 'athena'), 'fa fa-check' => __( ' check', 'athena'), 'fa fa-check-circle' => __( ' check-circle', 'athena'), 'fa fa-check-circle-o' => __( ' check-circle-o', 'athena'), 'fa fa-check-square' => __( ' check-square', 'athena'), 'fa fa-check-square-o' => __( ' check-square-o', 'athena'), 'fa fa-child' => __( ' child', 'athena'), 'fa fa-circle' => __( ' circle', 'athena'), 'fa fa-circle-o' => __( ' circle-o', 'athena'), 'fa fa-circle-o-notch' => __( ' circle-o-notch', 'athena'), 'fa fa-circle-thin' => __( ' circle-thin', 'athena'), 'fa fa-clock-o' => __( ' clock-o', 'athena'), 'fa fa-clone' => __( ' clone', 'athena'), 'fa fa-close' => __( ' close', 'athena'), 'fa fa-cloud' => __( ' cloud', 'athena'), 'fa fa-cloud-download' => __( ' cloud-download', 'athena'), 'fa fa-cloud-upload' => __( ' cloud-upload', 'athena'), 'fa fa-code' => __( ' code', 'athena'), 'fa fa-code-fork' => __( ' code-fork', 'athena'), 'fa fa-coffee' => __( ' coffee', 'athena'), 'fa fa-cog' => __( ' cog', 'athena'), 'fa fa-cogs' => __( ' cogs', 'athena'), 'fa fa-comment' => __( ' comment', 'athena'), 'fa fa-comment-o' => __( ' comment-o', 'athena'), 'fa fa-commenting' => __( ' commenting', 'athena'), 'fa fa-commenting-o' => __( ' commenting-o', 'athena'), 'fa fa-comments' => __( ' comments', 'athena'), 'fa fa-comments-o' => __( ' comments-o', 'athena'), 'fa fa-compass' => __( ' compass', 'athena'), 'fa fa-copyright' => __( ' copyright', 'athena'), 'fa fa-creative-commons' => __( ' creative-commons', 'athena'), 'fa fa-credit-card' => __( ' credit-card', 'athena'), 'fa fa-crop' => __( ' crop', 'athena'), 'fa fa-crosshairs' => __( ' crosshairs', 'athena'), 'fa fa-cube' => __( ' cube', 'athena'), 'fa fa-cubes' => __( ' cubes', 'athena'), 'fa fa-cutlery' => __( ' cutlery', 'athena'), 'fa fa-dashboard' => __( ' dashboard', 'athena'), 'fa fa-database' => __( ' database', 'athena'), 'fa fa-desktop' => __( ' desktop', 'athena'), 'fa fa-diamond' => __( ' diamond', 'athena'), 'fa fa-dot-circle-o' => __( ' dot-circle-o', 'athena'), 'fa fa-download' => __( ' download', 'athena'), 'fa fa-edit' => __( ' edit', 'athena'), 'fa fa-ellipsis-h' => __( ' ellipsis-h', 'athena'), 'fa fa-ellipsis-v' => __( ' ellipsis-v', 'athena'), 'fa fa-envelope' => __( ' envelope', 'athena'), 'fa fa-envelope-o' => __( ' envelope-o', 'athena'), 'fa fa-envelope-square' => __( ' envelope-square', 'athena'), 'fa fa-eraser' => __( ' eraser', 'athena'), 'fa fa-exchange' => __( ' exchange', 'athena'), 'fa fa-exclamation' => __( ' exclamation', 'athena'), 'fa fa-exclamation-circle' => __( ' exclamation-circle', 'athena'), 'fa fa-exclamation-triangle' => __( ' exclamation-triangle', 'athena'), 'fa fa-external-link' => __( ' external-link', 'athena'), 'fa fa-external-link-square' => __( ' external-link-square', 'athena'), 'fa fa-eye' => __( ' eye', 'athena'), 'fa fa-eye-slash' => __( ' eye-slash', 'athena'), 'fa fa-eyedropper' => __( ' eyedropper', 'athena'), 'fa fa-fax' => __( ' fax', 'athena'), 'fa fa-feed' => __( ' feed', 'athena'), 'fa fa-female' => __( ' female', 'athena'), 'fa fa-fighter-jet' => __( ' fighter-jet', 'athena'), 'fa fa-file-archive-o' => __( ' file-archive-o', 'athena'), 'fa fa-file-audio-o' => __( ' file-audio-o', 'athena'), 'fa fa-file-code-o' => __( ' file-code-o', 'athena'), 'fa fa-file-excel-o' => __( ' file-excel-o', 'athena'), 'fa fa-file-image-o' => __( ' file-image-o', 'athena'), 'fa fa-file-movie-o' => __( ' file-movie-o', 'athena'), 'fa fa-file-pdf-o' => __( ' file-pdf-o', 'athena'), 'fa fa-file-photo-o' => __( ' file-photo-o', 'athena'), 'fa fa-file-picture-o' => __( ' file-picture-o', 'athena'), 'fa fa-file-powerpoint-o' => __( ' file-powerpoint-o', 'athena'), 'fa fa-file-sound-o' => __( ' file-sound-o', 'athena'), 'fa fa-file-video-o' => __( ' file-video-o', 'athena'), 'fa fa-file-word-o' => __( ' file-word-o', 'athena'), 'fa fa-file-zip-o' => __( ' file-zip-o', 'athena'), 'fa fa-film' => __( ' film', 'athena'), 'fa fa-filter' => __( ' filter', 'athena'), 'fa fa-fire' => __( ' fire', 'athena'), 'fa fa-fire-extinguisher' => __( ' fire-extinguisher', 'athena'), 'fa fa-flag' => __( ' flag', 'athena'), 'fa fa-flag-checkered' => __( ' flag-checkered', 'athena'), 'fa fa-flag-o' => __( ' flag-o', 'athena'), 'fa fa-flash' => __( ' flash', 'athena'), 'fa fa-flask' => __( ' flask', 'athena'), 'fa fa-folder' => __( ' folder', 'athena'), 'fa fa-folder-o' => __( ' folder-o', 'athena'), 'fa fa-folder-open' => __( ' folder-open', 'athena'), 'fa fa-folder-open-o' => __( ' folder-open-o', 'athena'), 'fa fa-frown-o' => __( ' frown-o', 'athena'), 'fa fa-futbol-o' => __( ' futbol-o', 'athena'), 'fa fa-gamepad' => __( ' gamepad', 'athena'), 'fa fa-gavel' => __( ' gavel', 'athena'), 'fa fa-gear' => __( ' gear', 'athena'), 'fa fa-gears' => __( ' gears', 'athena'), 'fa fa-gift' => __( ' gift', 'athena'), 'fa fa-glass' => __( ' glass', 'athena'), 'fa fa-globe' => __( ' globe', 'athena'), 'fa fa-graduation-cap' => __( ' graduation-cap', 'athena'), 'fa fa-group' => __( ' group', 'athena'), 'fa fa-hand-grab-o' => __( ' hand-grab-o', 'athena'), 'fa fa-hand-lizard-o' => __( ' hand-lizard-o', 'athena'), 'fa fa-hand-paper-o' => __( ' hand-paper-o', 'athena'), 'fa fa-hand-peace-o' => __( ' hand-peace-o', 'athena'), 'fa fa-hand-pointer-o' => __( ' hand-pointer-o', 'athena'), 'fa fa-hand-rock-o' => __( ' hand-rock-o', 'athena'), 'fa fa-hand-scissors-o' => __( ' hand-scissors-o', 'athena'), 'fa fa-hand-spock-o' => __( ' hand-spock-o', 'athena'), 'fa fa-hand-stop-o' => __( ' hand-stop-o', 'athena'), 'fa fa-hdd-o' => __( ' hdd-o', 'athena'), 'fa fa-headphones' => __( ' headphones', 'athena'), 'fa fa-heart' => __( ' heart', 'athena'), 'fa fa-heart-o' => __( ' heart-o', 'athena'), 'fa fa-heartbeat' => __( ' heartbeat', 'athena'), 'fa fa-history' => __( ' history', 'athena'), 'fa fa-home' => __( ' home', 'athena'), 'fa fa-hotel' => __( ' hotel', 'athena'), 'fa fa-hourglass' => __( ' hourglass', 'athena'), 'fa fa-hourglass-1' => __( ' hourglass-1', 'athena'), 'fa fa-hourglass-2' => __( ' hourglass-2', 'athena'), 'fa fa-hourglass-3' => __( ' hourglass-3', 'athena'), 'fa fa-hourglass-end' => __( ' hourglass-end', 'athena'), 'fa fa-hourglass-half' => __( ' hourglass-half', 'athena'), 'fa fa-hourglass-o' => __( ' hourglass-o', 'athena'), 'fa fa-hourglass-start' => __( ' hourglass-start', 'athena'), 'fa fa-i-cursor' => __( ' i-cursor', 'athena'), 'fa fa-image' => __( ' image', 'athena'), 'fa fa-inbox' => __( ' inbox', 'athena'), 'fa fa-industry' => __( ' industry', 'athena'), 'fa fa-info' => __( ' info', 'athena'), 'fa fa-info-circle' => __( ' info-circle', 'athena'), 'fa fa-institution' => __( ' institution', 'athena'), 'fa fa-key' => __( ' key', 'athena'), 'fa fa-keyboard-o' => __( ' keyboard-o', 'athena'), 'fa fa-language' => __( ' language', 'athena'), 'fa fa-laptop' => __( ' laptop', 'athena'), 'fa fa-leaf' => __( ' leaf', 'athena'), 'fa fa-legal' => __( ' legal', 'athena'), 'fa fa-lemon-o' => __( ' lemon-o', 'athena'), 'fa fa-level-down' => __( ' level-down', 'athena'), 'fa fa-level-up' => __( ' level-up', 'athena'), 'fa fa-life-bouy' => __( ' life-bouy', 'athena'), 'fa fa-life-buoy' => __( ' life-buoy', 'athena'), 'fa fa-life-ring' => __( ' life-ring', 'athena'), 'fa fa-life-saver' => __( ' life-saver', 'athena'), 'fa fa-lightbulb-o' => __( ' lightbulb-o', 'athena'), 'fa fa-line-chart' => __( ' line-chart', 'athena'), 'fa fa-location-arrow' => __( ' location-arrow', 'athena'), 'fa fa-lock' => __( ' lock', 'athena'), 'fa fa-magic' => __( ' magic', 'athena'), 'fa fa-magnet' => __( ' magnet', 'athena'), 'fa fa-mail-forward' => __( ' mail-forward', 'athena'), 'fa fa-mail-reply' => __( ' mail-reply', 'athena'), 'fa fa-mail-reply-all' => __( ' mail-reply-all', 'athena'), 'fa fa-male' => __( ' male', 'athena'), 'fa fa-map' => __( ' map', 'athena'), 'fa fa-map-marker' => __( ' map-marker', 'athena'), 'fa fa-map-o' => __( ' map-o', 'athena'), 'fa fa-map-pin' => __( ' map-pin', 'athena'), 'fa fa-map-signs' => __( ' map-signs', 'athena'), 'fa fa-meh-o' => __( ' meh-o', 'athena'), 'fa fa-microphone' => __( ' microphone', 'athena'), 'fa fa-microphone-slash' => __( ' microphone-slash', 'athena'), 'fa fa-minus' => __( ' minus', 'athena'), 'fa fa-minus-circle' => __( ' minus-circle', 'athena'), 'fa fa-minus-square' => __( ' minus-square', 'athena'), 'fa fa-minus-square-o' => __( ' minus-square-o', 'athena'), 'fa fa-mobile' => __( ' mobile', 'athena'), 'fa fa-mobile-phone' => __( ' mobile-phone', 'athena'), 'fa fa-money' => __( ' money', 'athena'), 'fa fa-moon-o' => __( ' moon-o', 'athena'), 'fa fa-mortar-board' => __( ' mortar-board', 'athena'), 'fa fa-motorcycle' => __( ' motorcycle', 'athena'), 'fa fa-mouse-pointer' => __( ' mouse-pointer', 'athena'), 'fa fa-music' => __( ' music', 'athena'), 'fa fa-navicon' => __( ' navicon', 'athena'), 'fa fa-newspaper-o' => __( ' newspaper-o', 'athena'), 'fa fa-object-group' => __( ' object-group', 'athena'), 'fa fa-object-ungroup' => __( ' object-ungroup', 'athena'), 'fa fa-paint-brush' => __( ' paint-brush', 'athena'), 'fa fa-paper-plane' => __( ' paper-plane', 'athena'), 'fa fa-paper-plane-o' => __( ' paper-plane-o', 'athena'), 'fa fa-paw' => __( ' paw', 'athena'), 'fa fa-pencil' => __( ' pencil', 'athena'), 'fa fa-pencil-square' => __( ' pencil-square', 'athena'), 'fa fa-pencil-square-o' => __( ' pencil-square-o', 'athena'), 'fa fa-phone' => __( ' phone', 'athena'), 'fa fa-phone-square' => __( ' phone-square', 'athena'), 'fa fa-photo' => __( ' photo', 'athena'), 'fa fa-picture-o' => __( ' picture-o', 'athena'), 'fa fa-pie-chart' => __( ' pie-chart', 'athena'), 'fa fa-plane' => __( ' plane', 'athena'), 'fa fa-plug' => __( ' plug', 'athena'), 'fa fa-plus' => __( ' plus', 'athena'), 'fa fa-plus-circle' => __( ' plus-circle', 'athena'), 'fa fa-plus-square' => __( ' plus-square', 'athena'), 'fa fa-plus-square-o' => __( ' plus-square-o', 'athena'), 'fa fa-power-off' => __( ' power-off', 'athena'), 'fa fa-print' => __( ' print', 'athena'), 'fa fa-puzzle-piece' => __( ' puzzle-piece', 'athena'), 'fa fa-qrcode' => __( ' qrcode', 'athena'), 'fa fa-question' => __( ' question', 'athena'), 'fa fa-question-circle' => __( ' question-circle', 'athena'), 'fa fa-quote-left' => __( ' quote-left', 'athena'), 'fa fa-quote-right' => __( ' quote-right', 'athena'), 'fa fa-random' => __( ' random', 'athena'), 'fa fa-recycle' => __( ' recycle', 'athena'), 'fa fa-refresh' => __( ' refresh', 'athena'), 'fa fa-registered' => __( ' registered', 'athena'), 'fa fa-remove' => __( ' remove', 'athena'), 'fa fa-reorder' => __( ' reorder', 'athena'), 'fa fa-reply' => __( ' reply', 'athena'), 'fa fa-reply-all' => __( ' reply-all', 'athena'), 'fa fa-retweet' => __( ' retweet', 'athena'), 'fa fa-road' => __( ' road', 'athena'), 'fa fa-rocket' => __( ' rocket', 'athena'), 'fa fa-rss' => __( ' rss', 'athena'), 'fa fa-rss-square' => __( ' rss-square', 'athena'), 'fa fa-search' => __( ' search', 'athena'), 'fa fa-search-minus' => __( ' search-minus', 'athena'), 'fa fa-search-plus' => __( ' search-plus', 'athena'), 'fa fa-send' => __( ' send', 'athena'), 'fa fa-send-o' => __( ' send-o', 'athena'), 'fa fa-server' => __( ' server', 'athena'), 'fa fa-share' => __( ' share', 'athena'), 'fa fa-share-alt' => __( ' share-alt', 'athena'), 'fa fa-share-alt-square' => __( ' share-alt-square', 'athena'), 'fa fa-share-square' => __( ' share-square', 'athena'), 'fa fa-share-square-o' => __( ' share-square-o', 'athena'), 'fa fa-shield' => __( ' shield', 'athena'), 'fa fa-ship' => __( ' ship', 'athena'), 'fa fa-shopping-cart' => __( ' shopping-cart', 'athena'), 'fa fa-sign-in' => __( ' sign-in', 'athena'), 'fa fa-sign-out' => __( ' sign-out', 'athena'), 'fa fa-signal' => __( ' signal', 'athena'), 'fa fa-sitemap' => __( ' sitemap', 'athena'), 'fa fa-sliders' => __( ' sliders', 'athena'), 'fa fa-smile-o' => __( ' smile-o', 'athena'), 'fa fa-soccer-ball-o' => __( ' soccer-ball-o', 'athena'), 'fa fa-sort' => __( ' sort', 'athena'), 'fa fa-sort-alpha-asc' => __( ' sort-alpha-asc', 'athena'), 'fa fa-sort-alpha-desc' => __( ' sort-alpha-desc', 'athena'), 'fa fa-sort-amount-asc' => __( ' sort-amount-asc', 'athena'), 'fa fa-sort-amount-desc' => __( ' sort-amount-desc', 'athena'), 'fa fa-sort-asc' => __( ' sort-asc', 'athena'), 'fa fa-sort-desc' => __( ' sort-desc', 'athena'), 'fa fa-sort-down' => __( ' sort-down', 'athena'), 'fa fa-sort-numeric-asc' => __( ' sort-numeric-asc', 'athena'), 'fa fa-sort-numeric-desc' => __( ' sort-numeric-desc', 'athena'), 'fa fa-sort-up' => __( ' sort-up', 'athena'), 'fa fa-space-shuttle' => __( ' space-shuttle', 'athena'), 'fa fa-spinner' => __( ' spinner', 'athena'), 'fa fa-spoon' => __( ' spoon', 'athena'), 'fa fa-square' => __( ' square', 'athena'), 'fa fa-square-o' => __( ' square-o', 'athena'), 'fa fa-star' => __( ' star', 'athena'), 'fa fa-star-half' => __( ' star-half', 'athena'), 'fa fa-star-half-empty' => __( ' star-half-empty', 'athena'), 'fa fa-star-half-full' => __( ' star-half-full', 'athena'), 'fa fa-star-half-o' => __( ' star-half-o', 'athena'), 'fa fa-star-o' => __( ' star-o', 'athena'), 'fa fa-sticky-note' => __( ' sticky-note', 'athena'), 'fa fa-sticky-note-o' => __( ' sticky-note-o', 'athena'), 'fa fa-street-view' => __( ' street-view', 'athena'), 'fa fa-suitcase' => __( ' suitcase', 'athena'), 'fa fa-sun-o' => __( ' sun-o', 'athena'), 'fa fa-support' => __( ' support', 'athena'), 'fa fa-tablet' => __( ' tablet', 'athena'), 'fa fa-tachometer' => __( ' tachometer', 'athena'), 'fa fa-tag' => __( ' tag', 'athena'), 'fa fa-tags' => __( ' tags', 'athena'), 'fa fa-tasks' => __( ' tasks', 'athena'), 'fa fa-taxi' => __( ' taxi', 'athena'), 'fa fa-television' => __( ' television', 'athena'), 'fa fa-terminal' => __( ' terminal', 'athena'), 'fa fa-thumb-tack' => __( ' thumb-tack', 'athena'), 'fa fa-thumbs-down' => __( ' thumbs-down', 'athena'), 'fa fa-thumbs-o-down' => __( ' thumbs-o-down', 'athena'), 'fa fa-thumbs-o-up' => __( ' thumbs-o-up', 'athena'), 'fa fa-thumbs-up' => __( ' thumbs-up', 'athena'), 'fa fa-ticket' => __( ' ticket', 'athena'), 'fa fa-times' => __( ' times', 'athena'), 'fa fa-times-circle' => __( ' times-circle', 'athena'), 'fa fa-times-circle-o' => __( ' times-circle-o', 'athena'), 'fa fa-tint' => __( ' tint', 'athena'), 'fa fa-toggle-down' => __( ' toggle-down', 'athena'), 'fa fa-toggle-left' => __( ' toggle-left', 'athena'), 'fa fa-toggle-off' => __( ' toggle-off', 'athena'), 'fa fa-toggle-on' => __( ' toggle-on', 'athena'), 'fa fa-toggle-right' => __( ' toggle-right', 'athena'), 'fa fa-toggle-up' => __( ' toggle-up', 'athena'), 'fa fa-trademark' => __( ' trademark', 'athena'), 'fa fa-trash' => __( ' trash', 'athena'), 'fa fa-trash-o' => __( ' trash-o', 'athena'), 'fa fa-tree' => __( ' tree', 'athena'), 'fa fa-trophy' => __( ' trophy', 'athena'), 'fa fa-truck' => __( ' truck', 'athena'), 'fa fa-tty' => __( ' tty', 'athena'), 'fa fa-tv' => __( ' tv', 'athena'), 'fa fa-umbrella' => __( ' umbrella', 'athena'), 'fa fa-university' => __( ' university', 'athena'), 'fa fa-unlock' => __( ' unlock', 'athena'), 'fa fa-unlock-alt' => __( ' unlock-alt', 'athena'), 'fa fa-unsorted' => __( ' unsorted', 'athena'), 'fa fa-upload' => __( ' upload', 'athena'), 'fa fa-user' => __( ' user', 'athena'), 'fa fa-user-plus' => __( ' user-plus', 'athena'), 'fa fa-user-secret' => __( ' user-secret', 'athena'), 'fa fa-user-times' => __( ' user-times', 'athena'), 'fa fa-users' => __( ' users', 'athena'), 'fa fa-video-camera' => __( ' video-camera', 'athena'), 'fa fa-volume-down' => __( ' volume-down', 'athena'), 'fa fa-volume-off' => __( ' volume-off', 'athena'), 'fa fa-volume-up' => __( ' volume-up', 'athena'), 'fa fa-warning' => __( ' warning', 'athena'), 'fa fa-wheelchair' => __( ' wheelchair', 'athena'), 'fa fa-wifi' => __( ' wifi', 'athena'), 'fa fa-wrench' => __( ' wrench', 'athena'), 'fa fa-hand-grab-o' => __( ' hand-grab-o', 'athena'), 'fa fa-hand-lizard-o' => __( ' hand-lizard-o', 'athena'), 'fa fa-hand-o-down' => __( ' hand-o-down', 'athena'), 'fa fa-hand-o-left' => __( ' hand-o-left', 'athena'), 'fa fa-hand-o-right' => __( ' hand-o-right', 'athena'), 'fa fa-hand-o-up' => __( ' hand-o-up', 'athena'), 'fa fa-hand-paper-o' => __( ' hand-paper-o', 'athena'), 'fa fa-hand-peace-o' => __( ' hand-peace-o', 'athena'), 'fa fa-hand-pointer-o' => __( ' hand-pointer-o', 'athena'), 'fa fa-hand-rock-o' => __( ' hand-rock-o', 'athena'), 'fa fa-hand-scissors-o' => __( ' hand-scissors-o', 'athena'), 'fa fa-hand-spock-o' => __( ' hand-spock-o', 'athena'), 'fa fa-hand-stop-o' => __( ' hand-stop-o', 'athena'), 'fa fa-thumbs-down' => __( ' thumbs-down', 'athena'), 'fa fa-thumbs-o-down' => __( ' thumbs-o-down', 'athena'), 'fa fa-thumbs-o-up' => __( ' thumbs-o-up', 'athena'), 'fa fa-thumbs-up' => __( ' thumbs-up', 'athena'), 'fa fa-ambulance' => __( ' ambulance', 'athena'), 'fa fa-automobile' => __( ' automobile', 'athena'), 'fa fa-bicycle' => __( ' bicycle', 'athena'), 'fa fa-bus' => __( ' bus', 'athena'), 'fa fa-cab' => __( ' cab', 'athena'), 'fa fa-car' => __( ' car', 'athena'), 'fa fa-fighter-jet' => __( ' fighter-jet', 'athena'), 'fa fa-motorcycle' => __( ' motorcycle', 'athena'), 'fa fa-plane' => __( ' plane', 'athena'), 'fa fa-rocket' => __( ' rocket', 'athena'), 'fa fa-ship' => __( ' ship', 'athena'), 'fa fa-space-shuttle' => __( ' space-shuttle', 'athena'), 'fa fa-subway' => __( ' subway', 'athena'), 'fa fa-taxi' => __( ' taxi', 'athena'), 'fa fa-train' => __( ' train', 'athena'), 'fa fa-truck' => __( ' truck', 'athena'), 'fa fa-wheelchair' => __( ' wheelchair', 'athena'), 'fa fa-genderless' => __( ' genderless', 'athena'), 'fa fa-intersex' => __( ' intersex', 'athena'), 'fa fa-mars' => __( ' mars', 'athena'), 'fa fa-mars-double' => __( ' mars-double', 'athena'), 'fa fa-mars-stroke' => __( ' mars-stroke', 'athena'), 'fa fa-mars-stroke-h' => __( ' mars-stroke-h', 'athena'), 'fa fa-mars-stroke-v' => __( ' mars-stroke-v', 'athena'), 'fa fa-mercury' => __( ' mercury', 'athena'), 'fa fa-neuter' => __( ' neuter', 'athena'), 'fa fa-transgender' => __( ' transgender', 'athena'), 'fa fa-transgender-alt' => __( ' transgender-alt', 'athena'), 'fa fa-venus' => __( ' venus', 'athena'), 'fa fa-venus-double' => __( ' venus-double', 'athena'), 'fa fa-venus-mars' => __( ' venus-mars', 'athena'), 'fa fa-file' => __( ' file', 'athena'), 'fa fa-file-archive-o' => __( ' file-archive-o', 'athena'), 'fa fa-file-audio-o' => __( ' file-audio-o', 'athena'), 'fa fa-file-code-o' => __( ' file-code-o', 'athena'), 'fa fa-file-excel-o' => __( ' file-excel-o', 'athena'), 'fa fa-file-image-o' => __( ' file-image-o', 'athena'), 'fa fa-file-movie-o' => __( ' file-movie-o', 'athena'), 'fa fa-file-o' => __( ' file-o', 'athena'), 'fa fa-file-pdf-o' => __( ' file-pdf-o', 'athena'), 'fa fa-file-photo-o' => __( ' file-photo-o', 'athena'), 'fa fa-file-picture-o' => __( ' file-picture-o', 'athena'), 'fa fa-file-powerpoint-o' => __( ' file-powerpoint-o', 'athena'), 'fa fa-file-sound-o' => __( ' file-sound-o', 'athena'), 'fa fa-file-text' => __( ' file-text', 'athena'), 'fa fa-file-text-o' => __( ' file-text-o', 'athena'), 'fa fa-file-video-o' => __( ' file-video-o', 'athena'), 'fa fa-file-word-o' => __( ' file-word-o', 'athena'), 'fa fa-file-zip-o' => __( ' file-zip-o', 'athena'), 'fa fa-circle-o-notch' => __( ' circle-o-notch', 'athena'), 'fa fa-cog' => __( ' cog', 'athena'), 'fa fa-gear' => __( ' gear', 'athena'), 'fa fa-refresh' => __( ' refresh', 'athena'), 'fa fa-spinner' => __( ' spinner', 'athena'), 'fa fa-check-square' => __( ' check-square', 'athena'), 'fa fa-check-square-o' => __( ' check-square-o', 'athena'), 'fa fa-circle' => __( ' circle', 'athena'), 'fa fa-circle-o' => __( ' circle-o', 'athena'), 'fa fa-dot-circle-o' => __( ' dot-circle-o', 'athena'), 'fa fa-minus-square' => __( ' minus-square', 'athena'), 'fa fa-minus-square-o' => __( ' minus-square-o', 'athena'), 'fa fa-plus-square' => __( ' plus-square', 'athena'), 'fa fa-plus-square-o' => __( ' plus-square-o', 'athena'), 'fa fa-square' => __( ' square', 'athena'), 'fa fa-square-o' => __( ' square-o', 'athena'), 'fa fa-cc-amex' => __( ' cc-amex', 'athena'), 'fa fa-cc-diners-club' => __( ' cc-diners-club', 'athena'), 'fa fa-cc-discover' => __( ' cc-discover', 'athena'), 'fa fa-cc-jcb' => __( ' cc-jcb', 'athena'), 'fa fa-cc-mastercard' => __( ' cc-mastercard', 'athena'), 'fa fa-cc-paypal' => __( ' cc-paypal', 'athena'), 'fa fa-cc-stripe' => __( ' cc-stripe', 'athena'), 'fa fa-cc-visa' => __( ' cc-visa', 'athena'), 'fa fa-credit-card' => __( ' credit-card', 'athena'), 'fa fa-google-wallet' => __( ' google-wallet', 'athena'), 'fa fa-paypal' => __( ' paypal', 'athena'), 'fa fa-area-chart' => __( ' area-chart', 'athena'), 'fa fa-bar-chart' => __( ' bar-chart', 'athena'), 'fa fa-bar-chart-o' => __( ' bar-chart-o', 'athena'), 'fa fa-line-chart' => __( ' line-chart', 'athena'), 'fa fa-pie-chart' => __( ' pie-chart', 'athena'), 'fa fa-bitcoin' => __( ' bitcoin', 'athena'), 'fa fa-btc' => __( ' btc', 'athena'), 'fa fa-cny' => __( ' cny', 'athena'), 'fa fa-dollar' => __( ' dollar', 'athena'), 'fa fa-eur' => __( ' eur', 'athena'), 'fa fa-euro' => __( ' euro', 'athena'), 'fa fa-gbp' => __( ' gbp', 'athena'), 'fa fa-gg' => __( ' gg', 'athena'), 'fa fa-gg-circle' => __( ' gg-circle', 'athena'), 'fa fa-ils' => __( ' ils', 'athena'), 'fa fa-inr' => __( ' inr', 'athena'), 'fa fa-jpy' => __( ' jpy', 'athena'), 'fa fa-krw' => __( ' krw', 'athena'), 'fa fa-money' => __( ' money', 'athena'), 'fa fa-rmb' => __( ' rmb', 'athena'), 'fa fa-rouble' => __( ' rouble', 'athena'), 'fa fa-rub' => __( ' rub', 'athena'), 'fa fa-ruble' => __( ' ruble', 'athena'), 'fa fa-rupee' => __( ' rupee', 'athena'), 'fa fa-shekel' => __( ' shekel', 'athena'), 'fa fa-sheqel' => __( ' sheqel', 'athena'), 'fa fa-try' => __( ' try', 'athena'), 'fa fa-turkish-lira' => __( ' turkish-lira', 'athena'), 'fa fa-usd' => __( ' usd', 'athena'), 'fa fa-won' => __( ' won', 'athena'), 'fa fa-yen' => __( ' yen', 'athena'), 'fa fa-align-center' => __( ' align-center', 'athena'), 'fa fa-align-justify' => __( ' align-justify', 'athena'), 'fa fa-align-left' => __( ' align-left', 'athena'), 'fa fa-align-right' => __( ' align-right', 'athena'), 'fa fa-bold' => __( ' bold', 'athena'), 'fa fa-chain' => __( ' chain', 'athena'), 'fa fa-chain-broken' => __( ' chain-broken', 'athena'), 'fa fa-clipboard' => __( ' clipboard', 'athena'), 'fa fa-columns' => __( ' columns', 'athena'), 'fa fa-copy' => __( ' copy', 'athena'), 'fa fa-cut' => __( ' cut', 'athena'), 'fa fa-dedent' => __( ' dedent', 'athena'), 'fa fa-eraser' => __( ' eraser', 'athena'), 'fa fa-file' => __( ' file', 'athena'), 'fa fa-file-o' => __( ' file-o', 'athena'), 'fa fa-file-text' => __( ' file-text', 'athena'), 'fa fa-file-text-o' => __( ' file-text-o', 'athena'), 'fa fa-files-o' => __( ' files-o', 'athena'), 'fa fa-floppy-o' => __( ' floppy-o', 'athena'), 'fa fa-font' => __( ' font', 'athena'), 'fa fa-header' => __( ' header', 'athena'), 'fa fa-indent' => __( ' indent', 'athena'), 'fa fa-italic' => __( ' italic', 'athena'), 'fa fa-link' => __( ' link', 'athena'), 'fa fa-list' => __( ' list', 'athena'), 'fa fa-list-alt' => __( ' list-alt', 'athena'), 'fa fa-list-ol' => __( ' list-ol', 'athena'), 'fa fa-list-ul' => __( ' list-ul', 'athena'), 'fa fa-outdent' => __( ' outdent', 'athena'), 'fa fa-paperclip' => __( ' paperclip', 'athena'), 'fa fa-paragraph' => __( ' paragraph', 'athena'), 'fa fa-paste' => __( ' paste', 'athena'), 'fa fa-repeat' => __( ' repeat', 'athena'), 'fa fa-rotate-left' => __( ' rotate-left', 'athena'), 'fa fa-rotate-right' => __( ' rotate-right', 'athena'), 'fa fa-save' => __( ' save', 'athena'), 'fa fa-scissors' => __( ' scissors', 'athena'), 'fa fa-strikethrough' => __( ' strikethrough', 'athena'), 'fa fa-subscript' => __( ' subscript', 'athena'), 'fa fa-superscript' => __( ' superscript', 'athena'), 'fa fa-table' => __( ' table', 'athena'), 'fa fa-text-height' => __( ' text-height', 'athena'), 'fa fa-text-width' => __( ' text-width', 'athena'), 'fa fa-th' => __( ' th', 'athena'), 'fa fa-th-large' => __( ' th-large', 'athena'), 'fa fa-th-list' => __( ' th-list', 'athena'), 'fa fa-underline' => __( ' underline', 'athena'), 'fa fa-undo' => __( ' undo', 'athena'), 'fa fa-unlink' => __( ' unlink', 'athena'), 'fa fa-angle-double-down' => __( ' angle-double-down', 'athena'), 'fa fa-angle-double-left' => __( ' angle-double-left', 'athena'), 'fa fa-angle-double-right' => __( ' angle-double-right', 'athena'), 'fa fa-angle-double-up' => __( ' angle-double-up', 'athena'), 'fa fa-angle-down' => __( ' angle-down', 'athena'), 'fa fa-angle-left' => __( ' angle-left', 'athena'), 'fa fa-angle-right' => __( ' angle-right', 'athena'), 'fa fa-angle-up' => __( ' angle-up', 'athena'), 'fa fa-arrow-circle-down' => __( ' arrow-circle-down', 'athena'), 'fa fa-arrow-circle-left' => __( ' arrow-circle-left', 'athena'), 'fa fa-arrow-circle-o-down' => __( ' arrow-circle-o-down', 'athena'), 'fa fa-arrow-circle-o-left' => __( ' arrow-circle-o-left', 'athena'), 'fa fa-arrow-circle-o-right' => __( ' arrow-circle-o-right', 'athena'), 'fa fa-arrow-circle-o-up' => __( ' arrow-circle-o-up', 'athena'), 'fa fa-arrow-circle-right' => __( ' arrow-circle-right', 'athena'), 'fa fa-arrow-circle-up' => __( ' arrow-circle-up', 'athena'), 'fa fa-arrow-down' => __( ' arrow-down', 'athena'), 'fa fa-arrow-left' => __( ' arrow-left', 'athena'), 'fa fa-arrow-right' => __( ' arrow-right', 'athena'), 'fa fa-arrow-up' => __( ' arrow-up', 'athena'), 'fa fa-arrows' => __( ' arrows', 'athena'), 'fa fa-arrows-alt' => __( ' arrows-alt', 'athena'), 'fa fa-arrows-h' => __( ' arrows-h', 'athena'), 'fa fa-arrows-v' => __( ' arrows-v', 'athena'), 'fa fa-caret-down' => __( ' caret-down', 'athena'), 'fa fa-caret-left' => __( ' caret-left', 'athena'), 'fa fa-caret-right' => __( ' caret-right', 'athena'), 'fa fa-caret-square-o-down' => __( ' caret-square-o-down', 'athena'), 'fa fa-caret-square-o-left' => __( ' caret-square-o-left', 'athena'), 'fa fa-caret-square-o-right' => __( ' caret-square-o-right', 'athena'), 'fa fa-caret-square-o-up' => __( ' caret-square-o-up', 'athena'), 'fa fa-caret-up' => __( ' caret-up', 'athena'), 'fa fa-chevron-circle-down' => __( ' chevron-circle-down', 'athena'), 'fa fa-chevron-circle-left' => __( ' chevron-circle-left', 'athena'), 'fa fa-chevron-circle-right' => __( ' chevron-circle-right', 'athena'), 'fa fa-chevron-circle-up' => __( ' chevron-circle-up', 'athena'), 'fa fa-chevron-down' => __( ' chevron-down', 'athena'), 'fa fa-chevron-left' => __( ' chevron-left', 'athena'), 'fa fa-chevron-right' => __( ' chevron-right', 'athena'), 'fa fa-chevron-up' => __( ' chevron-up', 'athena'), 'fa fa-exchange' => __( ' exchange', 'athena'), 'fa fa-hand-o-down' => __( ' hand-o-down', 'athena'), 'fa fa-hand-o-left' => __( ' hand-o-left', 'athena'), 'fa fa-hand-o-right' => __( ' hand-o-right', 'athena'), 'fa fa-hand-o-up' => __( ' hand-o-up', 'athena'), 'fa fa-long-arrow-down' => __( ' long-arrow-down', 'athena'), 'fa fa-long-arrow-left' => __( ' long-arrow-left', 'athena'), 'fa fa-long-arrow-right' => __( ' long-arrow-right', 'athena'), 'fa fa-long-arrow-up' => __( ' long-arrow-up', 'athena'), 'fa fa-toggle-down' => __( ' toggle-down', 'athena'), 'fa fa-toggle-left' => __( ' toggle-left', 'athena'), 'fa fa-toggle-right' => __( ' toggle-right', 'athena'), 'fa fa-toggle-up' => __( ' toggle-up', 'athena'), 'fa fa-arrows-alt' => __( ' arrows-alt', 'athena'), 'fa fa-backward' => __( ' backward', 'athena'), 'fa fa-compress' => __( ' compress', 'athena'), 'fa fa-eject' => __( ' eject', 'athena'), 'fa fa-expand' => __( ' expand', 'athena'), 'fa fa-fast-backward' => __( ' fast-backward', 'athena'), 'fa fa-fast-forward' => __( ' fast-forward', 'athena'), 'fa fa-forward' => __( ' forward', 'athena'), 'fa fa-pause' => __( ' pause', 'athena'), 'fa fa-play' => __( ' play', 'athena'), 'fa fa-play-circle' => __( ' play-circle', 'athena'), 'fa fa-play-circle-o' => __( ' play-circle-o', 'athena'), 'fa fa-random' => __( ' random', 'athena'), 'fa fa-step-backward' => __( ' step-backward', 'athena'), 'fa fa-step-forward' => __( ' step-forward', 'athena'), 'fa fa-stop' => __( ' stop', 'athena'), 'fa fa-youtube-play' => __( ' youtube-play', 'athena'), 'fa fa-500px' => __( ' 500px', 'athena'), 'fa fa-adn' => __( ' adn', 'athena'), 'fa fa-amazon' => __( ' amazon', 'athena'), 'fa fa-android' => __( ' android', 'athena'), 'fa fa-angellist' => __( ' angellist', 'athena'), 'fa fa-apple' => __( ' apple', 'athena'), 'fa fa-behance' => __( ' behance', 'athena'), 'fa fa-behance-square' => __( ' behance-square', 'athena'), 'fa fa-bitbucket' => __( ' bitbucket', 'athena'), 'fa fa-bitbucket-square' => __( ' bitbucket-square', 'athena'), 'fa fa-bitcoin' => __( ' bitcoin', 'athena'), 'fa fa-black-tie' => __( ' black-tie', 'athena'), 'fa fa-btc' => __( ' btc', 'athena'), 'fa fa-buysellads' => __( ' buysellads', 'athena'), 'fa fa-cc-amex' => __( ' cc-amex', 'athena'), 'fa fa-cc-diners-club' => __( ' cc-diners-club', 'athena'), 'fa fa-cc-discover' => __( ' cc-discover', 'athena'), 'fa fa-cc-jcb' => __( ' cc-jcb', 'athena'), 'fa fa-cc-mastercard' => __( ' cc-mastercard', 'athena'), 'fa fa-cc-paypal' => __( ' cc-paypal', 'athena'), 'fa fa-cc-stripe' => __( ' cc-stripe', 'athena'), 'fa fa-cc-visa' => __( ' cc-visa', 'athena'), 'fa fa-chrome' => __( ' chrome', 'athena'), 'fa fa-codepen' => __( ' codepen', 'athena'), 'fa fa-connectdevelop' => __( ' connectdevelop', 'athena'), 'fa fa-contao' => __( ' contao', 'athena'), 'fa fa-css3' => __( ' css3', 'athena'), 'fa fa-dashcube' => __( ' dashcube', 'athena'), 'fa fa-delicious' => __( ' delicious', 'athena'), 'fa fa-deviantart' => __( ' deviantart', 'athena'), 'fa fa-digg' => __( ' digg', 'athena'), 'fa fa-dribbble' => __( ' dribbble', 'athena'), 'fa fa-dropbox' => __( ' dropbox', 'athena'), 'fa fa-drupal' => __( ' drupal', 'athena'), 'fa fa-empire' => __( ' empire', 'athena'), 'fa fa-expeditedssl' => __( ' expeditedssl', 'athena'), 'fa fa-facebook' => __( ' facebook', 'athena'), 'fa fa-facebook-f' => __( ' facebook-f', 'athena'), 'fa fa-facebook-official' => __( ' facebook-official', 'athena'), 'fa fa-facebook-square' => __( ' facebook-square', 'athena'), 'fa fa-firefox' => __( ' firefox', 'athena'), 'fa fa-flickr' => __( ' flickr', 'athena'), 'fa fa-fonticons' => __( ' fonticons', 'athena'), 'fa fa-forumbee' => __( ' forumbee', 'athena'), 'fa fa-foursquare' => __( ' foursquare', 'athena'), 'fa fa-ge' => __( ' ge', 'athena'), 'fa fa-get-pocket' => __( ' get-pocket', 'athena'), 'fa fa-gg' => __( ' gg', 'athena'), 'fa fa-gg-circle' => __( ' gg-circle', 'athena'), 'fa fa-git' => __( ' git', 'athena'), 'fa fa-git-square' => __( ' git-square', 'athena'), 'fa fa-github' => __( ' github', 'athena'), 'fa fa-github-alt' => __( ' github-alt', 'athena'), 'fa fa-github-square' => __( ' github-square', 'athena'), 'fa fa-gittip' => __( ' gittip', 'athena'), 'fa fa-google' => __( ' google', 'athena'), 'fa fa-google-plus' => __( ' google-plus', 'athena'), 'fa fa-google-plus-square' => __( ' google-plus-square', 'athena'), 'fa fa-google-wallet' => __( ' google-wallet', 'athena'), 'fa fa-gratipay' => __( ' gratipay', 'athena'), 'fa fa-hacker-news' => __( ' hacker-news', 'athena'), 'fa fa-houzz' => __( ' houzz', 'athena'), 'fa fa-html5' => __( ' html5', 'athena'), 'fa fa-instagram' => __( ' instagram', 'athena'), 'fa fa-internet-explorer' => __( ' internet-explorer', 'athena'), 'fa fa-ioxhost' => __( ' ioxhost', 'athena'), 'fa fa-joomla' => __( ' joomla', 'athena'), 'fa fa-jsfiddle' => __( ' jsfiddle', 'athena'), 'fa fa-lastfm' => __( ' lastfm', 'athena'), 'fa fa-lastfm-square' => __( ' lastfm-square', 'athena'), 'fa fa-leanpub' => __( ' leanpub', 'athena'), 'fa fa-linkedin' => __( ' linkedin', 'athena'), 'fa fa-linkedin-square' => __( ' linkedin-square', 'athena'), 'fa fa-linux' => __( ' linux', 'athena'), 'fa fa-maxcdn' => __( ' maxcdn', 'athena'), 'fa fa-meanpath' => __( ' meanpath', 'athena'), 'fa fa-medium' => __( ' medium', 'athena'), 'fa fa-odnoklassniki' => __( ' odnoklassniki', 'athena'), 'fa fa-odnoklassniki-square' => __( ' odnoklassniki-square', 'athena'), 'fa fa-opencart' => __( ' opencart', 'athena'), 'fa fa-openid' => __( ' openid', 'athena'), 'fa fa-opera' => __( ' opera', 'athena'), 'fa fa-optin-monster' => __( ' optin-monster', 'athena'), 'fa fa-pagelines' => __( ' pagelines', 'athena'), 'fa fa-paypal' => __( ' paypal', 'athena'), 'fa fa-pied-piper' => __( ' pied-piper', 'athena'), 'fa fa-pied-piper-alt' => __( ' pied-piper-alt', 'athena'), 'fa fa-pinterest' => __( ' pinterest', 'athena'), 'fa fa-pinterest-p' => __( ' pinterest-p', 'athena'), 'fa fa-pinterest-square' => __( ' pinterest-square', 'athena'), 'fa fa-qq' => __( ' qq', 'athena'), 'fa fa-ra' => __( ' ra', 'athena'), 'fa fa-rebel' => __( ' rebel', 'athena'), 'fa fa-reddit' => __( ' reddit', 'athena'), 'fa fa-reddit-square' => __( ' reddit-square', 'athena'), 'fa fa-renren' => __( ' renren', 'athena'), 'fa fa-safari' => __( ' safari', 'athena'), 'fa fa-sellsy' => __( ' sellsy', 'athena'), 'fa fa-share-alt' => __( ' share-alt', 'athena'), 'fa fa-share-alt-square' => __( ' share-alt-square', 'athena'), 'fa fa-shirtsinbulk' => __( ' shirtsinbulk', 'athena'), 'fa fa-simplybuilt' => __( ' simplybuilt', 'athena'), 'fa fa-skyatlas' => __( ' skyatlas', 'athena'), 'fa fa-skype' => __( ' skype', 'athena'), 'fa fa-slack' => __( ' slack', 'athena'), 'fa fa-slideshare' => __( ' slideshare', 'athena'), 'fa fa-soundcloud' => __( ' soundcloud', 'athena'), 'fa fa-spotify' => __( ' spotify', 'athena'), 'fa fa-stack-exchange' => __( ' stack-exchange', 'athena'), 'fa fa-stack-overflow' => __( ' stack-overflow', 'athena'), 'fa fa-steam' => __( ' steam', 'athena'), 'fa fa-steam-square' => __( ' steam-square', 'athena'), 'fa fa-stumbleupon' => __( ' stumbleupon', 'athena'), 'fa fa-stumbleupon-circle' => __( ' stumbleupon-circle', 'athena'), 'fa fa-tencent-weibo' => __( ' tencent-weibo', 'athena'), 'fa fa-trello' => __( ' trello', 'athena'), 'fa fa-tripadvisor' => __( ' tripadvisor', 'athena'), 'fa fa-tumblr' => __( ' tumblr', 'athena'), 'fa fa-tumblr-square' => __( ' tumblr-square', 'athena'), 'fa fa-twitch' => __( ' twitch', 'athena'), 'fa fa-twitter' => __( ' twitter', 'athena'), 'fa fa-twitter-square' => __( ' twitter-square', 'athena'), 'fa fa-viacoin' => __( ' viacoin', 'athena'), 'fa fa-vimeo' => __( ' vimeo', 'athena'), 'fa fa-vimeo-square' => __( ' vimeo-square', 'athena'), 'fa fa-vine' => __( ' vine', 'athena'), 'fa fa-vk' => __( ' vk', 'athena'), 'fa fa-wechat' => __( ' wechat', 'athena'), 'fa fa-weibo' => __( ' weibo', 'athena'), 'fa fa-weixin' => __( ' weixin', 'athena'), 'fa fa-whatsapp' => __( ' whatsapp', 'athena'), 'fa fa-wikipedia-w' => __( ' wikipedia-w', 'athena'), 'fa fa-windows' => __( ' windows', 'athena'), 'fa fa-wordpress' => __( ' wordpress', 'athena'), 'fa fa-xing' => __( ' xing', 'athena'), 'fa fa-xing-square' => __( ' xing-square', 'athena'), 'fa fa-y-combinator' => __( ' y-combinator', 'athena'), 'fa fa-y-combinator-square' => __( ' y-combinator-square', 'athena'), 'fa fa-yahoo' => __( ' yahoo', 'athena'), 'fa fa-yc' => __( ' yc', 'athena'), 'fa fa-yc-square' => __( ' yc-square', 'athena'), 'fa fa-yelp' => __( ' yelp', 'athena'), 'fa fa-youtube' => __( ' youtube', 'athena'), 'fa fa-youtube-play' => __( ' youtube-play', 'athena'), 'fa fa-youtube-square' => __( ' youtube-square', 'athena'), 'fa fa-ambulance' => __( ' ambulance', 'athena'), 'fa fa-h-square' => __( ' h-square', 'athena'), 'fa fa-heart' => __( ' heart', 'athena'), 'fa fa-heart-o' => __( ' heart-o', 'athena'), 'fa fa-heartbeat' => __( ' heartbeat', 'athena'), 'fa fa-hospital-o' => __( ' hospital-o', 'athena'), 'fa fa-medkit' => __( ' medkit', 'athena'), 'fa fa-plus-square' => __( ' plus-square', 'athena'), 'fa fa-stethoscope' => __( ' stethoscope', 'athena'), 'fa fa-user-md' => __( ' user-md', 'athena'), 'fa fa-wheelchair' => __( ' wheelchair', 'athena') );
+        'fa fa-clock' => __( 'Select One', 'byblos'), 
+        'fa fa-500px' => __( ' 500px', 'byblos'), 
+        'fa fa-amazon' => __( ' amazon', 'byblos'), 
+        'fa fa-balance-scale' => __( ' balance-scale', 'byblos'), 'fa fa-battery-0' => __( ' battery-0', 'byblos'), 'fa fa-battery-1' => __( ' battery-1', 'byblos'), 'fa fa-battery-2' => __( ' battery-2', 'byblos'), 'fa fa-battery-3' => __( ' battery-3', 'byblos'), 'fa fa-battery-4' => __( ' battery-4', 'byblos'), 'fa fa-battery-empty' => __( ' battery-empty', 'byblos'), 'fa fa-battery-full' => __( ' battery-full', 'byblos'), 'fa fa-battery-half' => __( ' battery-half', 'byblos'), 'fa fa-battery-quarter' => __( ' battery-quarter', 'byblos'), 'fa fa-battery-three-quarters' => __( ' battery-three-quarters', 'byblos'), 'fa fa-black-tie' => __( ' black-tie', 'byblos'), 'fa fa-calendar-check-o' => __( ' calendar-check-o', 'byblos'), 'fa fa-calendar-minus-o' => __( ' calendar-minus-o', 'byblos'), 'fa fa-calendar-plus-o' => __( ' calendar-plus-o', 'byblos'), 'fa fa-calendar-times-o' => __( ' calendar-times-o', 'byblos'), 'fa fa-cc-diners-club' => __( ' cc-diners-club', 'byblos'), 'fa fa-cc-jcb' => __( ' cc-jcb', 'byblos'), 'fa fa-chrome' => __( ' chrome', 'byblos'), 'fa fa-clone' => __( ' clone', 'byblos'), 'fa fa-commenting' => __( ' commenting', 'byblos'), 'fa fa-commenting-o' => __( ' commenting-o', 'byblos'), 'fa fa-contao' => __( ' contao', 'byblos'), 'fa fa-creative-commons' => __( ' creative-commons', 'byblos'), 'fa fa-expeditedssl' => __( ' expeditedssl', 'byblos'), 'fa fa-firefox' => __( ' firefox', 'byblos'), 'fa fa-fonticons' => __( ' fonticons', 'byblos'), 'fa fa-genderless' => __( ' genderless', 'byblos'), 'fa fa-get-pocket' => __( ' get-pocket', 'byblos'), 'fa fa-gg' => __( ' gg', 'byblos'), 'fa fa-gg-circle' => __( ' gg-circle', 'byblos'), 'fa fa-hand-grab-o' => __( ' hand-grab-o', 'byblos'), 'fa fa-hand-lizard-o' => __( ' hand-lizard-o', 'byblos'), 'fa fa-hand-paper-o' => __( ' hand-paper-o', 'byblos'), 'fa fa-hand-peace-o' => __( ' hand-peace-o', 'byblos'), 'fa fa-hand-pointer-o' => __( ' hand-pointer-o', 'byblos'), 'fa fa-hand-rock-o' => __( ' hand-rock-o', 'byblos'), 'fa fa-hand-scissors-o' => __( ' hand-scissors-o', 'byblos'), 'fa fa-hand-spock-o' => __( ' hand-spock-o', 'byblos'), 'fa fa-hand-stop-o' => __( ' hand-stop-o', 'byblos'), 'fa fa-hourglass' => __( ' hourglass', 'byblos'), 'fa fa-hourglass-1' => __( ' hourglass-1', 'byblos'), 'fa fa-hourglass-2' => __( ' hourglass-2', 'byblos'), 'fa fa-hourglass-3' => __( ' hourglass-3', 'byblos'), 'fa fa-hourglass-end' => __( ' hourglass-end', 'byblos'), 'fa fa-hourglass-half' => __( ' hourglass-half', 'byblos'), 'fa fa-hourglass-o' => __( ' hourglass-o', 'byblos'), 'fa fa-hourglass-start' => __( ' hourglass-start', 'byblos'), 'fa fa-houzz' => __( ' houzz', 'byblos'), 'fa fa-i-cursor' => __( ' i-cursor', 'byblos'), 'fa fa-industry' => __( ' industry', 'byblos'), 'fa fa-internet-explorer' => __( ' internet-explorer', 'byblos'), 'fa fa-map' => __( ' map', 'byblos'), 'fa fa-map-o' => __( ' map-o', 'byblos'), 'fa fa-map-pin' => __( ' map-pin', 'byblos'), 'fa fa-map-signs' => __( ' map-signs', 'byblos'), 'fa fa-mouse-pointer' => __( ' mouse-pointer', 'byblos'), 'fa fa-object-group' => __( ' object-group', 'byblos'), 'fa fa-object-ungroup' => __( ' object-ungroup', 'byblos'), 'fa fa-odnoklassniki' => __( ' odnoklassniki', 'byblos'), 'fa fa-odnoklassniki-square' => __( ' odnoklassniki-square', 'byblos'), 'fa fa-opencart' => __( ' opencart', 'byblos'), 'fa fa-opera' => __( ' opera', 'byblos'), 'fa fa-optin-monster' => __( ' optin-monster', 'byblos'), 'fa fa-registered' => __( ' registered', 'byblos'), 'fa fa-safari' => __( ' safari', 'byblos'), 'fa fa-sticky-note' => __( ' sticky-note', 'byblos'), 'fa fa-sticky-note-o' => __( ' sticky-note-o', 'byblos'), 'fa fa-television' => __( ' television', 'byblos'), 'fa fa-trademark' => __( ' trademark', 'byblos'), 'fa fa-tripadvisor' => __( ' tripadvisor', 'byblos'), 'fa fa-tv' => __( ' tv', 'byblos'), 'fa fa-vimeo' => __( ' vimeo', 'byblos'), 'fa fa-wikipedia-w' => __( ' wikipedia-w', 'byblos'), 'fa fa-y-combinator' => __( ' y-combinator', 'byblos'), 'fa fa-yc' => __( ' yc', 'byblos'), 'fa fa-adjust' => __( ' adjust', 'byblos'), 'fa fa-anchor' => __( ' anchor', 'byblos'), 'fa fa-archive' => __( ' archive', 'byblos'), 'fa fa-area-chart' => __( ' area-chart', 'byblos'), 'fa fa-arrows' => __( ' arrows', 'byblos'), 'fa fa-arrows-h' => __( ' arrows-h', 'byblos'), 'fa fa-arrows-v' => __( ' arrows-v', 'byblos'), 'fa fa-asterisk' => __( ' asterisk', 'byblos'), 'fa fa-at' => __( ' at', 'byblos'), 'fa fa-automobile' => __( ' automobile', 'byblos'), 'fa fa-balance-scale' => __( ' balance-scale', 'byblos'), 'fa fa-ban' => __( ' ban', 'byblos'), 'fa fa-bank' => __( ' bank', 'byblos'), 'fa fa-bar-chart' => __( ' bar-chart', 'byblos'), 'fa fa-bar-chart-o' => __( ' bar-chart-o', 'byblos'), 'fa fa-barcode' => __( ' barcode', 'byblos'), 'fa fa-bars' => __( ' bars', 'byblos'), 'fa fa-battery-0' => __( ' battery-0', 'byblos'), 'fa fa-battery-1' => __( ' battery-1', 'byblos'), 'fa fa-battery-2' => __( ' battery-2', 'byblos'), 'fa fa-battery-3' => __( ' battery-3', 'byblos'), 'fa fa-battery-4' => __( ' battery-4', 'byblos'), 'fa fa-battery-empty' => __( ' battery-empty', 'byblos'), 'fa fa-battery-full' => __( ' battery-full', 'byblos'), 'fa fa-battery-half' => __( ' battery-half', 'byblos'), 'fa fa-battery-quarter' => __( ' battery-quarter', 'byblos'), 'fa fa-battery-three-quarters' => __( ' battery-three-quarters', 'byblos'), 'fa fa-bed' => __( ' bed', 'byblos'), 'fa fa-beer' => __( ' beer', 'byblos'), 'fa fa-bell' => __( ' bell', 'byblos'), 'fa fa-bell-o' => __( ' bell-o', 'byblos'), 'fa fa-bell-slash' => __( ' bell-slash', 'byblos'), 'fa fa-bell-slash-o' => __( ' bell-slash-o', 'byblos'), 'fa fa-bicycle' => __( ' bicycle', 'byblos'), 'fa fa-binoculars' => __( ' binoculars', 'byblos'), 'fa fa-birthday-cake' => __( ' birthday-cake', 'byblos'), 'fa fa-bolt' => __( ' bolt', 'byblos'), 'fa fa-bomb' => __( ' bomb', 'byblos'), 'fa fa-book' => __( ' book', 'byblos'), 'fa fa-bookmark' => __( ' bookmark', 'byblos'), 'fa fa-bookmark-o' => __( ' bookmark-o', 'byblos'), 'fa fa-briefcase' => __( ' briefcase', 'byblos'), 'fa fa-bug' => __( ' bug', 'byblos'), 'fa fa-building' => __( ' building', 'byblos'), 'fa fa-building-o' => __( ' building-o', 'byblos'), 'fa fa-bullhorn' => __( ' bullhorn', 'byblos'), 'fa fa-bullseye' => __( ' bullseye', 'byblos'), 'fa fa-bus' => __( ' bus', 'byblos'), 'fa fa-cab' => __( ' cab', 'byblos'), 'fa fa-calculator' => __( ' calculator', 'byblos'), 'fa fa-calendar' => __( ' calendar', 'byblos'), 'fa fa-calendar-check-o' => __( ' calendar-check-o', 'byblos'), 'fa fa-calendar-minus-o' => __( ' calendar-minus-o', 'byblos'), 'fa fa-calendar-o' => __( ' calendar-o', 'byblos'), 'fa fa-calendar-plus-o' => __( ' calendar-plus-o', 'byblos'), 'fa fa-calendar-times-o' => __( ' calendar-times-o', 'byblos'), 'fa fa-camera' => __( ' camera', 'byblos'), 'fa fa-camera-retro' => __( ' camera-retro', 'byblos'), 'fa fa-car' => __( ' car', 'byblos'), 'fa fa-caret-square-o-down' => __( ' caret-square-o-down', 'byblos'), 'fa fa-caret-square-o-left' => __( ' caret-square-o-left', 'byblos'), 'fa fa-caret-square-o-right' => __( ' caret-square-o-right', 'byblos'), 'fa fa-caret-square-o-up' => __( ' caret-square-o-up', 'byblos'), 'fa fa-cart-arrow-down' => __( ' cart-arrow-down', 'byblos'), 'fa fa-cart-plus' => __( ' cart-plus', 'byblos'), 'fa fa-cc' => __( ' cc', 'byblos'), 'fa fa-certificate' => __( ' certificate', 'byblos'), 'fa fa-check' => __( ' check', 'byblos'), 'fa fa-check-circle' => __( ' check-circle', 'byblos'), 'fa fa-check-circle-o' => __( ' check-circle-o', 'byblos'), 'fa fa-check-square' => __( ' check-square', 'byblos'), 'fa fa-check-square-o' => __( ' check-square-o', 'byblos'), 'fa fa-child' => __( ' child', 'byblos'), 'fa fa-circle' => __( ' circle', 'byblos'), 'fa fa-circle-o' => __( ' circle-o', 'byblos'), 'fa fa-circle-o-notch' => __( ' circle-o-notch', 'byblos'), 'fa fa-circle-thin' => __( ' circle-thin', 'byblos'), 'fa fa-clock-o' => __( ' clock-o', 'byblos'), 'fa fa-clone' => __( ' clone', 'byblos'), 'fa fa-close' => __( ' close', 'byblos'), 'fa fa-cloud' => __( ' cloud', 'byblos'), 'fa fa-cloud-download' => __( ' cloud-download', 'byblos'), 'fa fa-cloud-upload' => __( ' cloud-upload', 'byblos'), 'fa fa-code' => __( ' code', 'byblos'), 'fa fa-code-fork' => __( ' code-fork', 'byblos'), 'fa fa-coffee' => __( ' coffee', 'byblos'), 'fa fa-cog' => __( ' cog', 'byblos'), 'fa fa-cogs' => __( ' cogs', 'byblos'), 'fa fa-comment' => __( ' comment', 'byblos'), 'fa fa-comment-o' => __( ' comment-o', 'byblos'), 'fa fa-commenting' => __( ' commenting', 'byblos'), 'fa fa-commenting-o' => __( ' commenting-o', 'byblos'), 'fa fa-comments' => __( ' comments', 'byblos'), 'fa fa-comments-o' => __( ' comments-o', 'byblos'), 'fa fa-compass' => __( ' compass', 'byblos'), 'fa fa-copyright' => __( ' copyright', 'byblos'), 'fa fa-creative-commons' => __( ' creative-commons', 'byblos'), 'fa fa-credit-card' => __( ' credit-card', 'byblos'), 'fa fa-crop' => __( ' crop', 'byblos'), 'fa fa-crosshairs' => __( ' crosshairs', 'byblos'), 'fa fa-cube' => __( ' cube', 'byblos'), 'fa fa-cubes' => __( ' cubes', 'byblos'), 'fa fa-cutlery' => __( ' cutlery', 'byblos'), 'fa fa-dashboard' => __( ' dashboard', 'byblos'), 'fa fa-database' => __( ' database', 'byblos'), 'fa fa-desktop' => __( ' desktop', 'byblos'), 'fa fa-diamond' => __( ' diamond', 'byblos'), 'fa fa-dot-circle-o' => __( ' dot-circle-o', 'byblos'), 'fa fa-download' => __( ' download', 'byblos'), 'fa fa-edit' => __( ' edit', 'byblos'), 'fa fa-ellipsis-h' => __( ' ellipsis-h', 'byblos'), 'fa fa-ellipsis-v' => __( ' ellipsis-v', 'byblos'), 'fa fa-envelope' => __( ' envelope', 'byblos'), 'fa fa-envelope-o' => __( ' envelope-o', 'byblos'), 'fa fa-envelope-square' => __( ' envelope-square', 'byblos'), 'fa fa-eraser' => __( ' eraser', 'byblos'), 'fa fa-exchange' => __( ' exchange', 'byblos'), 'fa fa-exclamation' => __( ' exclamation', 'byblos'), 'fa fa-exclamation-circle' => __( ' exclamation-circle', 'byblos'), 'fa fa-exclamation-triangle' => __( ' exclamation-triangle', 'byblos'), 'fa fa-external-link' => __( ' external-link', 'byblos'), 'fa fa-external-link-square' => __( ' external-link-square', 'byblos'), 'fa fa-eye' => __( ' eye', 'byblos'), 'fa fa-eye-slash' => __( ' eye-slash', 'byblos'), 'fa fa-eyedropper' => __( ' eyedropper', 'byblos'), 'fa fa-fax' => __( ' fax', 'byblos'), 'fa fa-feed' => __( ' feed', 'byblos'), 'fa fa-female' => __( ' female', 'byblos'), 'fa fa-fighter-jet' => __( ' fighter-jet', 'byblos'), 'fa fa-file-archive-o' => __( ' file-archive-o', 'byblos'), 'fa fa-file-audio-o' => __( ' file-audio-o', 'byblos'), 'fa fa-file-code-o' => __( ' file-code-o', 'byblos'), 'fa fa-file-excel-o' => __( ' file-excel-o', 'byblos'), 'fa fa-file-image-o' => __( ' file-image-o', 'byblos'), 'fa fa-file-movie-o' => __( ' file-movie-o', 'byblos'), 'fa fa-file-pdf-o' => __( ' file-pdf-o', 'byblos'), 'fa fa-file-photo-o' => __( ' file-photo-o', 'byblos'), 'fa fa-file-picture-o' => __( ' file-picture-o', 'byblos'), 'fa fa-file-powerpoint-o' => __( ' file-powerpoint-o', 'byblos'), 'fa fa-file-sound-o' => __( ' file-sound-o', 'byblos'), 'fa fa-file-video-o' => __( ' file-video-o', 'byblos'), 'fa fa-file-word-o' => __( ' file-word-o', 'byblos'), 'fa fa-file-zip-o' => __( ' file-zip-o', 'byblos'), 'fa fa-film' => __( ' film', 'byblos'), 'fa fa-filter' => __( ' filter', 'byblos'), 'fa fa-fire' => __( ' fire', 'byblos'), 'fa fa-fire-extinguisher' => __( ' fire-extinguisher', 'byblos'), 'fa fa-flag' => __( ' flag', 'byblos'), 'fa fa-flag-checkered' => __( ' flag-checkered', 'byblos'), 'fa fa-flag-o' => __( ' flag-o', 'byblos'), 'fa fa-flash' => __( ' flash', 'byblos'), 'fa fa-flask' => __( ' flask', 'byblos'), 'fa fa-folder' => __( ' folder', 'byblos'), 'fa fa-folder-o' => __( ' folder-o', 'byblos'), 'fa fa-folder-open' => __( ' folder-open', 'byblos'), 'fa fa-folder-open-o' => __( ' folder-open-o', 'byblos'), 'fa fa-frown-o' => __( ' frown-o', 'byblos'), 'fa fa-futbol-o' => __( ' futbol-o', 'byblos'), 'fa fa-gamepad' => __( ' gamepad', 'byblos'), 'fa fa-gavel' => __( ' gavel', 'byblos'), 'fa fa-gear' => __( ' gear', 'byblos'), 'fa fa-gears' => __( ' gears', 'byblos'), 'fa fa-gift' => __( ' gift', 'byblos'), 'fa fa-glass' => __( ' glass', 'byblos'), 'fa fa-globe' => __( ' globe', 'byblos'), 'fa fa-graduation-cap' => __( ' graduation-cap', 'byblos'), 'fa fa-group' => __( ' group', 'byblos'), 'fa fa-hand-grab-o' => __( ' hand-grab-o', 'byblos'), 'fa fa-hand-lizard-o' => __( ' hand-lizard-o', 'byblos'), 'fa fa-hand-paper-o' => __( ' hand-paper-o', 'byblos'), 'fa fa-hand-peace-o' => __( ' hand-peace-o', 'byblos'), 'fa fa-hand-pointer-o' => __( ' hand-pointer-o', 'byblos'), 'fa fa-hand-rock-o' => __( ' hand-rock-o', 'byblos'), 'fa fa-hand-scissors-o' => __( ' hand-scissors-o', 'byblos'), 'fa fa-hand-spock-o' => __( ' hand-spock-o', 'byblos'), 'fa fa-hand-stop-o' => __( ' hand-stop-o', 'byblos'), 'fa fa-hdd-o' => __( ' hdd-o', 'byblos'), 'fa fa-headphones' => __( ' headphones', 'byblos'), 'fa fa-heart' => __( ' heart', 'byblos'), 'fa fa-heart-o' => __( ' heart-o', 'byblos'), 'fa fa-heartbeat' => __( ' heartbeat', 'byblos'), 'fa fa-history' => __( ' history', 'byblos'), 'fa fa-home' => __( ' home', 'byblos'), 'fa fa-hotel' => __( ' hotel', 'byblos'), 'fa fa-hourglass' => __( ' hourglass', 'byblos'), 'fa fa-hourglass-1' => __( ' hourglass-1', 'byblos'), 'fa fa-hourglass-2' => __( ' hourglass-2', 'byblos'), 'fa fa-hourglass-3' => __( ' hourglass-3', 'byblos'), 'fa fa-hourglass-end' => __( ' hourglass-end', 'byblos'), 'fa fa-hourglass-half' => __( ' hourglass-half', 'byblos'), 'fa fa-hourglass-o' => __( ' hourglass-o', 'byblos'), 'fa fa-hourglass-start' => __( ' hourglass-start', 'byblos'), 'fa fa-i-cursor' => __( ' i-cursor', 'byblos'), 'fa fa-image' => __( ' image', 'byblos'), 'fa fa-inbox' => __( ' inbox', 'byblos'), 'fa fa-industry' => __( ' industry', 'byblos'), 'fa fa-info' => __( ' info', 'byblos'), 'fa fa-info-circle' => __( ' info-circle', 'byblos'), 'fa fa-institution' => __( ' institution', 'byblos'), 'fa fa-key' => __( ' key', 'byblos'), 'fa fa-keyboard-o' => __( ' keyboard-o', 'byblos'), 'fa fa-language' => __( ' language', 'byblos'), 'fa fa-laptop' => __( ' laptop', 'byblos'), 'fa fa-leaf' => __( ' leaf', 'byblos'), 'fa fa-legal' => __( ' legal', 'byblos'), 'fa fa-lemon-o' => __( ' lemon-o', 'byblos'), 'fa fa-level-down' => __( ' level-down', 'byblos'), 'fa fa-level-up' => __( ' level-up', 'byblos'), 'fa fa-life-bouy' => __( ' life-bouy', 'byblos'), 'fa fa-life-buoy' => __( ' life-buoy', 'byblos'), 'fa fa-life-ring' => __( ' life-ring', 'byblos'), 'fa fa-life-saver' => __( ' life-saver', 'byblos'), 'fa fa-lightbulb-o' => __( ' lightbulb-o', 'byblos'), 'fa fa-line-chart' => __( ' line-chart', 'byblos'), 'fa fa-location-arrow' => __( ' location-arrow', 'byblos'), 'fa fa-lock' => __( ' lock', 'byblos'), 'fa fa-magic' => __( ' magic', 'byblos'), 'fa fa-magnet' => __( ' magnet', 'byblos'), 'fa fa-mail-forward' => __( ' mail-forward', 'byblos'), 'fa fa-mail-reply' => __( ' mail-reply', 'byblos'), 'fa fa-mail-reply-all' => __( ' mail-reply-all', 'byblos'), 'fa fa-male' => __( ' male', 'byblos'), 'fa fa-map' => __( ' map', 'byblos'), 'fa fa-map-marker' => __( ' map-marker', 'byblos'), 'fa fa-map-o' => __( ' map-o', 'byblos'), 'fa fa-map-pin' => __( ' map-pin', 'byblos'), 'fa fa-map-signs' => __( ' map-signs', 'byblos'), 'fa fa-meh-o' => __( ' meh-o', 'byblos'), 'fa fa-microphone' => __( ' microphone', 'byblos'), 'fa fa-microphone-slash' => __( ' microphone-slash', 'byblos'), 'fa fa-minus' => __( ' minus', 'byblos'), 'fa fa-minus-circle' => __( ' minus-circle', 'byblos'), 'fa fa-minus-square' => __( ' minus-square', 'byblos'), 'fa fa-minus-square-o' => __( ' minus-square-o', 'byblos'), 'fa fa-mobile' => __( ' mobile', 'byblos'), 'fa fa-mobile-phone' => __( ' mobile-phone', 'byblos'), 'fa fa-money' => __( ' money', 'byblos'), 'fa fa-moon-o' => __( ' moon-o', 'byblos'), 'fa fa-mortar-board' => __( ' mortar-board', 'byblos'), 'fa fa-motorcycle' => __( ' motorcycle', 'byblos'), 'fa fa-mouse-pointer' => __( ' mouse-pointer', 'byblos'), 'fa fa-music' => __( ' music', 'byblos'), 'fa fa-navicon' => __( ' navicon', 'byblos'), 'fa fa-newspaper-o' => __( ' newspaper-o', 'byblos'), 'fa fa-object-group' => __( ' object-group', 'byblos'), 'fa fa-object-ungroup' => __( ' object-ungroup', 'byblos'), 'fa fa-paint-brush' => __( ' paint-brush', 'byblos'), 'fa fa-paper-plane' => __( ' paper-plane', 'byblos'), 'fa fa-paper-plane-o' => __( ' paper-plane-o', 'byblos'), 'fa fa-paw' => __( ' paw', 'byblos'), 'fa fa-pencil' => __( ' pencil', 'byblos'), 'fa fa-pencil-square' => __( ' pencil-square', 'byblos'), 'fa fa-pencil-square-o' => __( ' pencil-square-o', 'byblos'), 'fa fa-phone' => __( ' phone', 'byblos'), 'fa fa-phone-square' => __( ' phone-square', 'byblos'), 'fa fa-photo' => __( ' photo', 'byblos'), 'fa fa-picture-o' => __( ' picture-o', 'byblos'), 'fa fa-pie-chart' => __( ' pie-chart', 'byblos'), 'fa fa-plane' => __( ' plane', 'byblos'), 'fa fa-plug' => __( ' plug', 'byblos'), 'fa fa-plus' => __( ' plus', 'byblos'), 'fa fa-plus-circle' => __( ' plus-circle', 'byblos'), 'fa fa-plus-square' => __( ' plus-square', 'byblos'), 'fa fa-plus-square-o' => __( ' plus-square-o', 'byblos'), 'fa fa-power-off' => __( ' power-off', 'byblos'), 'fa fa-print' => __( ' print', 'byblos'), 'fa fa-puzzle-piece' => __( ' puzzle-piece', 'byblos'), 'fa fa-qrcode' => __( ' qrcode', 'byblos'), 'fa fa-question' => __( ' question', 'byblos'), 'fa fa-question-circle' => __( ' question-circle', 'byblos'), 'fa fa-quote-left' => __( ' quote-left', 'byblos'), 'fa fa-quote-right' => __( ' quote-right', 'byblos'), 'fa fa-random' => __( ' random', 'byblos'), 'fa fa-recycle' => __( ' recycle', 'byblos'), 'fa fa-refresh' => __( ' refresh', 'byblos'), 'fa fa-registered' => __( ' registered', 'byblos'), 'fa fa-remove' => __( ' remove', 'byblos'), 'fa fa-reorder' => __( ' reorder', 'byblos'), 'fa fa-reply' => __( ' reply', 'byblos'), 'fa fa-reply-all' => __( ' reply-all', 'byblos'), 'fa fa-retweet' => __( ' retweet', 'byblos'), 'fa fa-road' => __( ' road', 'byblos'), 'fa fa-rocket' => __( ' rocket', 'byblos'), 'fa fa-rss' => __( ' rss', 'byblos'), 'fa fa-rss-square' => __( ' rss-square', 'byblos'), 'fa fa-search' => __( ' search', 'byblos'), 'fa fa-search-minus' => __( ' search-minus', 'byblos'), 'fa fa-search-plus' => __( ' search-plus', 'byblos'), 'fa fa-send' => __( ' send', 'byblos'), 'fa fa-send-o' => __( ' send-o', 'byblos'), 'fa fa-server' => __( ' server', 'byblos'), 'fa fa-share' => __( ' share', 'byblos'), 'fa fa-share-alt' => __( ' share-alt', 'byblos'), 'fa fa-share-alt-square' => __( ' share-alt-square', 'byblos'), 'fa fa-share-square' => __( ' share-square', 'byblos'), 'fa fa-share-square-o' => __( ' share-square-o', 'byblos'), 'fa fa-shield' => __( ' shield', 'byblos'), 'fa fa-ship' => __( ' ship', 'byblos'), 'fa fa-shopping-cart' => __( ' shopping-cart', 'byblos'), 'fa fa-sign-in' => __( ' sign-in', 'byblos'), 'fa fa-sign-out' => __( ' sign-out', 'byblos'), 'fa fa-signal' => __( ' signal', 'byblos'), 'fa fa-sitemap' => __( ' sitemap', 'byblos'), 'fa fa-sliders' => __( ' sliders', 'byblos'), 'fa fa-smile-o' => __( ' smile-o', 'byblos'), 'fa fa-soccer-ball-o' => __( ' soccer-ball-o', 'byblos'), 'fa fa-sort' => __( ' sort', 'byblos'), 'fa fa-sort-alpha-asc' => __( ' sort-alpha-asc', 'byblos'), 'fa fa-sort-alpha-desc' => __( ' sort-alpha-desc', 'byblos'), 'fa fa-sort-amount-asc' => __( ' sort-amount-asc', 'byblos'), 'fa fa-sort-amount-desc' => __( ' sort-amount-desc', 'byblos'), 'fa fa-sort-asc' => __( ' sort-asc', 'byblos'), 'fa fa-sort-desc' => __( ' sort-desc', 'byblos'), 'fa fa-sort-down' => __( ' sort-down', 'byblos'), 'fa fa-sort-numeric-asc' => __( ' sort-numeric-asc', 'byblos'), 'fa fa-sort-numeric-desc' => __( ' sort-numeric-desc', 'byblos'), 'fa fa-sort-up' => __( ' sort-up', 'byblos'), 'fa fa-space-shuttle' => __( ' space-shuttle', 'byblos'), 'fa fa-spinner' => __( ' spinner', 'byblos'), 'fa fa-spoon' => __( ' spoon', 'byblos'), 'fa fa-square' => __( ' square', 'byblos'), 'fa fa-square-o' => __( ' square-o', 'byblos'), 'fa fa-star' => __( ' star', 'byblos'), 'fa fa-star-half' => __( ' star-half', 'byblos'), 'fa fa-star-half-empty' => __( ' star-half-empty', 'byblos'), 'fa fa-star-half-full' => __( ' star-half-full', 'byblos'), 'fa fa-star-half-o' => __( ' star-half-o', 'byblos'), 'fa fa-star-o' => __( ' star-o', 'byblos'), 'fa fa-sticky-note' => __( ' sticky-note', 'byblos'), 'fa fa-sticky-note-o' => __( ' sticky-note-o', 'byblos'), 'fa fa-street-view' => __( ' street-view', 'byblos'), 'fa fa-suitcase' => __( ' suitcase', 'byblos'), 'fa fa-sun-o' => __( ' sun-o', 'byblos'), 'fa fa-support' => __( ' support', 'byblos'), 'fa fa-tablet' => __( ' tablet', 'byblos'), 'fa fa-tachometer' => __( ' tachometer', 'byblos'), 'fa fa-tag' => __( ' tag', 'byblos'), 'fa fa-tags' => __( ' tags', 'byblos'), 'fa fa-tasks' => __( ' tasks', 'byblos'), 'fa fa-taxi' => __( ' taxi', 'byblos'), 'fa fa-television' => __( ' television', 'byblos'), 'fa fa-terminal' => __( ' terminal', 'byblos'), 'fa fa-thumb-tack' => __( ' thumb-tack', 'byblos'), 'fa fa-thumbs-down' => __( ' thumbs-down', 'byblos'), 'fa fa-thumbs-o-down' => __( ' thumbs-o-down', 'byblos'), 'fa fa-thumbs-o-up' => __( ' thumbs-o-up', 'byblos'), 'fa fa-thumbs-up' => __( ' thumbs-up', 'byblos'), 'fa fa-ticket' => __( ' ticket', 'byblos'), 'fa fa-times' => __( ' times', 'byblos'), 'fa fa-times-circle' => __( ' times-circle', 'byblos'), 'fa fa-times-circle-o' => __( ' times-circle-o', 'byblos'), 'fa fa-tint' => __( ' tint', 'byblos'), 'fa fa-toggle-down' => __( ' toggle-down', 'byblos'), 'fa fa-toggle-left' => __( ' toggle-left', 'byblos'), 'fa fa-toggle-off' => __( ' toggle-off', 'byblos'), 'fa fa-toggle-on' => __( ' toggle-on', 'byblos'), 'fa fa-toggle-right' => __( ' toggle-right', 'byblos'), 'fa fa-toggle-up' => __( ' toggle-up', 'byblos'), 'fa fa-trademark' => __( ' trademark', 'byblos'), 'fa fa-trash' => __( ' trash', 'byblos'), 'fa fa-trash-o' => __( ' trash-o', 'byblos'), 'fa fa-tree' => __( ' tree', 'byblos'), 'fa fa-trophy' => __( ' trophy', 'byblos'), 'fa fa-truck' => __( ' truck', 'byblos'), 'fa fa-tty' => __( ' tty', 'byblos'), 'fa fa-tv' => __( ' tv', 'byblos'), 'fa fa-umbrella' => __( ' umbrella', 'byblos'), 'fa fa-university' => __( ' university', 'byblos'), 'fa fa-unlock' => __( ' unlock', 'byblos'), 'fa fa-unlock-alt' => __( ' unlock-alt', 'byblos'), 'fa fa-unsorted' => __( ' unsorted', 'byblos'), 'fa fa-upload' => __( ' upload', 'byblos'), 'fa fa-user' => __( ' user', 'byblos'), 'fa fa-user-plus' => __( ' user-plus', 'byblos'), 'fa fa-user-secret' => __( ' user-secret', 'byblos'), 'fa fa-user-times' => __( ' user-times', 'byblos'), 'fa fa-users' => __( ' users', 'byblos'), 'fa fa-video-camera' => __( ' video-camera', 'byblos'), 'fa fa-volume-down' => __( ' volume-down', 'byblos'), 'fa fa-volume-off' => __( ' volume-off', 'byblos'), 'fa fa-volume-up' => __( ' volume-up', 'byblos'), 'fa fa-warning' => __( ' warning', 'byblos'), 'fa fa-wheelchair' => __( ' wheelchair', 'byblos'), 'fa fa-wifi' => __( ' wifi', 'byblos'), 'fa fa-wrench' => __( ' wrench', 'byblos'), 'fa fa-hand-grab-o' => __( ' hand-grab-o', 'byblos'), 'fa fa-hand-lizard-o' => __( ' hand-lizard-o', 'byblos'), 'fa fa-hand-o-down' => __( ' hand-o-down', 'byblos'), 'fa fa-hand-o-left' => __( ' hand-o-left', 'byblos'), 'fa fa-hand-o-right' => __( ' hand-o-right', 'byblos'), 'fa fa-hand-o-up' => __( ' hand-o-up', 'byblos'), 'fa fa-hand-paper-o' => __( ' hand-paper-o', 'byblos'), 'fa fa-hand-peace-o' => __( ' hand-peace-o', 'byblos'), 'fa fa-hand-pointer-o' => __( ' hand-pointer-o', 'byblos'), 'fa fa-hand-rock-o' => __( ' hand-rock-o', 'byblos'), 'fa fa-hand-scissors-o' => __( ' hand-scissors-o', 'byblos'), 'fa fa-hand-spock-o' => __( ' hand-spock-o', 'byblos'), 'fa fa-hand-stop-o' => __( ' hand-stop-o', 'byblos'), 'fa fa-thumbs-down' => __( ' thumbs-down', 'byblos'), 'fa fa-thumbs-o-down' => __( ' thumbs-o-down', 'byblos'), 'fa fa-thumbs-o-up' => __( ' thumbs-o-up', 'byblos'), 'fa fa-thumbs-up' => __( ' thumbs-up', 'byblos'), 'fa fa-ambulance' => __( ' ambulance', 'byblos'), 'fa fa-automobile' => __( ' automobile', 'byblos'), 'fa fa-bicycle' => __( ' bicycle', 'byblos'), 'fa fa-bus' => __( ' bus', 'byblos'), 'fa fa-cab' => __( ' cab', 'byblos'), 'fa fa-car' => __( ' car', 'byblos'), 'fa fa-fighter-jet' => __( ' fighter-jet', 'byblos'), 'fa fa-motorcycle' => __( ' motorcycle', 'byblos'), 'fa fa-plane' => __( ' plane', 'byblos'), 'fa fa-rocket' => __( ' rocket', 'byblos'), 'fa fa-ship' => __( ' ship', 'byblos'), 'fa fa-space-shuttle' => __( ' space-shuttle', 'byblos'), 'fa fa-subway' => __( ' subway', 'byblos'), 'fa fa-taxi' => __( ' taxi', 'byblos'), 'fa fa-train' => __( ' train', 'byblos'), 'fa fa-truck' => __( ' truck', 'byblos'), 'fa fa-wheelchair' => __( ' wheelchair', 'byblos'), 'fa fa-genderless' => __( ' genderless', 'byblos'), 'fa fa-intersex' => __( ' intersex', 'byblos'), 'fa fa-mars' => __( ' mars', 'byblos'), 'fa fa-mars-double' => __( ' mars-double', 'byblos'), 'fa fa-mars-stroke' => __( ' mars-stroke', 'byblos'), 'fa fa-mars-stroke-h' => __( ' mars-stroke-h', 'byblos'), 'fa fa-mars-stroke-v' => __( ' mars-stroke-v', 'byblos'), 'fa fa-mercury' => __( ' mercury', 'byblos'), 'fa fa-neuter' => __( ' neuter', 'byblos'), 'fa fa-transgender' => __( ' transgender', 'byblos'), 'fa fa-transgender-alt' => __( ' transgender-alt', 'byblos'), 'fa fa-venus' => __( ' venus', 'byblos'), 'fa fa-venus-double' => __( ' venus-double', 'byblos'), 'fa fa-venus-mars' => __( ' venus-mars', 'byblos'), 'fa fa-file' => __( ' file', 'byblos'), 'fa fa-file-archive-o' => __( ' file-archive-o', 'byblos'), 'fa fa-file-audio-o' => __( ' file-audio-o', 'byblos'), 'fa fa-file-code-o' => __( ' file-code-o', 'byblos'), 'fa fa-file-excel-o' => __( ' file-excel-o', 'byblos'), 'fa fa-file-image-o' => __( ' file-image-o', 'byblos'), 'fa fa-file-movie-o' => __( ' file-movie-o', 'byblos'), 'fa fa-file-o' => __( ' file-o', 'byblos'), 'fa fa-file-pdf-o' => __( ' file-pdf-o', 'byblos'), 'fa fa-file-photo-o' => __( ' file-photo-o', 'byblos'), 'fa fa-file-picture-o' => __( ' file-picture-o', 'byblos'), 'fa fa-file-powerpoint-o' => __( ' file-powerpoint-o', 'byblos'), 'fa fa-file-sound-o' => __( ' file-sound-o', 'byblos'), 'fa fa-file-text' => __( ' file-text', 'byblos'), 'fa fa-file-text-o' => __( ' file-text-o', 'byblos'), 'fa fa-file-video-o' => __( ' file-video-o', 'byblos'), 'fa fa-file-word-o' => __( ' file-word-o', 'byblos'), 'fa fa-file-zip-o' => __( ' file-zip-o', 'byblos'), 'fa fa-circle-o-notch' => __( ' circle-o-notch', 'byblos'), 'fa fa-cog' => __( ' cog', 'byblos'), 'fa fa-gear' => __( ' gear', 'byblos'), 'fa fa-refresh' => __( ' refresh', 'byblos'), 'fa fa-spinner' => __( ' spinner', 'byblos'), 'fa fa-check-square' => __( ' check-square', 'byblos'), 'fa fa-check-square-o' => __( ' check-square-o', 'byblos'), 'fa fa-circle' => __( ' circle', 'byblos'), 'fa fa-circle-o' => __( ' circle-o', 'byblos'), 'fa fa-dot-circle-o' => __( ' dot-circle-o', 'byblos'), 'fa fa-minus-square' => __( ' minus-square', 'byblos'), 'fa fa-minus-square-o' => __( ' minus-square-o', 'byblos'), 'fa fa-plus-square' => __( ' plus-square', 'byblos'), 'fa fa-plus-square-o' => __( ' plus-square-o', 'byblos'), 'fa fa-square' => __( ' square', 'byblos'), 'fa fa-square-o' => __( ' square-o', 'byblos'), 'fa fa-cc-amex' => __( ' cc-amex', 'byblos'), 'fa fa-cc-diners-club' => __( ' cc-diners-club', 'byblos'), 'fa fa-cc-discover' => __( ' cc-discover', 'byblos'), 'fa fa-cc-jcb' => __( ' cc-jcb', 'byblos'), 'fa fa-cc-mastercard' => __( ' cc-mastercard', 'byblos'), 'fa fa-cc-paypal' => __( ' cc-paypal', 'byblos'), 'fa fa-cc-stripe' => __( ' cc-stripe', 'byblos'), 'fa fa-cc-visa' => __( ' cc-visa', 'byblos'), 'fa fa-credit-card' => __( ' credit-card', 'byblos'), 'fa fa-google-wallet' => __( ' google-wallet', 'byblos'), 'fa fa-paypal' => __( ' paypal', 'byblos'), 'fa fa-area-chart' => __( ' area-chart', 'byblos'), 'fa fa-bar-chart' => __( ' bar-chart', 'byblos'), 'fa fa-bar-chart-o' => __( ' bar-chart-o', 'byblos'), 'fa fa-line-chart' => __( ' line-chart', 'byblos'), 'fa fa-pie-chart' => __( ' pie-chart', 'byblos'), 'fa fa-bitcoin' => __( ' bitcoin', 'byblos'), 'fa fa-btc' => __( ' btc', 'byblos'), 'fa fa-cny' => __( ' cny', 'byblos'), 'fa fa-dollar' => __( ' dollar', 'byblos'), 'fa fa-eur' => __( ' eur', 'byblos'), 'fa fa-euro' => __( ' euro', 'byblos'), 'fa fa-gbp' => __( ' gbp', 'byblos'), 'fa fa-gg' => __( ' gg', 'byblos'), 'fa fa-gg-circle' => __( ' gg-circle', 'byblos'), 'fa fa-ils' => __( ' ils', 'byblos'), 'fa fa-inr' => __( ' inr', 'byblos'), 'fa fa-jpy' => __( ' jpy', 'byblos'), 'fa fa-krw' => __( ' krw', 'byblos'), 'fa fa-money' => __( ' money', 'byblos'), 'fa fa-rmb' => __( ' rmb', 'byblos'), 'fa fa-rouble' => __( ' rouble', 'byblos'), 'fa fa-rub' => __( ' rub', 'byblos'), 'fa fa-ruble' => __( ' ruble', 'byblos'), 'fa fa-rupee' => __( ' rupee', 'byblos'), 'fa fa-shekel' => __( ' shekel', 'byblos'), 'fa fa-sheqel' => __( ' sheqel', 'byblos'), 'fa fa-try' => __( ' try', 'byblos'), 'fa fa-turkish-lira' => __( ' turkish-lira', 'byblos'), 'fa fa-usd' => __( ' usd', 'byblos'), 'fa fa-won' => __( ' won', 'byblos'), 'fa fa-yen' => __( ' yen', 'byblos'), 'fa fa-align-center' => __( ' align-center', 'byblos'), 'fa fa-align-justify' => __( ' align-justify', 'byblos'), 'fa fa-align-left' => __( ' align-left', 'byblos'), 'fa fa-align-right' => __( ' align-right', 'byblos'), 'fa fa-bold' => __( ' bold', 'byblos'), 'fa fa-chain' => __( ' chain', 'byblos'), 'fa fa-chain-broken' => __( ' chain-broken', 'byblos'), 'fa fa-clipboard' => __( ' clipboard', 'byblos'), 'fa fa-columns' => __( ' columns', 'byblos'), 'fa fa-copy' => __( ' copy', 'byblos'), 'fa fa-cut' => __( ' cut', 'byblos'), 'fa fa-dedent' => __( ' dedent', 'byblos'), 'fa fa-eraser' => __( ' eraser', 'byblos'), 'fa fa-file' => __( ' file', 'byblos'), 'fa fa-file-o' => __( ' file-o', 'byblos'), 'fa fa-file-text' => __( ' file-text', 'byblos'), 'fa fa-file-text-o' => __( ' file-text-o', 'byblos'), 'fa fa-files-o' => __( ' files-o', 'byblos'), 'fa fa-floppy-o' => __( ' floppy-o', 'byblos'), 'fa fa-font' => __( ' font', 'byblos'), 'fa fa-header' => __( ' header', 'byblos'), 'fa fa-indent' => __( ' indent', 'byblos'), 'fa fa-italic' => __( ' italic', 'byblos'), 'fa fa-link' => __( ' link', 'byblos'), 'fa fa-list' => __( ' list', 'byblos'), 'fa fa-list-alt' => __( ' list-alt', 'byblos'), 'fa fa-list-ol' => __( ' list-ol', 'byblos'), 'fa fa-list-ul' => __( ' list-ul', 'byblos'), 'fa fa-outdent' => __( ' outdent', 'byblos'), 'fa fa-paperclip' => __( ' paperclip', 'byblos'), 'fa fa-paragraph' => __( ' paragraph', 'byblos'), 'fa fa-paste' => __( ' paste', 'byblos'), 'fa fa-repeat' => __( ' repeat', 'byblos'), 'fa fa-rotate-left' => __( ' rotate-left', 'byblos'), 'fa fa-rotate-right' => __( ' rotate-right', 'byblos'), 'fa fa-save' => __( ' save', 'byblos'), 'fa fa-scissors' => __( ' scissors', 'byblos'), 'fa fa-strikethrough' => __( ' strikethrough', 'byblos'), 'fa fa-subscript' => __( ' subscript', 'byblos'), 'fa fa-superscript' => __( ' superscript', 'byblos'), 'fa fa-table' => __( ' table', 'byblos'), 'fa fa-text-height' => __( ' text-height', 'byblos'), 'fa fa-text-width' => __( ' text-width', 'byblos'), 'fa fa-th' => __( ' th', 'byblos'), 'fa fa-th-large' => __( ' th-large', 'byblos'), 'fa fa-th-list' => __( ' th-list', 'byblos'), 'fa fa-underline' => __( ' underline', 'byblos'), 'fa fa-undo' => __( ' undo', 'byblos'), 'fa fa-unlink' => __( ' unlink', 'byblos'), 'fa fa-angle-double-down' => __( ' angle-double-down', 'byblos'), 'fa fa-angle-double-left' => __( ' angle-double-left', 'byblos'), 'fa fa-angle-double-right' => __( ' angle-double-right', 'byblos'), 'fa fa-angle-double-up' => __( ' angle-double-up', 'byblos'), 'fa fa-angle-down' => __( ' angle-down', 'byblos'), 'fa fa-angle-left' => __( ' angle-left', 'byblos'), 'fa fa-angle-right' => __( ' angle-right', 'byblos'), 'fa fa-angle-up' => __( ' angle-up', 'byblos'), 'fa fa-arrow-circle-down' => __( ' arrow-circle-down', 'byblos'), 'fa fa-arrow-circle-left' => __( ' arrow-circle-left', 'byblos'), 'fa fa-arrow-circle-o-down' => __( ' arrow-circle-o-down', 'byblos'), 'fa fa-arrow-circle-o-left' => __( ' arrow-circle-o-left', 'byblos'), 'fa fa-arrow-circle-o-right' => __( ' arrow-circle-o-right', 'byblos'), 'fa fa-arrow-circle-o-up' => __( ' arrow-circle-o-up', 'byblos'), 'fa fa-arrow-circle-right' => __( ' arrow-circle-right', 'byblos'), 'fa fa-arrow-circle-up' => __( ' arrow-circle-up', 'byblos'), 'fa fa-arrow-down' => __( ' arrow-down', 'byblos'), 'fa fa-arrow-left' => __( ' arrow-left', 'byblos'), 'fa fa-arrow-right' => __( ' arrow-right', 'byblos'), 'fa fa-arrow-up' => __( ' arrow-up', 'byblos'), 'fa fa-arrows' => __( ' arrows', 'byblos'), 'fa fa-arrows-alt' => __( ' arrows-alt', 'byblos'), 'fa fa-arrows-h' => __( ' arrows-h', 'byblos'), 'fa fa-arrows-v' => __( ' arrows-v', 'byblos'), 'fa fa-caret-down' => __( ' caret-down', 'byblos'), 'fa fa-caret-left' => __( ' caret-left', 'byblos'), 'fa fa-caret-right' => __( ' caret-right', 'byblos'), 'fa fa-caret-square-o-down' => __( ' caret-square-o-down', 'byblos'), 'fa fa-caret-square-o-left' => __( ' caret-square-o-left', 'byblos'), 'fa fa-caret-square-o-right' => __( ' caret-square-o-right', 'byblos'), 'fa fa-caret-square-o-up' => __( ' caret-square-o-up', 'byblos'), 'fa fa-caret-up' => __( ' caret-up', 'byblos'), 'fa fa-chevron-circle-down' => __( ' chevron-circle-down', 'byblos'), 'fa fa-chevron-circle-left' => __( ' chevron-circle-left', 'byblos'), 'fa fa-chevron-circle-right' => __( ' chevron-circle-right', 'byblos'), 'fa fa-chevron-circle-up' => __( ' chevron-circle-up', 'byblos'), 'fa fa-chevron-down' => __( ' chevron-down', 'byblos'), 'fa fa-chevron-left' => __( ' chevron-left', 'byblos'), 'fa fa-chevron-right' => __( ' chevron-right', 'byblos'), 'fa fa-chevron-up' => __( ' chevron-up', 'byblos'), 'fa fa-exchange' => __( ' exchange', 'byblos'), 'fa fa-hand-o-down' => __( ' hand-o-down', 'byblos'), 'fa fa-hand-o-left' => __( ' hand-o-left', 'byblos'), 'fa fa-hand-o-right' => __( ' hand-o-right', 'byblos'), 'fa fa-hand-o-up' => __( ' hand-o-up', 'byblos'), 'fa fa-long-arrow-down' => __( ' long-arrow-down', 'byblos'), 'fa fa-long-arrow-left' => __( ' long-arrow-left', 'byblos'), 'fa fa-long-arrow-right' => __( ' long-arrow-right', 'byblos'), 'fa fa-long-arrow-up' => __( ' long-arrow-up', 'byblos'), 'fa fa-toggle-down' => __( ' toggle-down', 'byblos'), 'fa fa-toggle-left' => __( ' toggle-left', 'byblos'), 'fa fa-toggle-right' => __( ' toggle-right', 'byblos'), 'fa fa-toggle-up' => __( ' toggle-up', 'byblos'), 'fa fa-arrows-alt' => __( ' arrows-alt', 'byblos'), 'fa fa-backward' => __( ' backward', 'byblos'), 'fa fa-compress' => __( ' compress', 'byblos'), 'fa fa-eject' => __( ' eject', 'byblos'), 'fa fa-expand' => __( ' expand', 'byblos'), 'fa fa-fast-backward' => __( ' fast-backward', 'byblos'), 'fa fa-fast-forward' => __( ' fast-forward', 'byblos'), 'fa fa-forward' => __( ' forward', 'byblos'), 'fa fa-pause' => __( ' pause', 'byblos'), 'fa fa-play' => __( ' play', 'byblos'), 'fa fa-play-circle' => __( ' play-circle', 'byblos'), 'fa fa-play-circle-o' => __( ' play-circle-o', 'byblos'), 'fa fa-random' => __( ' random', 'byblos'), 'fa fa-step-backward' => __( ' step-backward', 'byblos'), 'fa fa-step-forward' => __( ' step-forward', 'byblos'), 'fa fa-stop' => __( ' stop', 'byblos'), 'fa fa-youtube-play' => __( ' youtube-play', 'byblos'), 'fa fa-500px' => __( ' 500px', 'byblos'), 'fa fa-adn' => __( ' adn', 'byblos'), 'fa fa-amazon' => __( ' amazon', 'byblos'), 'fa fa-android' => __( ' android', 'byblos'), 'fa fa-angellist' => __( ' angellist', 'byblos'), 'fa fa-apple' => __( ' apple', 'byblos'), 'fa fa-behance' => __( ' behance', 'byblos'), 'fa fa-behance-square' => __( ' behance-square', 'byblos'), 'fa fa-bitbucket' => __( ' bitbucket', 'byblos'), 'fa fa-bitbucket-square' => __( ' bitbucket-square', 'byblos'), 'fa fa-bitcoin' => __( ' bitcoin', 'byblos'), 'fa fa-black-tie' => __( ' black-tie', 'byblos'), 'fa fa-btc' => __( ' btc', 'byblos'), 'fa fa-buysellads' => __( ' buysellads', 'byblos'), 'fa fa-cc-amex' => __( ' cc-amex', 'byblos'), 'fa fa-cc-diners-club' => __( ' cc-diners-club', 'byblos'), 'fa fa-cc-discover' => __( ' cc-discover', 'byblos'), 'fa fa-cc-jcb' => __( ' cc-jcb', 'byblos'), 'fa fa-cc-mastercard' => __( ' cc-mastercard', 'byblos'), 'fa fa-cc-paypal' => __( ' cc-paypal', 'byblos'), 'fa fa-cc-stripe' => __( ' cc-stripe', 'byblos'), 'fa fa-cc-visa' => __( ' cc-visa', 'byblos'), 'fa fa-chrome' => __( ' chrome', 'byblos'), 'fa fa-codepen' => __( ' codepen', 'byblos'), 'fa fa-connectdevelop' => __( ' connectdevelop', 'byblos'), 'fa fa-contao' => __( ' contao', 'byblos'), 'fa fa-css3' => __( ' css3', 'byblos'), 'fa fa-dashcube' => __( ' dashcube', 'byblos'), 'fa fa-delicious' => __( ' delicious', 'byblos'), 'fa fa-deviantart' => __( ' deviantart', 'byblos'), 'fa fa-digg' => __( ' digg', 'byblos'), 'fa fa-dribbble' => __( ' dribbble', 'byblos'), 'fa fa-dropbox' => __( ' dropbox', 'byblos'), 'fa fa-drupal' => __( ' drupal', 'byblos'), 'fa fa-empire' => __( ' empire', 'byblos'), 'fa fa-expeditedssl' => __( ' expeditedssl', 'byblos'), 'fa fa-facebook' => __( ' facebook', 'byblos'), 'fa fa-facebook-f' => __( ' facebook-f', 'byblos'), 'fa fa-facebook-official' => __( ' facebook-official', 'byblos'), 'fa fa-facebook-square' => __( ' facebook-square', 'byblos'), 'fa fa-firefox' => __( ' firefox', 'byblos'), 'fa fa-flickr' => __( ' flickr', 'byblos'), 'fa fa-fonticons' => __( ' fonticons', 'byblos'), 'fa fa-forumbee' => __( ' forumbee', 'byblos'), 'fa fa-foursquare' => __( ' foursquare', 'byblos'), 'fa fa-ge' => __( ' ge', 'byblos'), 'fa fa-get-pocket' => __( ' get-pocket', 'byblos'), 'fa fa-gg' => __( ' gg', 'byblos'), 'fa fa-gg-circle' => __( ' gg-circle', 'byblos'), 'fa fa-git' => __( ' git', 'byblos'), 'fa fa-git-square' => __( ' git-square', 'byblos'), 'fa fa-github' => __( ' github', 'byblos'), 'fa fa-github-alt' => __( ' github-alt', 'byblos'), 'fa fa-github-square' => __( ' github-square', 'byblos'), 'fa fa-gittip' => __( ' gittip', 'byblos'), 'fa fa-google' => __( ' google', 'byblos'), 'fa fa-google-plus' => __( ' google-plus', 'byblos'), 'fa fa-google-plus-square' => __( ' google-plus-square', 'byblos'), 'fa fa-google-wallet' => __( ' google-wallet', 'byblos'), 'fa fa-gratipay' => __( ' gratipay', 'byblos'), 'fa fa-hacker-news' => __( ' hacker-news', 'byblos'), 'fa fa-houzz' => __( ' houzz', 'byblos'), 'fa fa-html5' => __( ' html5', 'byblos'), 'fa fa-instagram' => __( ' instagram', 'byblos'), 'fa fa-internet-explorer' => __( ' internet-explorer', 'byblos'), 'fa fa-ioxhost' => __( ' ioxhost', 'byblos'), 'fa fa-joomla' => __( ' joomla', 'byblos'), 'fa fa-jsfiddle' => __( ' jsfiddle', 'byblos'), 'fa fa-lastfm' => __( ' lastfm', 'byblos'), 'fa fa-lastfm-square' => __( ' lastfm-square', 'byblos'), 'fa fa-leanpub' => __( ' leanpub', 'byblos'), 'fa fa-linkedin' => __( ' linkedin', 'byblos'), 'fa fa-linkedin-square' => __( ' linkedin-square', 'byblos'), 'fa fa-linux' => __( ' linux', 'byblos'), 'fa fa-maxcdn' => __( ' maxcdn', 'byblos'), 'fa fa-meanpath' => __( ' meanpath', 'byblos'), 'fa fa-medium' => __( ' medium', 'byblos'), 'fa fa-odnoklassniki' => __( ' odnoklassniki', 'byblos'), 'fa fa-odnoklassniki-square' => __( ' odnoklassniki-square', 'byblos'), 'fa fa-opencart' => __( ' opencart', 'byblos'), 'fa fa-openid' => __( ' openid', 'byblos'), 'fa fa-opera' => __( ' opera', 'byblos'), 'fa fa-optin-monster' => __( ' optin-monster', 'byblos'), 'fa fa-pagelines' => __( ' pagelines', 'byblos'), 'fa fa-paypal' => __( ' paypal', 'byblos'), 'fa fa-pied-piper' => __( ' pied-piper', 'byblos'), 'fa fa-pied-piper-alt' => __( ' pied-piper-alt', 'byblos'), 'fa fa-pinterest' => __( ' pinterest', 'byblos'), 'fa fa-pinterest-p' => __( ' pinterest-p', 'byblos'), 'fa fa-pinterest-square' => __( ' pinterest-square', 'byblos'), 'fa fa-qq' => __( ' qq', 'byblos'), 'fa fa-ra' => __( ' ra', 'byblos'), 'fa fa-rebel' => __( ' rebel', 'byblos'), 'fa fa-reddit' => __( ' reddit', 'byblos'), 'fa fa-reddit-square' => __( ' reddit-square', 'byblos'), 'fa fa-renren' => __( ' renren', 'byblos'), 'fa fa-safari' => __( ' safari', 'byblos'), 'fa fa-sellsy' => __( ' sellsy', 'byblos'), 'fa fa-share-alt' => __( ' share-alt', 'byblos'), 'fa fa-share-alt-square' => __( ' share-alt-square', 'byblos'), 'fa fa-shirtsinbulk' => __( ' shirtsinbulk', 'byblos'), 'fa fa-simplybuilt' => __( ' simplybuilt', 'byblos'), 'fa fa-skyatlas' => __( ' skyatlas', 'byblos'), 'fa fa-skype' => __( ' skype', 'byblos'), 'fa fa-slack' => __( ' slack', 'byblos'), 'fa fa-slideshare' => __( ' slideshare', 'byblos'), 'fa fa-soundcloud' => __( ' soundcloud', 'byblos'), 'fa fa-spotify' => __( ' spotify', 'byblos'), 'fa fa-stack-exchange' => __( ' stack-exchange', 'byblos'), 'fa fa-stack-overflow' => __( ' stack-overflow', 'byblos'), 'fa fa-steam' => __( ' steam', 'byblos'), 'fa fa-steam-square' => __( ' steam-square', 'byblos'), 'fa fa-stumbleupon' => __( ' stumbleupon', 'byblos'), 'fa fa-stumbleupon-circle' => __( ' stumbleupon-circle', 'byblos'), 'fa fa-tencent-weibo' => __( ' tencent-weibo', 'byblos'), 'fa fa-trello' => __( ' trello', 'byblos'), 'fa fa-tripadvisor' => __( ' tripadvisor', 'byblos'), 'fa fa-tumblr' => __( ' tumblr', 'byblos'), 'fa fa-tumblr-square' => __( ' tumblr-square', 'byblos'), 'fa fa-twitch' => __( ' twitch', 'byblos'), 'fa fa-twitter' => __( ' twitter', 'byblos'), 'fa fa-twitter-square' => __( ' twitter-square', 'byblos'), 'fa fa-viacoin' => __( ' viacoin', 'byblos'), 'fa fa-vimeo' => __( ' vimeo', 'byblos'), 'fa fa-vimeo-square' => __( ' vimeo-square', 'byblos'), 'fa fa-vine' => __( ' vine', 'byblos'), 'fa fa-vk' => __( ' vk', 'byblos'), 'fa fa-wechat' => __( ' wechat', 'byblos'), 'fa fa-weibo' => __( ' weibo', 'byblos'), 'fa fa-weixin' => __( ' weixin', 'byblos'), 'fa fa-whatsapp' => __( ' whatsapp', 'byblos'), 'fa fa-wikipedia-w' => __( ' wikipedia-w', 'byblos'), 'fa fa-windows' => __( ' windows', 'byblos'), 'fa fa-wordpress' => __( ' wordpress', 'byblos'), 'fa fa-xing' => __( ' xing', 'byblos'), 'fa fa-xing-square' => __( ' xing-square', 'byblos'), 'fa fa-y-combinator' => __( ' y-combinator', 'byblos'), 'fa fa-y-combinator-square' => __( ' y-combinator-square', 'byblos'), 'fa fa-yahoo' => __( ' yahoo', 'byblos'), 'fa fa-yc' => __( ' yc', 'byblos'), 'fa fa-yc-square' => __( ' yc-square', 'byblos'), 'fa fa-yelp' => __( ' yelp', 'byblos'), 'fa fa-youtube' => __( ' youtube', 'byblos'), 'fa fa-youtube-play' => __( ' youtube-play', 'byblos'), 'fa fa-youtube-square' => __( ' youtube-square', 'byblos'), 'fa fa-ambulance' => __( ' ambulance', 'byblos'), 'fa fa-h-square' => __( ' h-square', 'byblos'), 'fa fa-heart' => __( ' heart', 'byblos'), 'fa fa-heart-o' => __( ' heart-o', 'byblos'), 'fa fa-heartbeat' => __( ' heartbeat', 'byblos'), 'fa fa-hospital-o' => __( ' hospital-o', 'byblos'), 'fa fa-medkit' => __( ' medkit', 'byblos'), 'fa fa-plus-square' => __( ' plus-square', 'byblos'), 'fa fa-stethoscope' => __( ' stethoscope', 'byblos'), 'fa fa-user-md' => __( ' user-md', 'byblos'), 'fa fa-wheelchair' => __( ' wheelchair', 'byblos') );
     
     
     
@@ -635,7 +860,7 @@ function byblos_fonts2(){
     return $font_family_array;
 }
 
-function athena_font_sizes(){
+function byblos_font_sizes(){
     
     $font_size_array = array(
         '10px' => '10 px',
@@ -644,12 +869,150 @@ function athena_font_sizes(){
         '16px' => '16 px',
         '18px' => '18 px',
         '20px' => '20 px',
+        '22px' => '22 px',
+        '24px' => '24 px',
     );
     
     return $font_size_array;
     
 }
 
-function byblos_sanitize( $input ) {
-    return $input;
+
+function byblos_font_sanitize( $input ) {
+    
+    $valid_keys = byblos_fonts();
+    
+    if (array_key_exists($input, $valid_keys)) {
+        return $input;
+    } else {
+        return '';
+    }
+    
 }
+
+function byblos_font_size_sanitize( $input ) {
+    
+    $valid_keys = byblos_font_sizes();
+    
+    if (array_key_exists($input, $valid_keys)) {
+        return $input;
+    } else {
+        return '';
+    }
+    
+}
+
+function byblos_icon_sanitize( $input ) {
+    
+    $valid_keys = byblos_icons();
+    
+    if (array_key_exists($input, $valid_keys)) {
+        return $input;
+    } else {
+        return '';
+    }
+    
+}
+
+function byblos_text_sanitize( $input ) {
+    return wp_kses_post( force_balance_tags( $input ) );
+}
+
+function byblos_slider_transition_sanitize($input) {
+    $valid_keys = array(
+        'true' => __('Fade', 'byblos'),
+        'false' => __('Slide', 'byblos'),
+    );
+    if (array_key_exists($input, $valid_keys)) {
+        return $input;
+    } else {
+        return '';
+    }
+}
+
+function byblos_radio_sanitize_enabledisable($input) {
+    $valid_keys = array(
+        'enable' => __('Enable', 'byblos'),
+        'disable' => __('Disable', 'byblos')
+    );
+    if (array_key_exists($input, $valid_keys)) {
+        return $input;
+    } else {
+        return '';
+    }
+}
+
+function byblos_radio_sanitize_yesno($input) {
+    $valid_keys = array(
+        'yes' => __('Yes', 'byblos'),
+        'no' => __('No', 'byblos')
+    );
+    if (array_key_exists($input, $valid_keys)) {
+        return $input;
+    } else {
+        return '';
+    }
+}
+
+// checkbox sanitization
+function byblos_checkbox_sanitize($input) {
+    if ($input == 1) {
+        return 1;
+    } else {
+        return '';
+    }
+}
+
+//integer sanitize
+function byblos_integer_sanitize($input) {
+    return intval($input);
+}
+
+
+function byblos_sidebar_sanitize($input) {
+    
+    $valid = array(
+        'none'              => __( 'No Sidebar', 'byblos'),
+        'right'             => __( 'Right', 'byblos'),
+        'left'              => __( 'Left', 'byblos'),
+    );
+    
+    if (array_key_exists($input, $valid)) {
+        return $input;
+    } else {
+        return '';
+    }
+    
+    
+}
+
+function byblos_on_off_sanitize($input) {
+    $valid = array(
+        'on'    => __( 'Show', 'byblos' ),
+        'off'    => __( 'Hide', 'byblos' )
+    );
+
+    if (array_key_exists($input, $valid)) {
+        return $input;
+    } else {
+        return '';
+    }
+}
+
+function byblos_theme_color_sanitize($input) {
+    $valid = array(
+        'green'             => __( 'Green', 'byblos' ),
+        'blue'              => __( 'Blue', 'byblos' ),
+        'red'               => __( 'Red', 'byblos' ),
+        'pink'              => __( 'Pink', 'byblos' ),
+        'yellow'            => __( 'Yellow', 'byblos' ),
+        'darkblue'          => __( 'Dark Blue', 'byblos' ),
+    );
+
+    if (array_key_exists($input, $valid)) {
+        return $input;
+    } else {
+        return '';
+    }
+}
+

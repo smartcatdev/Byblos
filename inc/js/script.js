@@ -4,6 +4,30 @@
  * 
  */
 jQuery(document).ready(function($) {
+    
+    
+    if( jQuery('#camera_wrap_1').html() ) {
+        
+        var height = (jQuery( window ).height());
+        jQuery('#camera_wrap_1').camera({
+            height: height + 'px',
+            loader: 'pie',
+            pagination: true,
+            thumbnails: false,
+            fx: "simpleFade",
+            time: '4000',
+            overlayer: true,
+            hover: false,
+            playPause: false,
+            loader : 'bar',
+            navigation: false,
+            transPeriod: 3000,
+        }); 
+        
+    }
+    
+
+    
     //--Match CTA Boxes height
     
     $(window).scroll(function(){

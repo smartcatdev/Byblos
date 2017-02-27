@@ -4,23 +4,28 @@
 */
 
 a,a:visited {
-  color: #f1c40f;
+  color: #F8DB14;
 }
 a:hover,#site-navigation.main-navigation li a:hover,
 .site-branding.dark #site-navigation.main-navigation li a:hover{
-    color: #f1c40f;
+    color: #F8DB14;
 }
+
+.sc-slider-wrapper .camera_caption{
+    background: #F8DB14;
+}
+
 .site-branding .site-title a{
-    color: #f1c40f;
+    color: #F8DB14;
 }
-.primary-color{ color: #f1c40f;}
+.primary-color{ color: #F8DB14;}
 .btn-primary {
-    background-color: #f1c40f;
+    background-color: #F8DB14;
     border-color: #EB5E00;
     color: #ffffff !important;    
 }
 a.button-primary{
-    background-color: #f1c40f;
+    background-color: #F8DB14;
     color: #fff;
 }
 .button-primary:hover{
@@ -35,34 +40,33 @@ a.button-primary{
 
 }
 fieldset[disabled] .btn-primary.active {
-  background-color: #f1c40f;
+  background-color: #F8DB14;
 }
 .btn-primary .badge {
-  color: #f1c40f;
+  color: #F8DB14;
 }
 .btn-link {
-  color: #f1c40f;
+  color: #F8DB14;
 }
-.sc-primary-color{ color: #f1c40f;}
-.sc-primary-border{ border-color: #f1c40f;}
+.sc-primary-color{ color: #F8DB14;}
+.sc-primary-border{ border-color: #F8DB14;}
 .site-branding .search-bar .search-field:focus{
-    border-bottom: 1px solid #f1c40f;
+    border-bottom: 1px solid #F8DB14;
 }
 .icon404{
-    color: #f1c40f;
+    color: #F8DB14;
 }
 .nav-menu > li a:hover{
-    color: #f1c40f;
+    color: #F8DB14;
 }
 .scroll-top:hover{
-    border-color: #f1c40f;
+    border-color: #F8DB14;
 }
 #site-toolbar{
-    /*border-bottom: 1px solid #f1c40f;*/
+    /*border-bottom: 1px solid #F8DB14;*/
 }
 @media(max-width: 600px){
     .nav-menu > li.current_page_item a{
-        color: #f1c40f;
+        color: #F8DB14;
     }      
 }
-

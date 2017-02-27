@@ -7,16 +7,32 @@
 get_header(); ?>
 
 <div id="content" class="site-content site-content-wrapper">
+    
     <?php while (have_posts()) : the_post(); ?>
+    
+        <?php if (get_post_thumbnail_id($post->ID)) : ?>
+            <div id="byblos-page-jumbotron" 
+                 class="parallax-window" 
+                 data-parallax="scroll"
+                 data-image-src="<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)) ?>" >
+
+                <header class="entry-header">
+                    <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
+                </header><!-- .entry-header -->
+
+            </div>
+        <?php endif; ?>
+    
         <div class="page-content">
-            <article class="col-md-9 item-page <?php echo of_get_option('sc_single_layout'); ?>">
+            <article class="col-md-<?php echo bylbos_get_width(); ?> item-page">
                 <h2 class="post-title"><?php the_title(); ?></h2>
                 <div class="byblos-underline"></div>
-                <?php
-                'on' == of_get_option('sc_single_featured', 'on') ? the_post_thumbnail('large') : '';
+                <?php 
+                
                 the_content();
-                echo 'on' == of_get_option('sc_single_date', 'on') ? 'Posted on: ' .  esc_html( get_the_date() ) : '';
-                echo 'on' == of_get_option('sc_single_author', 'on') ? ', by : ' . esc_attr(get_the_author() ) : '';
+                
+                echo __( 'Posted on: ', 'byblos' ) .  esc_html( get_the_date() );
+                echo esc_attr(get_the_author() );
                 wp_link_pages(array(
                     'before' => '<div class="page-links">' . __('Pages:', 'byblos'),
                     'after' => '</div>',
@@ -26,14 +42,15 @@ get_header(); ?>
                 endif;
                 ?>
             </article>
-            <?php if( 'col2r' == of_get_option('sc_single_layout', 'col2r')) : ?>
+            
             <div class="col-md-3 byblos-sidebar">
                 <?php get_sidebar(); ?>
             </div>
-            <?php endif; ?>
+            
+            <div class="clear"></div>
+            
         </div>
     <?php endwhile; // end of the loop. ?>
-
+    <?php get_footer(); ?>
 </div><!-- #primary -->
 
-<?php get_footer(); ?>
