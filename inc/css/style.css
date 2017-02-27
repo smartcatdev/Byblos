@@ -735,7 +735,6 @@ a.button-primary{
 /*-- Logo --*/
 #sc_logo{
     width: 100%;
-    padding: 30px;
     max-width: 200px;
     text-align: center;
 }
@@ -857,7 +856,6 @@ a.button-primary{
 .site-branding .row [class*="col-"],
 .site-title{
     height: 100%;
-    line-height: 80px;
 }
 .site-branding .search-bar{
     text-align: center;
@@ -1016,18 +1014,24 @@ a.button-primary{
     margin: 0 20px;*/
 }
 /*-- Header --*/
+div#branding-wrap {
+    padding: 30px 0;
+}
 .site-header{
     width: 100%;
 }
 .site-title{
     font-size: 40px;
     border-radius: 100%;
-    margin: 15px auto 0px auto;
+    margin: 0 auto;
+    line-height: normal;
+    padding: 0 15px;
 }
 .site-description{
     color: rgb(68, 68, 68);
     font-size: 14px;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    padding: 0 15px;
 }
 /*-- Slider --*/
 .camera_wrap{ 

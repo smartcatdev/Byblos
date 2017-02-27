@@ -24,18 +24,20 @@ $byblos_options = byblos_get_options();
                 <div class="site-branding dark">
                     <!--<div class="row ">-->
                             <div class="col-xs-12 center">
-                                <h2 class="site-title">
-                                    <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                                        <?php if ( $byblos_options['sc_logo_image'] != '') : ?>
-                                        <img src="<?php echo esc_url( $byblos_options['sc_logo_image'] ); ?>" alt="" id="sc_logo"/>
-                                        <?php else : ?>
-                                        <?php bloginfo('name');?>
-                                        <?php endif; ?>                                        
-                                    </a>
-                                </h2>
-                                <?php if ( $byblos_options['sc_logo_image'] == '') : ?>
-                                    <h3 class="site-description"><?php bloginfo('description'); ?></h3>
-                                <?php endif; ?>
+                                <div id="branding-wrap">
+                                    <h2 class="site-title">
+                                        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+                                            <?php if ( $byblos_options['sc_logo_image'] != '') : ?>
+                                            <img src="<?php echo esc_url( $byblos_options['sc_logo_image'] ); ?>" alt="" id="sc_logo"/>
+                                            <?php else : ?>
+                                            <?php bloginfo('name');?>
+                                            <?php endif; ?>                                        
+                                        </a>
+                                    </h2>
+                                    <?php if ( $byblos_options['sc_logo_image'] == '' && get_bloginfo('description') != '' ) : ?>
+                                        <h3 class="site-description"><?php bloginfo('description'); ?></h3>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                             
                             <div class="col-xs-12 menu-bar center bs_nopad">
