@@ -17,9 +17,9 @@ function byblos_get_options() {
         'sc_instagram_url'      => '#',
         'sc_pinterest_url'      => '#',
         'sc_soundcloud_url'     => '#',
-        'sc_theme_color'        => 'yellow',
+        'sc_theme_color'        => 'red',
         'sc_font_size'          => '20px',
-        'sc_font_family'        => 'Raleway, sans-serif',
+        'sc_font_family'        => 'Abel, sans-serif',
         'sc_slider_bool'        => 'yes',
         'sc_slide1_image'       => get_template_directory_uri() . '/inc/images/bride.jpg',
         'sc_slide1_text'        => __( 'Welcome to Byblos', 'byblos' ),
@@ -584,7 +584,7 @@ function byblos_customize_register($wp_customize) {
     ) );
     
     $wp_customize->add_setting( 'byblos[sc_theme_color]', array (
-        'default'               => 'yellow',
+        'default'               => 'red',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'byblos_text_sanitize',
         'type'                  => 'option'
@@ -607,7 +607,7 @@ function byblos_customize_register($wp_customize) {
     
     
     $wp_customize->add_setting( 'byblos[sc_font_family]', array (
-        'default'               => 'Josefin Sans, sans-serif',
+        'default'               => 'Abel, sans-serif',
         'transport'             => 'refresh',
         'sanitize_callback'     => 'byblos_text_sanitize',
         'type'  => 'option'
