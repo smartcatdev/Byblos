@@ -14,13 +14,3 @@
         <h2 class="post-title"><?php the_title(); ?></h2>
     </a>    
 </div>
-<script>
-jQuery(document).ready(function($){
-    $('.site-content-wrapper .item-home').masonry({
-        itemSelector: '.item-post',
-        gutter: 0,
-        transitionDuration : 0,
-    }).masonry('reloadItems').masonry();    
-});  
-    
-</script>

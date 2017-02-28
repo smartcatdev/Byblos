@@ -14,26 +14,90 @@ get_header();
 ?>
 
 <div class="site-content-wrapper">
+    
     <div id="content" class="blog-content">
-        <div class="col-md-<?php echo bylbos_get_width(); ?>  site-content item-page bs_nopad">
-            <?php if (have_posts()) : ?>
-                <?php /* Start the Loop */ ?>
-                <?php while (have_posts()) : the_post(); ?>
-                    <div class="item-post">
-                        <a href="<?php the_permalink(); ?>">
-                            <?php if(has_post_thumbnail() ) : the_post_thumbnail('large'); ?>
-                            <?php else :  ?>
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/post_image.jpg" class="wp-post-image" />
-                            <?php endif; ?>
-                            <h2 class="post-title"><?php the_title(); ?></h2>
-                        </a>
-                        
-                    </div>
-                <?php endwhile; ?>
-            <?php else : ?>
-                <?php get_template_part('content', 'none'); ?>
-            <?php endif; ?>
+    
+        <script>
+
+            jQuery(document).ready(function($){
+
+                /*
+                * Handle Blog Roll Masonry
+                */
+                function doMasonry() {
+
+                    var $grid = $( ".item-home .inner" ).imagesLoaded(function () {
+                        $grid.masonry({
+                            itemSelector: '.item-post',
+                            columnWidth: '.grid-sizer',
+                            percentPosition: true,
+                            gutter: '.gutter-sizer',
+                            transitionDuration : '.75s',
+                        });
+                    });
+
+                    if ( $( window ).width() >= 992 ) {  
+
+                        $('.item-home .inner .gutter-sizer').css('width', '2%');
+                        $('.item-home .inner .grid-sizer').css('width', '32%');
+                        $('.item-home .inner .item-post').css('width', '32%');
+
+                    } else if ( $( window ).width() < 992 && $( window ).width() >= 768 ) {
+
+                        $('.item-home .inner .gutter-sizer').css('width', '2%');
+                        $('.item-home .inner .grid-sizer').css('width', '48%');
+                        $('.item-home .inner .item-post').css('width', '48%');
+
+                    } else {
+
+                        $('.item-home .inner .gutter-sizer').css('width', '0%');
+                        $('.item-home .inner .grid-sizer').css('width', '100%');
+                        $('.item-home .inner .item-post').css('width', '100%');
+
+                    }
+
+                }
+
+                /**
+                * Call Masonry on window resize and load
+                */
+                $( window ).resize( function() {
+                    doMasonry();
+                });
+                doMasonry();
+
+            }); 
+
+        </script>
+        
+        <div class="col-md-<?php echo bylbos_get_width(); ?> site-content item-home">
             
+            <div class="inner">
+                
+                <div class="grid-sizer"></div>
+                <div class="gutter-sizer"></div>
+
+                <?php if (have_posts()) : ?>
+
+                    <?php /* Start the Loop */ ?>
+                    <?php while (have_posts()) : the_post(); ?>
+                        <div class="item-post">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php if(has_post_thumbnail() ) : the_post_thumbnail('large'); ?>
+                                <?php else :  ?>
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/post_image.jpg" class="wp-post-image" />
+                                <?php endif; ?>
+                                <h2 class="post-title"><?php the_title(); ?></h2>
+                            </a>
+
+                        </div>
+                    <?php endwhile; ?>
+                <?php else : ?>
+                    <?php get_template_part('content', 'none'); ?>
+                <?php endif; ?>
+            
+            </div>
+                
         </div>
         
         <div class="col-md-3 byblos-sidebar">
@@ -46,17 +110,3 @@ get_header();
     <div class="clear"></div>
 <?php get_footer(); ?>
 </div>
-
-
-<script>
-jQuery(document).ready(function($){
-    $('.site-content-wrapper .site-content').imagesLoaded(function () {
-        $('.site-content-wrapper .site-content').masonry({
-            itemSelector: '.item-post',
-            gutter: 0,
-            transitionDuration : 0,
-        }).masonry('reloadItems').masonry();	
-    }); 
-});  
-    
-</script>

@@ -66,8 +66,7 @@ html {
 	box-sizing:         border-box;
 }
 body {
-	background: #fff;
-        
+    background: #f5f5f5;    
 }
 article,
 aside,
@@ -728,9 +727,9 @@ a.button-primary{
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     padding: 0 17px;
-    box-shadow: 0 1px 2px #000;
+/*    box-shadow: 0 1px 2px #000;
     -moz-box-shadow: 0 1px 2px #000;
-    -webkit-box-shadow: 0 1px 2px #000;
+    -webkit-box-shadow: 0 1px 2px #000;*/
 }
 /*-- Logo --*/
 #sc_logo{
@@ -846,6 +845,9 @@ a.button-primary{
 .site-branding.dark #site-navigation.main-navigation li a{
     color: rgb( 232, 232, 232 );
     text-align: center;
+    transition: 0.4s all ease;
+    -moz-transition: 0.4s all ease;
+    -webkit-transition: 0.4s all ease;
 }
 .site-branding .row{
     height: 100%;
@@ -1012,6 +1014,9 @@ a.button-primary{
     float: none;
     margin: 0 20px;*/
 }
+.item-home article {
+    margin-bottom: 20px !important;
+}
 /*-- Header --*/
 div#branding-wrap {
     padding: 30px 0;
@@ -1038,7 +1043,7 @@ div#branding-wrap {
     margin-bottom: 0 !important;
 }
 .sc-slider-wrapper{
-    margin: 0 auto 30px auto;
+    margin: 0 auto 20px auto;
     overflow: hidden;
     position: relative;
 /*    overflow: hidden;
@@ -1085,12 +1090,16 @@ div#branding-wrap {
     text-align: center;
     background: rgb(25, 25, 25);
     background: url('../../images/overlay-pattern.png') repeat rgba(25, 25, 25, 0.5);
-    padding: 60px 35px;
+    padding: 30px 35px;
     bottom: 0;
     left: 0;
     width: 100%;
-    max-height: 230px;
+    height: 230px;
     
+}
+
+#sc-slider-banner .sc-slider-banner .widget {
+    vertical-align: top;
 }
 
 #sc-slider-banner ul{
@@ -1159,7 +1168,7 @@ div#branding-wrap {
     margin: 0 auto;
     position: relative;
     z-index: 9;
-    margin: 0px 20px 50px 20px;
+    margin: 0px 15px 30px 15px;
 }
 #site-cta.no-slider{
     top: 0;
@@ -1490,6 +1499,9 @@ article{
 .blog-content{
     padding-top: 20px;
 }
+.blog .blog-content{
+    padding-top: 15px;
+}
 .item-page{
     padding-top: 10px;
     margin-bottom: 15px;
@@ -1508,8 +1520,8 @@ article{
     overflow: hidden;
     color: rgb(82, 82, 82);
     width: 32%;
-    margin-left: 1%;
-    margin-bottom: 1%;
+/*    margin-left: 1%;*/
+    margin-bottom: 15px;
     float: left;
     position: relative;
     transition: 0.5s all ease-in-out;
@@ -1520,6 +1532,13 @@ article{
     -webkit-transform: scale(0.9);  
     opacity: 0;
 }
+
+.item-home .inner .item-post {
+     transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+}
+
 .item-post.full-size{
     transform: scale(1.0);
     -moz-transform: scale(1.0);
@@ -1879,9 +1898,9 @@ article{
         line-height: 14px;
     }
 
-    .item-post{
+/*    .item-post{
         width: 49%;
-    }
+    }*/
     #sc-slider-banner{
        
     }
@@ -1965,3 +1984,10 @@ div#byblos-page-jumbotron header.entry-header {
 .parallax-mirror{
     z-index: 1 !important;
 }
+
+.grid-sizer,
+.item-home .inner .item-post { 
+    width: 32%; 
+    margin-left: 0;
+}
+.gutter-sizer { width: 2%; }
