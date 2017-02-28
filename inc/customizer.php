@@ -115,25 +115,25 @@ function byblos_customize_register($wp_customize) {
 
     $wp_customize->add_panel('slider', array(
         'title' => __('Slider', 'byblos'),
-        'description' => __('Customize the slider. Byblos includes 2 slides, and the pro version supports up to 5', 'byblos'),
+        'description' => __('Customize the slider. Byblos includes 3 slides, and the pro version supports up to 5', 'byblos'),
         'priority' => 10
     ));
 
     $wp_customize->add_section('slide1', array(
         'title' => __('Slide #1', 'byblos'),
-        'description' => __('Use the settings below to upload your images, set main callout text and button text & URLs', 'byblos'),
+        'description' => __('Use the settings below to upload your image, and set the caption text', 'byblos'),
         'panel' => 'slider',
     ));
 
     $wp_customize->add_section('slide2', array(
         'title' => __('Slide #2', 'byblos'),
-        'description' => __('Use the settings below to upload your images, set main callout text and button text & URLs', 'byblos'),
+        'description' => __('Use the settings below to upload your image, and set the caption text', 'byblos'),
         'panel' => 'slider',
     ));
 
     $wp_customize->add_section('slide3', array(
         'title' => __('Slide #3', 'byblos'),
-        'description' => __('Use the settings below to upload your images, set main callout text and button text & URLs', 'byblos'),
+        'description' => __('Use the settings below to upload your image, and set the caption text', 'byblos'),
         'panel' => 'slider',
     ));
 
@@ -145,14 +145,12 @@ function byblos_customize_register($wp_customize) {
         'sanitize_callback' => 'byblos_text_sanitize'
     ));
 
-    
-    
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control1', array(
-        'label' => __('Background Image', 'byblos'),
+        'label' => __('Slide Image', 'byblos'),
         'section' => 'slide1',
         'mime_type' => 'image',
         'settings' => 'byblos[sc_slide1_image]',
-        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+        'description' => __('Select the image file that you would like to use as the first slide', 'byblos'),
     )));
 
     $wp_customize->add_setting('byblos[sc_slide1_text]', array(
@@ -179,11 +177,11 @@ function byblos_customize_register($wp_customize) {
     ));
 
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control2', array(
-        'label' => __('Background Image', 'byblos'),
+        'label' => __('Slide Image', 'byblos'),
         'section' => 'slide2',
         'mime_type' => 'image',
         'settings' => 'byblos[sc_slide2_image]',
-        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+        'description' => __('Select the image file that you would like to use as the second slide', 'byblos'),
     )));
 
     $wp_customize->add_setting('byblos[sc_slide2_text]', array(
@@ -209,11 +207,11 @@ function byblos_customize_register($wp_customize) {
     ));
 
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'image_control3', array(
-        'label' => __('Background Image', 'byblos'),
+        'label' => __('Slide Image', 'byblos'),
         'section' => 'slide3',
         'mime_type' => 'image',
         'settings' => 'byblos[sc_slide3_image]',
-        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+        'description' => __('Select the image file that you would like to use as the third slide', 'byblos'),
     )));
 
     $wp_customize->add_setting('byblos[sc_slide3_text]', array(
@@ -234,15 +232,15 @@ function byblos_customize_register($wp_customize) {
     // *********************************************
     // ****************** Homepage Banner *****************
     // *********************************************
-    $wp_customize->add_panel('homepage_banner', array(
-        'title' => __('Homepage Banner', 'byblos'),
-        'description' => __('Settings for the homepage banner', 'byblos'),
-        'priority' => 10
-    ));
+//    $wp_customize->add_panel('homepage_banner', array(
+//        'title' => __('Homepage Banner', 'byblos'),
+//        'description' => __('Settings for the homepage banner', 'byblos'),
+//        'priority' => 10
+//    ));
 
     $wp_customize->add_section('banner_settings', array(
-        'title' => __('Settings', 'byblos'),
-        'panel' => 'homepage_banner',
+        'title' => __('Homepage Banner', 'byblos'),
+        'priority'  => 10
     ));
     
     // Settings
@@ -256,7 +254,7 @@ function byblos_customize_register($wp_customize) {
     $wp_customize->add_control( 'byblos[sc_banner_bool]', array(
         'type'                  => 'radio',
         'section'               => 'banner_settings',
-        'label'                 => __( 'Enable/disable the callouts', 'byblos' ),
+        'label'                 => __( 'Enable / disable the Homepage Banner section', 'byblos' ),
         'choices'               => array(
             'yes'              => __( 'Show', 'byblos' ),
             'no'               => __( 'Hide', 'byblos' ),
@@ -347,7 +345,7 @@ function byblos_customize_register($wp_customize) {
         'section' => 'callout1',
         'mime_type' => 'image',
         'settings' => 'byblos[sc_box1_image]',
-        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+        'description' => __('Select the image file that you would like to use as the featured image', 'byblos'),
     )));
 
     // Title
@@ -424,7 +422,7 @@ function byblos_customize_register($wp_customize) {
         'section' => 'callout2',
         'mime_type' => 'image',
         'settings' => 'byblos[sc_box2_image]',
-        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+        'description' => __('Select the image file that you would like to use as the featured image', 'byblos'),
     )));
 
     // Title
@@ -501,7 +499,7 @@ function byblos_customize_register($wp_customize) {
         'section' => 'callout3',
         'mime_type' => 'image',
         'settings' => 'byblos[sc_box3_image]',
-        'description' => __('Select the image file that you would like to use as the featured images', 'byblos'),
+        'description' => __('Select the image file that you would like to use as the featured image', 'byblos'),
     )));
 
     // Title

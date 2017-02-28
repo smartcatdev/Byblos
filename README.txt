@@ -4,8 +4,8 @@ Contributors: smartcat,automattic
 Tags: one-column, two-columns, left-sidebar, right-sidebar, grid-layout, custom-logo, featured-image-header, featured-images, footer-widgets, theme-options, translation-ready, blog, photography, portfolio
 
 Requires at least: 4.0
-Tested up to: 4.7
-Stable tag: 3.0.3
+Tested up to: 4.7.2
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

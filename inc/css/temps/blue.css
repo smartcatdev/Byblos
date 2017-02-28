@@ -20,7 +20,8 @@ a:hover,#site-navigation.main-navigation li a:hover,
     color: #53C1EF;
 }
 .primary-color{ color: #53C1EF;}
-a.button-primary {
+a.button-primary,
+input[type="submit"]{
     background-color: #53C1EF;
     color: #ffffff;
 }
@@ -28,7 +29,8 @@ a.button-primary {
 .button-primary:focus,
 .button-primary:active,
 .button-primary.active,
-.open .dropdown-toggle.button-primary {
+.open .dropdown-toggle.button-primary,
+input[type="submit"]:hover {
   background-color: #429FC7;
 }
 fieldset[disabled] .button-primary.active {

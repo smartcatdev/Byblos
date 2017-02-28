@@ -19,11 +19,13 @@ a:hover,#site-navigation.main-navigation li a:hover,
     border-color: #EB5E00;
     color: #ffffff !important;    
 }
-a.button-primary{
+a.button-primary,
+input[type="submit"]{
     background-color: #cd133f;
     color: #fff;
 }
-.button-primary:hover{
+.button-primary:hover,
+input[type="submit"]:hover{
     background-color: rgb(168, 16, 52);
     color: #fff;
 }
