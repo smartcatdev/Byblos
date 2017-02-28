@@ -137,31 +137,6 @@ function byblos_customize_register($wp_customize) {
         'panel' => 'slider',
     ));
 
-    $wp_customize->add_section('slide_captions', array(
-        'title' => __('Slide Captions', 'byblos'),
-        'description' => __('Use the settings below to customize the appearance of the colourful caption labels that appear on each slide', 'byblos'),
-        'panel' => 'slider',
-    ));
-
-    
-    $wp_customize->add_setting( 'byblos[sc_slide_caption_width]', array (
-        'default'               => 'default',
-        'transport'             => 'refresh',
-        'sanitize_callback'     => 'byblos_text_sanitize',
-        'type'  => 'option'
-    ) );    
-    $wp_customize->add_control( 'byblos[sc_slide_caption_width]', array(
-        'type'                  => 'select',
-        'section'               => 'slide_captions',
-        'label'                 => __( 'Caption Label Width', 'byblos' ),
-        'description'           => __( 'Should the caption labels take up only part of the slider, or the full width?', 'byblos' ),
-        'choices'               => array(
-            'default'       => __( 'Partial (Default)', 'byblos' ),
-            'full-width'    => __( 'Full-Width', 'byblos' ),
-        ),
-    ) );
-    
-    
     // 1st slide
     $wp_customize->add_setting('byblos[sc_slide1_image]', array(
         'default' => get_template_directory_uri() . '/inc/images/bride.jpg',

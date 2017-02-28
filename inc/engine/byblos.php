@@ -149,21 +149,11 @@ function byblos_dynamic_css() {
     $byblos_options = byblos_get_options();
     ?>
     <style type="text/css">
-
         body{
             font-size: <?php echo esc_attr( $byblos_options['sc_font_size'] ); ?>;
             font-family: <?php echo esc_attr( $byblos_options['sc_font_family'] ); ?>;
         }
-        
-        <?php if ( $byblos_options['sc_slide_caption_width'] == 'full-width' ) : ?>
-        
-            .sc-slider-wrapper .camera_caption{
-                max-width: 100% !important;
-                bottom: 230px;
-            }
-            
-        <?php endif; ?>
-        
+
     </style>
     <?php
 }
@@ -234,9 +224,7 @@ function byblos_slider() {
         
             <div id="sc-slider-banner">
                 <div class="sc-slider-banner">
-                    <div class="inner">
-                        <?php get_sidebar('banner'); ?>
-                    </div>
+                    <?php get_sidebar('banner'); ?>
                 </div>
             </div>
 
@@ -266,18 +254,14 @@ function byblos_ctas() {
             <div style="background-image: url('<?php echo esc_url( $byblos_options['sc_box1_image'] ); ?>');">
                 <div class="overlay">
                     <h3><?php echo esc_attr( $byblos_options['sc_cta1_title'] ); ?></h3>
-                    <div class="cta-wrap">
-                        <div class="inner">
-                            <p class="desc">
-                                <?php echo esc_attr( $byblos_options['sc_cta1_text'] ); ?>
-                            </p>
-                            <p class="mt20">
-                                <a href="<?php echo esc_url( $byblos_options['sc_cta1_url'] ); ?>" class="button button-default button-primary"> 
-                                    <?php echo esc_attr( $byblos_options['sc_cta1_button'] ); ?>
-                                </a>
-                            </p>                    
-                        </div>
-                    </div>
+                    <p class="desc">
+                        <?php echo esc_attr( $byblos_options['sc_cta1_text'] ); ?>
+                    </p>
+                    <p class="mt20">
+                        <a href="<?php echo esc_url( $byblos_options['sc_cta1_url'] ); ?>" class="button button-default button-primary"> 
+                            <?php echo esc_attr( $byblos_options['sc_cta1_button'] ); ?>
+                        </a>
+                    </p>                    
                 </div>
             </div>
         </div>
@@ -286,18 +270,14 @@ function byblos_ctas() {
             <div style="background-image: url('<?php echo esc_url( $byblos_options['sc_box2_image'] ); ?>');">
                 <div class="overlay">
                     <h3><?php echo esc_attr( $byblos_options['sc_cta2_title'] ); ?></h3>
-                    <div class="cta-wrap">
-                        <div class="inner">
-                            <p class="desc">
-                                <?php echo esc_attr( $byblos_options['sc_cta2_text'] ); ?>
-                            </p>
-                            <p class="mt20">
-                                <a href="<?php echo esc_url( $byblos_options['sc_cta2_url'] ); ?>" class="button button-default button-primary"> 
-                                    <?php echo esc_attr( $byblos_options['sc_cta2_button'] ); ?>
-                                </a>
-                            </p>                    
-                        </div>
-                    </div>
+                    <p class="desc">
+                        <?php echo esc_attr( $byblos_options['sc_cta2_text'] ); ?>
+                    </p>
+                    <p class="mt20">
+                        <a href="<?php echo esc_url( $byblos_options['sc_cta2_url'] ); ?>" class="button button-default button-primary"> 
+                            <?php echo esc_attr( $byblos_options['sc_cta2_button'] ); ?>
+                        </a>
+                    </p>                    
                 </div>
             </div>
         </div>
@@ -306,18 +286,14 @@ function byblos_ctas() {
             <div style="background-image: url('<?php echo esc_url( $byblos_options['sc_box3_image'] ); ?>');">
                 <div class="overlay">
                     <h3><?php echo esc_attr( $byblos_options['sc_cta3_title'] ); ?></h3>
-                    <div class="cta-wrap">
-                        <div class="inner">
-                            <p class="desc">
-                                <?php echo esc_attr( $byblos_options['sc_cta3_text'] ); ?>
-                            </p>
-                            <p class="mt20">
-                                <a href="<?php echo esc_url( $byblos_options['sc_cta3_url'] ); ?>" class="button button-default button-primary"> 
-                                    <?php echo esc_attr( $byblos_options['sc_cta3_button'] ); ?>
-                                </a>
-                            </p>                    
-                        </div>
-                    </div>
+                    <p class="desc">
+                        <?php echo esc_attr( $byblos_options['sc_cta3_text'] ); ?>
+                    </p>
+                    <p class="mt20">
+                        <a href="<?php echo esc_url( $byblos_options['sc_cta3_url'] ); ?>" class="button button-default button-primary"> 
+                            <?php echo esc_attr( $byblos_options['sc_cta3_button'] ); ?>
+                        </a>
+                    </p>                    
                 </div>
             </div>
         </div>
