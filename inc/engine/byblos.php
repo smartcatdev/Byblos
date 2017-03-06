@@ -40,8 +40,7 @@ function byblos_scripts() {
     wp_enqueue_script('byblos-masonry', get_template_directory_uri() . '/inc/js/masonry.min.js', array(), BYBLOS_VERSION, true);
     wp_enqueue_script('byblos-parallax', get_template_directory_uri() . '/inc/js/parallax.min.js', array(), BYBLOS_VERSION, true);
     
-
-    wp_enqueue_script('byblos-script', get_template_directory_uri() . '/inc/js/script.js', array('jquery', 'jquery-ui-core'), BYBLOS_VERSION);
+    wp_enqueue_script('byblos-script', get_template_directory_uri() . '/inc/js/script.js', array('jquery', 'jquery-ui-core'), BYBLOS_VERSION );
 
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -184,6 +183,7 @@ function byblos_slider() {
     
     ?>
 <script>
+    
     jQuery(document).ready(function($){
            
     });
