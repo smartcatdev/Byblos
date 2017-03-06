@@ -1069,6 +1069,7 @@ div#branding-wrap {
     margin: 0 auto 20px auto;
     overflow: hidden;
     position: relative;
+    height: 1000px;
 /*    overflow: hidden;
     position: absolute;
     top: 0;

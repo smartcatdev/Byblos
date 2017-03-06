@@ -5,10 +5,11 @@
  */
 jQuery(document).ready(function($) {
     
-    
     if( jQuery('#camera_wrap_1').html() ) {
+
+        var height = (jQuery( window ).height());    
+        $('.sc-slider-wrapper').css( 'height', height + 'px' );
         
-        var height = (jQuery( window ).height());
         jQuery('#camera_wrap_1').camera({
             height: height + 'px',
             loader: 'pie',
@@ -25,8 +26,6 @@ jQuery(document).ready(function($) {
         }); 
         
     }
-    
-
     
     //--Match CTA Boxes height
     
