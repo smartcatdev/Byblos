@@ -410,6 +410,12 @@ function sc_footer() {
     
     $byblos_options = byblos_get_options();
     echo '<p>' . $byblos_options['sc_footer_text'] . '</p>';?>
-    <a href="https://smartcatdesign.net/" rel="designer" style="display: block !important">Design by Smartcat</a>
+    
+    <?php do_action( 'byblos_designer' ); ?>
 
+<?php }
+
+add_action( 'byblos_designer', 'byblos_add_designer', 10 );
+function byblos_add_designer() { ?>
+    <a href="https://smartcatdesign.net/" rel="designer" style="display: block !important;">Design by Smartcat</a>
 <?php }
