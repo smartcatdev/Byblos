@@ -11,6 +11,9 @@ get_header(); ?>
     <div id="content">
 
         <?php echo byblos_slider(); ?>
+        
+        <?php do_action( 'byblos_homepage_banner_below' ); ?>
+        
         <?php if ( $byblos_options['sc_cta_bool'] == 'yes' ) echo byblos_ctas(); ?>
         
         <?php if ('posts' == get_option('show_on_front')) : ?>

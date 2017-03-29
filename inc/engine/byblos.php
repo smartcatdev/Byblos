@@ -179,56 +179,67 @@ function byblos_slider() {
     $byblos_options = byblos_get_options();
     
     ?>
-<script>
-    jQuery(document).ready(function($){
-           
-    });
+    
+    <script>
+        
+        jQuery(document).ready(function($){
 
-</script>
+        });
+
+    </script>
+    
     <div class="sc-slider-wrapper">
         
 	<div class="fluid_container">
 
             <div class="camera_wrap" id="camera_wrap_1">
 
-                    <?php if ('' != $byblos_options['sc_slide1_image'] ) : ?>
+                <?php if ('' != $byblos_options['sc_slide1_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>">
-                            <div class="camera_caption moveFromRight">
-                                <span><?php echo esc_attr( $byblos_options['sc_slide1_text'] );?></span>
-                            </div>
+                        <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : ''; ?>">
+                            <span><?php echo esc_attr( $byblos_options['sc_slide1_text'] );?></span>
+                            <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_1_button_toggle', 'off' ) == 'on' ) : ?>
+                                <a class="slider-button" href="<?php echo get_theme_mod( 'slide_1_button_url', '#' ); ?>">
+                                    <?php echo get_theme_mod( 'slide_1_button_label', 'See More' ); ?>
+                                </a>
+                            <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
+                <?php endif; ?>
 
-                    <?php if ('' != $byblos_options['sc_slide2_image'] ) : ?>
+                <?php if ('' != $byblos_options['sc_slide2_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>">
-                            <div class="camera_caption moveFromRight">
-                                <span><?php echo esc_attr( $byblos_options['sc_slide2_text'] );?></span>
-                            </div>
+                        <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : ''; ?>">
+                            <span><?php echo esc_attr( $byblos_options['sc_slide2_text'] );?></span>
+                            <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_2_button_toggle', 'off' ) == 'on' ) : ?>
+                                <a class="slider-button" href="<?php echo get_theme_mod( 'slide_2_button_url', '#' ); ?>">
+                                    <?php echo get_theme_mod( 'slide_2_button_label', 'See More' ); ?>
+                                </a>
+                            <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
+                <?php endif; ?>
 
-                    <?php if ('' != $byblos_options['sc_slide3_image'] ) : ?>
+                <?php if ('' != $byblos_options['sc_slide3_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>">
-                            <div class="camera_caption moveFromRight">
-                                <span><?php echo esc_attr( $byblos_options['sc_slide3_text'] );?></span>
-                            </div>
+                        <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : ''; ?>">
+                            <span><?php echo esc_attr( $byblos_options['sc_slide3_text'] );?></span>
+                            <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_3_button_toggle', 'off' ) == 'on' ) : ?>
+                                <a class="slider-button" href="<?php echo get_theme_mod( 'slide_3_button_url', '#' ); ?>">
+                                    <?php echo get_theme_mod( 'slide_3_button_label', 'See More' ); ?>
+                                </a>
+                            <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
+                <?php endif; ?>
 
+                <?php do_action( 'byblos_slide_addons' ); ?>
 
             </div><!-- #camera_wrap_1 -->
 
         </div>
         
-        <?php if( $byblos_options['sc_banner_bool'] == 'yes' ) : ?>
-        
-            <div id="sc-slider-banner">
-                <div class="sc-slider-banner">
-                    <?php get_sidebar('banner'); ?>
-                </div>
-            </div>
-
-        <?php endif; ?>
+        <?php do_action( 'byblos_homepage_banner_over' ); ?>
         
     </div>
 
@@ -415,7 +426,26 @@ function sc_footer() {
 
 <?php }
 
+
 add_action( 'byblos_designer', 'byblos_add_designer', 10 );
 function byblos_add_designer() { ?>
     <a href="https://smartcatdesign.net/" rel="designer" style="display: block !important;">Design by Smartcat</a>
+<?php }
+
+
+add_action( 'byblos_homepage_banner_over', 'byblos_add_homepage_banner_over', 10 );
+function byblos_add_homepage_banner_over() { ?>
+    
+    <?php $byblos_options = byblos_get_options(); ?>
+    
+    <?php if( $byblos_options['sc_banner_bool'] == 'yes' ) : ?>
+        
+            <div id="sc-slider-banner">
+                <div class="sc-slider-banner">
+                    <?php get_sidebar('banner'); ?>
+                </div>
+            </div>
+
+    <?php endif; ?>
+    
 <?php }
