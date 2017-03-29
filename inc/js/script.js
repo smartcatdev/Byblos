@@ -1,14 +1,15 @@
 /**
- * Avenue Script
+ * Byblos Script
  * Author Bilal
  * 
  */
 jQuery(document).ready(function($) {
     
-    
     if( jQuery('#camera_wrap_1').html() ) {
-        
-        var height = (jQuery( window ).height());
+
+        var height = (jQuery( window ).height());    
+        $('.sc-slider-wrapper, .sc-slider-wrapper .fluid_container').css( "cssText", "height: " + height + "px !important;");
+               
         jQuery('#camera_wrap_1').camera({
             height: height + 'px',
             loader: 'pie',
@@ -25,8 +26,6 @@ jQuery(document).ready(function($) {
         }); 
         
     }
-    
-
     
     //--Match CTA Boxes height
     

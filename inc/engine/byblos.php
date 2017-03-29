@@ -36,12 +36,11 @@ function byblos_scripts() {
     wp_enqueue_script('byblos-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), BYBLOS_VERSION, true);
 
     wp_enqueue_script('byblos-easing', get_template_directory_uri() . '/inc/js/jquery.easing.1.3.js', array(), BYBLOS_VERSION, true);
-    wp_enqueue_script('byblos-uslider', get_template_directory_uri() . '/inc/js/camera.js', array(), BYBLOS_VERSION, true);
+    wp_enqueue_script('byblos-slider', get_template_directory_uri() . '/inc/js/camera.js', array(), BYBLOS_VERSION, true);
     wp_enqueue_script('byblos-masonry', get_template_directory_uri() . '/inc/js/masonry.min.js', array(), BYBLOS_VERSION, true);
     wp_enqueue_script('byblos-parallax', get_template_directory_uri() . '/inc/js/parallax.min.js', array(), BYBLOS_VERSION, true);
     
-
-    wp_enqueue_script('byblos-script', get_template_directory_uri() . '/inc/js/script.js', array('jquery', 'jquery-ui-core'), BYBLOS_VERSION);
+    wp_enqueue_script('byblos-script', get_template_directory_uri() . '/inc/js/script.js', array('jquery', 'jquery-ui-core'), BYBLOS_VERSION );
 
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -153,6 +152,10 @@ function byblos_dynamic_css() {
             font-size: <?php echo esc_attr( $byblos_options['sc_font_size'] ); ?>;
             font-family: <?php echo esc_attr( $byblos_options['sc_font_family'] ); ?>;
         }
+        
+        input[type="submit"] {
+            font-family: <?php echo esc_attr( $byblos_options['sc_font_family'] ); ?>;
+        }
 
     </style>
     <?php
@@ -179,9 +182,9 @@ function byblos_slider() {
     $byblos_options = byblos_get_options();
     
     ?>
-    
+
     <script>
-        
+    
         jQuery(document).ready(function($){
 
         });
@@ -420,6 +423,7 @@ function sc_toolbar() {
 function sc_footer() {
     
     $byblos_options = byblos_get_options();
+    
     echo '<p>' . $byblos_options['sc_footer_text'] . '</p>';?>
     
     <?php do_action( 'byblos_designer' ); ?>

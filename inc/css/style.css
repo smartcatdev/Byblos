@@ -731,6 +731,24 @@ a.button-primary{
     -moz-box-shadow: 0 1px 2px #000;
     -webkit-box-shadow: 0 1px 2px #000;*/
 }
+
+input[type="submit"] {
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 0 17px;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+    -webkit-transition: 0.2s all ease-in-out;
+}
+
 /*-- Logo --*/
 #sc_logo{
     width: 100%;
@@ -1005,6 +1023,11 @@ a.button-primary{
     line-height: 90px;
 }
 
+.error404-content {
+    margin: 0;
+    padding: 60px 0;
+}
+
 /*-- Homepage --*/
 .site-content-wrapper .col-md-9.sidebar-off{
     width: 100%;
@@ -1046,6 +1069,7 @@ div#branding-wrap {
     margin: 0 auto 20px auto;
     overflow: hidden;
     position: relative;
+    height: 2000px;
 /*    overflow: hidden;
     position: absolute;
     top: 0;
@@ -1271,12 +1295,14 @@ div#branding-wrap {
 
 
 .site-cta .desc{
-    visibility: hidden;
-    
+    opacity: 0;
+    transition: 0.4s all ease-in-out;
+    -moz-transition: 0.4s all ease-in-out;
+    -webkit-transition: 0.4s all ease-in-out;    
 }
 
 .site-cta:hover .desc{
-    visibility: visible;
+    opacity: 1;
     
 }
 
@@ -1709,6 +1735,13 @@ article{
     }    
 }
 @media( max-width: 991px ){
+    
+    header#masthead {
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+    }
+    
     .item-page{
         margin-left: 15px;
         margin-right: 15px;
@@ -1725,6 +1758,7 @@ article{
     }
     .site-content-wrapper{
         margin-left: 0;
+        margin-top: 80px;
     }
     .site-footer{
         margin-left: 0;
@@ -1793,6 +1827,23 @@ article{
         background: #333;
         color: #fff;
     }
+    
+    #tasty-mobile-toggle ul.sub-menu li ul.sub-menu {
+        background-color: rgba(0, 0, 0, 0.15);
+    }
+    
+    #tasty-mobile-toggle ul.sub-menu li a {
+        padding-left: 45px;
+    }
+    
+    #tasty-mobile-toggle ul.sub-menu li ul.sub-menu li a {
+        padding-left: 60px;
+    }
+    
+    #tasty-mobile-toggle ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
+        padding-left: 75px;
+    }
+    
     .site-branding-mobile .col-xs-2{
         padding-left: 0;
     }
@@ -1812,6 +1863,10 @@ article{
         text-align: center;
         padding-right: 16.66666667%;
         
+    }   
+    .site-title-mobile img#sc_logo {
+        height: 70px;
+        width: auto;
     }
     .site-branding-mobile.dark #tasty-mobile-toggle .fa{
         color: #ffffff;
@@ -1973,7 +2028,7 @@ div#byblos-page-jumbotron header.entry-header {
     font-size: 46px;
     z-index: 999;
     position: relative;
-    text-shadow: 1px 2px rgb(51, 51, 51);
+/*    text-shadow: 1px 2px rgb(51, 51, 51);*/
     line-height: normal;
 }
 
