@@ -430,12 +430,19 @@ function sc_footer() {
 
 <?php }
 
-
 add_action( 'byblos_designer', 'byblos_add_designer', 10 );
 function byblos_add_designer() { ?>
+    
     <a href="https://smartcatdesign.net/" rel="designer" style="display: block !important;">Design by Smartcat</a>
+    
 <?php }
 
+add_action( 'byblos_call_out_boxes', 'byblos_add_call_out_boxes', 10 );
+function byblos_add_call_out_boxes() {
+    
+    echo byblos_ctas();
+    
+}
 
 add_action( 'byblos_homepage_banner_over', 'byblos_add_homepage_banner_over', 10 );
 function byblos_add_homepage_banner_over() { ?>
