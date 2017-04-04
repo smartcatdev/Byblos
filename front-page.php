@@ -20,6 +20,8 @@ get_header(); ?>
             
         <?php endif; ?>
         
+        <?php do_action( 'byblos_homepage_widget_areas_a_b' ); ?>
+        
         <?php if ('posts' == get_option('show_on_front')) : ?>
         
             <script>
@@ -114,6 +116,8 @@ get_header(); ?>
                 <?php get_sidebar(); ?>
             </div>
         <?php endif; ?>
+            
+        <?php do_action( 'byblos_homepage_widget_area_c' ); ?>
 
     </div>
     <?php get_footer(); ?>

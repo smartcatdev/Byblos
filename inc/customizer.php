@@ -612,15 +612,12 @@ function byblos_customize_register($wp_customize) {
         'sanitize_callback'     => 'byblos_text_sanitize',
         'type'  => 'option'
     ) );
-    
     $wp_customize->add_control( 'byblos[sc_font_family]', array(
         'type'                  => 'select',
         'section'               => 'font',
         'label'                 => __( 'Website Font', 'byblos' ),
         'choices'               => byblos_fonts()
-        
     ) );
-    
     
     $wp_customize->add_setting( 'byblos[sc_font_size]', array (
         'default'               => '20px',
