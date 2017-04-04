@@ -352,17 +352,22 @@ function sc_toolbar() {
                 <?php if ( '' != $byblos_options['phone'] ) : ?>
                     <a href="tel:+<?php echo esc_attr( $byblos_options['phone'] ); ?>" class="icon-phone">
                         
-                        <span><?php echo esc_attr( $byblos_options['phone'] ); ?></span>
                         <i class="fa fa-phone"></i>
+                        <span><?php echo esc_attr( $byblos_options['phone'] ); ?></span>
+                        
                     </a>
                 <?php endif; ?>
 
                 <?php if ('' != $byblos_options['email'] ) : ?>
                     <a href="mailto:<?php echo esc_attr( $byblos_options['email'] ); ?>" class="icon-map">
-                        <span><?php echo esc_attr( $byblos_options['email'] ); ?></span>
+                        
                         <i class="fa fa-envelope"></i>
+                        <span><?php echo esc_attr( $byblos_options['email'] ); ?></span>
+                        
                     </a>
                 <?php endif; ?>
+                
+                <?php do_action( 'byblos_custom_contact' ); ?>
 
             </div>
             
