@@ -42,6 +42,20 @@ function byblos_scripts() {
     
     wp_enqueue_script('byblos-script', get_template_directory_uri() . '/inc/js/script.js', array('jquery', 'jquery-ui-core'), BYBLOS_VERSION );
 
+    // Define custom JS objects to be passed to the custom script
+    $slider_array = array(
+        'slide_timer'       => get_theme_mod( 'slide_timer', 5000 ),
+        'animation'         => get_theme_mod( 'slide_transition', 'simpleFade' ),
+        'pagination'        => get_theme_mod( 'slide_pagination', true ),
+        'animation_speed'   => get_theme_mod( 'slide_transition_timer', 1500 ),
+        'desktop_height'    => get_theme_mod( 'byblos_slider_height', 100 ), 
+        'tablet_height'     => get_theme_mod( 'byblos_jumbotron_tablet_height', 100 ),
+        'mobile_height'     => get_theme_mod( 'byblos_jumbotron_mobile_height', 100 ),
+        'hover'             => get_theme_mod( 'slide_hover', true ),
+    );
+    
+    // Pass each JS object to the custom script using wp_localize_script
+    wp_localize_script( 'byblos-script', 'byblosSlider', $slider_array );
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');

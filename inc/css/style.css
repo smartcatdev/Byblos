@@ -1170,9 +1170,26 @@ div#branding-wrap {
 
 .camera_pag{
     top: 0;
-    right: 0;
+    right: 15px;
     position: absolute;
 }
+
+.sc-slider-wrapper .camera_wrap .camera_pag .camera_pag_ul li {
+    background: none;
+    border: 2px solid #fff;
+}
+
+.sc-slider-wrapper .camera_wrap .camera_pag .camera_pag_ul li.cameracurrent > span {
+    background-color: #ffffff;
+    top: 2px;
+    left: 2px;
+}
+
+.camera_wrap .camera_pag .camera_pag_ul li:hover > span {
+    left: 2px;
+    top: 2px;
+}
+
 .camera_pie{
     position: absolute;
     bottom: 45px;

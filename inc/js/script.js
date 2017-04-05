@@ -5,24 +5,45 @@
  */
 jQuery(document).ready(function($) {
     
+    
+    // --------------------------------
+    // Slider
+    // --------------------------------
+    
     if( jQuery('#camera_wrap_1').html() ) {
+        
+        var deviceWidth = $( window ).width();
 
-        var height = (jQuery( window ).height());    
+        var height = $( window ).height();  
+        
+        if( deviceWidth >= 1024 ) {
+            height = ( height * byblosSlider.desktop_height ) / 100;
+        } else if( deviceWidth >= 768 && deviceWidth < 1024 ) {
+            height = ( height * byblosSlider.tablet_height ) / 100;
+        } else {
+            height = ( height * byblosSlider.mobile_height ) / 100;
+        }
+        
         $('.sc-slider-wrapper, .sc-slider-wrapper .fluid_container').css( "cssText", "height: " + height + "px !important;");
                
         jQuery('#camera_wrap_1').camera({
-            height: height + 'px',
-            loader: 'pie',
-            pagination: true,
+
+            height: height.toString(),
+            pagination: byblosSlider.pagination,
             thumbnails: false,
-            fx: "simpleFade",
-            time: '4000',
+            fx: byblosSlider.animation,
+            time: byblosSlider.slide_timer.toString(),
+            transPeriod: parseInt(byblosSlider.animation_speed),
             overlayer: true,
-            hover: false,
+            hover: byblosSlider.hover,
             playPause: false,
             loader : 'bar',
             navigation: false,
-            transPeriod: 3000,
+            opacityOnGrid: true,
+            autoAdvance: true,
+            mobileAutoAdvance: true,
+            easing: 'easeInOutExpo'
+
         }); 
         
     }

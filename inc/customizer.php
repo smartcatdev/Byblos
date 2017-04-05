@@ -598,7 +598,7 @@ function byblos_customize_register($wp_customize) {
         'choices'               => array(
             'blue'              => __( 'Blue', 'byblos' ),
             'red'               => __( 'Red', 'byblos' ),
-            'green'               => __( 'Green', 'byblos' ),
+            'green'             => __( 'Green', 'byblos' ),
             'yellow'            => __( 'Yellow', 'byblos' ),
             'orange'            => __( 'Orange', 'byblos' ),
         )
