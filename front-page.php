@@ -117,6 +117,8 @@ get_header(); ?>
             </div>
         <?php endif; ?>
             
+        <div class="clear"></div>
+            
         <?php do_action( 'byblos_homepage_widget_area_c' ); ?>
 
     </div>

@@ -1149,23 +1149,14 @@ div#branding-wrap {
     font-weight: 300;
 }
 #sc-slider-banner .button-primary{
-    box-shadow: 0 0 1px 1px rgb(255, 255, 255);
-    border-radius: 3px;
-    color: rgb(255, 255, 255);
-    font-weight: 300;
-    text-transform: uppercase;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0);
     -webkit-transition: background-color 0.3s;
     -moz-transition: background-color 0.3s;
     -o-transition: background-color 0.3s;
     -ms-transition: background-color 0.3s;
     transition: background-color 0.3s;
-    font-size: 16px;
 }
 #sc-slider-banner .button-primary:hover{
     text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.3);    
 }
 
 .camera_pag{
