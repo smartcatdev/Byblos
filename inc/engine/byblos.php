@@ -13,7 +13,7 @@
 function byblos_scripts() {
     
     $byblos_options = byblos_get_options();
-    $fonts = byblos_fonts();
+    $fonts = function_exists('byblos_more_fonts') ? byblos_more_fonts() : byblos_fonts();
     
     
     wp_enqueue_style('byblos-style', get_stylesheet_uri());

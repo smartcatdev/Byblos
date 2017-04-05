@@ -45,6 +45,7 @@ $byblos_options = byblos_get_options();
                                     <?php wp_nav_menu(array('theme_location' => 'primary')); ?>
                                 </nav>
                             </div>
+                    
                             <div class="col-xs-12 search-bar center">
                                 <!-- header right -->
                                 <?php get_sidebar('header-right'); ?>

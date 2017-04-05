@@ -616,7 +616,7 @@ function byblos_customize_register($wp_customize) {
         'type'                  => 'select',
         'section'               => 'font',
         'label'                 => __( 'Website Font', 'byblos' ),
-        'choices'               => byblos_fonts()
+        'choices'               => function_exists('byblos_more_fonts') ? byblos_more_fonts() : byblos_fonts()
     ) );
     
     $wp_customize->add_setting( 'byblos[sc_font_size]', array (
@@ -826,33 +826,6 @@ function byblos_icons(){
     
     
     
-}
-
-function byblos_fonts2(){
-    
-    $font_family_array = array(
-        'Arial, Helvetica, sans-serif'          => 'Arial',
-        'Arial Black, Gadget, sans-serif'       => 'Arial Black',
-        'Courier New, monospace'                => 'Courier New',
-        'Lobster, cursive'                      => 'Lobster - Cursive',
-        'Georgia, serif'                        => 'Georgia',
-        'Impact, Charcoal, sans-serif'          => 'Impact',
-        'Josefin Sans, sans-serif'              => 'Josefin',
-        'Lucida Console, Monaco, monospace'     => 'Lucida Console',
-        'Lucida Sans Unicode, Lucida Grande, sans-serif' => 'Lucida Sans Unicode',
-        'MS Sans Serif, Geneva, sans-serif'     => 'MS Sans Serif',
-        'MS Serif, New York, serif'             => 'MS Serif',
-        'Open Sans, sans-serif'                 => 'Open Sans',
-        'Palatino Linotype, Book Antiqua, Palatino, serif' => 'Palatino Linotype',
-        'Source Sans Pro, sans-serif'           => 'Source Sans Pro',
-        'Lato, sans-serif'                      => 'Lato',
-        'Tahoma, Geneva, sans-serif'            => 'Tahoma',
-        'Times New Roman, Times, serif'         => 'Times New Roman',
-        'Trebuchet MS, sans-serif'              => 'Trebuchet MS',
-        'Verdana, Geneva, sans-serif'           => 'Verdana',
-    );
-    
-    return $font_family_array;
 }
 
 function byblos_font_sizes(){
