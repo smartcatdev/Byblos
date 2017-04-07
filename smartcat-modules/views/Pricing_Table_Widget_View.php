@@ -2,7 +2,7 @@
     
     <div class="widget">
         
-        <div class="inner">
+        <div class="inner <?php echo !empty( $instance['scmod_pricing_table_is_special'] ) ? 'special': ''; ?>">
 
             <?php if ( !empty( $instance['scmod_pricing_table_is_special'] ) ) : ?>
                 <span class="special"><span class="fa fa-star"></span></span>

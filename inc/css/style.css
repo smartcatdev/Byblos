@@ -960,7 +960,16 @@ input[type="submit"] {
 .main-navigation ul ul li{
     line-height: initial;
     /*height: 30px;*/
-    line-height: 30px;
+    line-height: 27px;
+}
+
+@media (max-width: 1169px) {
+    .main-navigation ul ul li {
+        line-height: 19px;
+    }
+    #site-navigation  ul > li.menu-item-has-children:before {
+        top: 9px;
+    }
 }
 
 /*-- Social --*/
@@ -2009,7 +2018,7 @@ article{
 
 .mb20{ margin-bottom: 20px;}
 .mt20{ margin-bottom: 20px;}
-.bs_nopad{ padding: 0}
+.bs_nopad{ padding: 0px !important}
 
 #byblos-page-jumbotron{
     width: 100%;
