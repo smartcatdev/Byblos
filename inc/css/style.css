@@ -1057,10 +1057,15 @@ input[type="submit"] {
 /*    padding: 0;
     float: none;
     margin: 0 20px;*/
+    margin-top: 20px;
 }
 .item-home article {
     margin-bottom: 20px !important;
 }
+.home .byblos-sidebar {
+    margin-top: 20px;
+}
+
 /*-- Header --*/
 div#branding-wrap {
     padding: 30px 0;

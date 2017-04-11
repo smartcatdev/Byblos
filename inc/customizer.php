@@ -106,7 +106,74 @@ function byblos_customize_register($wp_customize) {
         'description'           => __( 'Image for your site - Leave blank to use the Site Title & Tagline instead.', 'byblos' ),        
     ) ) );
 
+    $wp_customize->add_panel('templates', array(
+        'title' => __('Templates', 'byblos'),
+        'description' => __('Customize the various templates ( Blog, Archive, Single Post )', 'byblos'),
+        'priority' => 10
+    ));
+    $wp_customize->add_section('template_single_post', array(
+        'title' => __('Single Post', 'byblos'),
+        'panel' => 'templates',
+    ));
+    $wp_customize->add_section('template_blog', array(
+        'title' => __('Blog', 'byblos'),
+        'panel' => 'templates',
+    ));
+    $wp_customize->add_section('template_archive', array(
+        'title' => __('Archive', 'byblos'),
+        'panel' => 'templates',
+    ));
+   
+    // Single Post Sidebar Location
+    $wp_customize->add_setting( 'byblos_sidebar_location_post', array (
+        'default'               => 'right',
+        'transport'             => 'refresh',
+        'sanitize_callback'     => 'byblos_text_sanitize',
+        'type'                  => 'theme_mod'
+    ) );
+    $wp_customize->add_control( 'byblos_sidebar_location_post', array(
+        'type'                  => 'radio',
+        'section'               => 'template_single_post',
+        'label'                 => __( 'Single Post Sidebar Location', 'byblos' ),
+        'choices'               => array(
+            'right'         => __( 'Right', 'byblos' ),
+            'left'          => __( 'Left', 'byblos' ),
+            'none'          => __( 'None', 'byblos' ),
+    ) ) );
     
+    // Blog Sidebar Location
+    $wp_customize->add_setting( 'byblos_sidebar_location_blog', array (
+        'default'               => 'right',
+        'transport'             => 'refresh',
+        'sanitize_callback'     => 'byblos_text_sanitize',
+        'type'                  => 'theme_mod'
+    ) );
+    $wp_customize->add_control( 'byblos_sidebar_location_blog', array(
+        'type'                  => 'radio',
+        'section'               => 'template_blog',
+        'label'                 => __( 'Blog Template Sidebar Location', 'byblos' ),
+        'choices'               => array(
+            'right'         => __( 'Right', 'byblos' ),
+            'left'          => __( 'Left', 'byblos' ),
+            'none'          => __( 'None', 'byblos' ),
+    ) ) );
+   
+    // Archive Sidebar Location
+    $wp_customize->add_setting( 'byblos_sidebar_location_archive', array (
+        'default'               => 'right',
+        'transport'             => 'refresh',
+        'sanitize_callback'     => 'byblos_text_sanitize',
+        'type'                  => 'theme_mod'
+    ) );
+    $wp_customize->add_control( 'byblos_sidebar_location_archive', array(
+        'type'                  => 'radio',
+        'section'               => 'template_archive',
+        'label'                 => __( 'Archive Template Sidebar Location', 'byblos' ),
+        'choices'               => array(
+            'right'         => __( 'Right', 'byblos' ),
+            'left'          => __( 'Left', 'byblos' ),
+            'none'          => __( 'None', 'byblos' ),
+    ) ) );
     
     
     // *********************************************

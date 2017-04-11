@@ -13,9 +13,14 @@ get_header();
 
     <?php if ( have_posts() ) : ?>
         <div class="page-content">
-            <article class="col-md-9 item-page">
-
-
+            
+            <?php if ( get_theme_mod( 'byblos_sidebar_location_archive', 'right' ) == 'left' && is_active_sidebar( 'sidebar-1' ) ) : ?>
+                <div class="byblos-sidebar col-md-3">
+                    <?php get_sidebar( 'sidebar-1' ); ?>
+                </div>
+            <?php endif; ?>
+            
+            <article class="col-md-<?php echo get_theme_mod( 'byblos_sidebar_location_archive', 'right' ) == 'none' || !is_active_sidebar('sidebar-1')? '12' : '9'; ?>  item-page">
 
                 <h2 class="post-title">
 
@@ -103,12 +108,14 @@ get_header();
 
             <?php endif; ?>   
 
-
-
         </article>
-        <div class="col-md-3 byblos-sidebar">
-            <?php get_sidebar(); ?>
-        </div>            
+            
+        <?php if ( get_theme_mod( 'byblos_sidebar_location_archive', 'right' ) == 'right' && is_active_sidebar( 'sidebar-1' ) ) : ?>
+            <div class="byblos-sidebar col-md-3">
+                <?php get_sidebar( 'sidebar-1' ); ?>
+            </div>
+        <?php endif; ?>    
+            
     </div>
 </div>
 <?php get_footer(); ?>

@@ -70,7 +70,13 @@ get_header();
 
         </script>
         
-        <div class="col-md-<?php echo bylbos_get_width(); ?> site-content item-home">
+        <?php if ( get_theme_mod( 'byblos_sidebar_location_blog', 'right' ) == 'left' && is_active_sidebar( 'sidebar-1' ) ) : ?>
+            <div class="byblos-sidebar col-md-3">
+                <?php get_sidebar( 'sidebar-1' ); ?>
+            </div>
+        <?php endif; ?>
+        
+        <div class="col-md-<?php echo get_theme_mod( 'byblos_sidebar_location_blog', 'right' ) == 'none' || !is_active_sidebar('sidebar-1')? '12' : '9'; ?> site-content item-home">
             
             <div class="inner">
                 
@@ -100,9 +106,11 @@ get_header();
                 
         </div>
         
-        <div class="col-md-3 byblos-sidebar">
-            <?php get_sidebar(); ?>
-        </div>
+         <?php if ( get_theme_mod( 'byblos_sidebar_location_blog', 'right' ) == 'right' && is_active_sidebar( 'sidebar-1' ) ) : ?>
+            <div class="byblos-sidebar col-md-3">
+                <?php get_sidebar( 'sidebar-1' ); ?>
+            </div>
+        <?php endif; ?>  
         
         <?php byblos_paging_nav(); ?>
     </div>

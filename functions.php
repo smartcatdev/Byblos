@@ -58,3 +58,4 @@ require get_template_directory() . '/inc/extras.php';
 include_once get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 require_once dirname(__FILE__) . '/inc/engine/byblos.php';
+require get_template_directory() . '/inc/tgm.php';

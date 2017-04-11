@@ -4,6 +4,7 @@
  *
  * @package byblos
  */
+
 get_header(); ?>
 
 <div id="content" class="site-content site-content-wrapper">
@@ -24,7 +25,14 @@ get_header(); ?>
         <?php endif; ?>
     
         <div class="page-content">
-            <article class="col-md-<?php echo bylbos_get_width(); ?> item-page">
+            
+            <?php if ( get_theme_mod( 'byblos_sidebar_location_post', 'right' ) == 'left' && is_active_sidebar( 'sidebar-1' ) ) : ?>
+                <div class="byblos-sidebar col-md-3">
+                    <?php get_sidebar( 'sidebar-1' ); ?>
+                </div>
+            <?php endif; ?>
+            
+            <article class="col-md-<?php echo get_theme_mod( 'byblos_sidebar_location_post', 'right' ) == 'none' || !is_active_sidebar('sidebar-1')? '12' : '9'; ?> item-page">
                 <h2 class="post-title"><?php the_title(); ?></h2>
                 <div class="byblos-underline"></div>
                 <?php 
@@ -43,9 +51,11 @@ get_header(); ?>
                 ?>
             </article>
             
-            <div class="col-md-3 byblos-sidebar">
-                <?php get_sidebar(); ?>
-            </div>
+            <?php if ( get_theme_mod( 'byblos_sidebar_location_post', 'right' ) == 'right' && is_active_sidebar( 'sidebar-1' ) ) : ?>
+                <div class="byblos-sidebar col-md-3">
+                    <?php get_sidebar( 'sidebar-1' ); ?>
+                </div>
+            <?php endif; ?>
             
             <div class="clear"></div>
             
@@ -53,4 +63,3 @@ get_header(); ?>
     <?php endwhile; // end of the loop. ?>
     <?php get_footer(); ?>
 </div><!-- #primary -->
-
