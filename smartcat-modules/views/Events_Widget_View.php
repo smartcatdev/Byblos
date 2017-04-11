@@ -37,11 +37,7 @@ $events = new WP_Query( $args ); ?>
 
                     <?php $ctr = 0; ?>
 
-                    <?php while ( $events->have_posts() ) : ?>
-
-                        <?php $ctr++; ?>
-
-                        <?php $events->the_post(); ?>
+                    <?php while ( $events->have_posts() ) : $events->the_post(); ?>
 
                         <div class="col-sm-6">
 
@@ -76,13 +72,18 @@ $events = new WP_Query( $args ); ?>
 
                                     </div>
 
-                                    <div class="clear"></div>
-
                                 </div>
 
                             </div>
 
                         </div>
+                
+                        <?php $ctr++; ?>
+
+                        <?php if ( $ctr == 2): ?>
+                            <div class="clear"></div>
+                            <?php $ctr = 0; ?>
+                        <?php endif; ?>
 
                     <?php endwhile; ?>
             

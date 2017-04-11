@@ -5,7 +5,8 @@
     Description:
         Purpose of the stylesheet follows.
 */
-a,a:visited {
+a,a:visited,
+body.single-event .event-details {
   color: #ff6600;
 }
 a:hover,#site-navigation.main-navigation li a:hover,
@@ -48,9 +49,9 @@ input[type="submit"] {
 }
 .button-primary:hover,
 input[type="submit"]:hover{
-    background-color: rgb(211, 85, 0);
+    background-color: #d35500;
     color: #fff;
-} 
+}
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -90,3 +91,32 @@ fieldset[disabled] .btn-primary.active {
         color: #ff6600;
     }      
 }
+
+.sc-slider-wrapper .camera_caption div a.slider-button {
+    color: #000;
+    border: thin solid;
+}
+
+/* Additional Rules */
+#sc-slider-banner.banner-below,
+.byblos-pricing-table .inner.special {
+    border-color: #ff6600;
+}
+
+.byblos-pricing-table .inner.special .widget-title,
+#homepage-area-b .byblos-pricing-table .inner.special span.special {
+    color: #ff6600;
+}
+
+.byblos-pricing-table .inner.special span.special,
+.camera_wrap .camera_pag .camera_pag_ul li:hover > span,
+.sc-slider-wrapper .camera_caption div a.slider-button,
+div#homepage-area-b.homepage-widget-area > .inner,
+body.single-event .event-details span.fa {
+    background-color: #ff6600;
+}
+
+.sc-slider-wrapper .camera_caption div a.slider-button:hover {
+    background-color: #d35500;
+} 
+

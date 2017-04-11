@@ -3,7 +3,8 @@
     Author     : Bilal
 */
 
-a,a:visited {
+a,a:visited,
+body.single-event .event-details {
   color: #cd133f;
 }
 a:hover,#site-navigation.main-navigation li a:hover,
@@ -68,3 +69,25 @@ fieldset[disabled] .btn-primary.active {
     }      
 }
 
+/* Additional Rules */
+#sc-slider-banner.banner-below,
+.byblos-pricing-table .inner.special {
+    border-color: #cd133f;
+}
+
+.byblos-pricing-table .inner.special .widget-title,
+#homepage-area-b .byblos-pricing-table .inner.special span.special {
+    color: #cd133f;
+}
+
+.byblos-pricing-table .inner.special span.special,
+.camera_wrap .camera_pag .camera_pag_ul li:hover > span,
+.sc-slider-wrapper .camera_caption div a.slider-button,
+div#homepage-area-b.homepage-widget-area > .inner,
+body.single-event .event-details span.fa {
+    background-color: #cd133f;
+}
+
+.sc-slider-wrapper .camera_caption div a.slider-button:hover {
+    background-color: #C2113B;
+} 

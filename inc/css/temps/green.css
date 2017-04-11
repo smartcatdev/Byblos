@@ -1,11 +1,12 @@
 /* 
-    Document   : orange
+    Document   : green
     Created on : Jul 6, 2014, 2:28:39 AM
     Author     : Bilal
     Description:
         Purpose of the stylesheet follows.
 */
-a,a:visited {
+a,a:visited,
+body.single-event .event-details{
   color: #699120;
 }
 a:hover,#site-navigation.main-navigation li a:hover,
@@ -28,7 +29,7 @@ input[type="submit"] {
 .button-primary.active,
 .open .dropdown-toggle.button-primary,
 input[type="submit"]:hover{
-  background-color: rgb(83, 116, 24);
+  background-color: #537418;
 }
 fieldset[disabled] .button-primary.active {
   background-color: #699120;
@@ -64,3 +65,25 @@ fieldset[disabled] .button-primary.active {
     }      
 }
 
+/* Additional Rules */
+#sc-slider-banner.banner-below,
+.byblos-pricing-table .inner.special {
+    border-color: #699120;
+}
+
+.byblos-pricing-table .inner.special .widget-title,
+#homepage-area-b .byblos-pricing-table .inner.special span.special {
+    color: #699120;
+}
+
+.byblos-pricing-table .inner.special span.special,
+.camera_wrap .camera_pag .camera_pag_ul li:hover > span,
+.sc-slider-wrapper .camera_caption div a.slider-button,
+div#homepage-area-b.homepage-widget-area > .inner,
+body.single-event .event-details span.fa {
+    background-color: #699120;
+}
+
+.sc-slider-wrapper .camera_caption div a.slider-button:hover {
+    background-color: #537418;
+} 

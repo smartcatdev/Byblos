@@ -8,7 +8,8 @@ and open the template in the editor.
     Author     : Bilal
 */
 
-a,a:visited {
+a,a:visited,
+body.single-event .event-details{
   color: #53C1EF;
 }
 a:hover,#site-navigation.main-navigation li a:hover,
@@ -66,3 +67,26 @@ fieldset[disabled] .button-primary.active {
         color: #53C1EF;
     }      
 }
+
+/* Additional Rules */
+#sc-slider-banner.banner-below,
+.byblos-pricing-table .inner.special {
+    border-color: #53C1EF;
+}
+
+.byblos-pricing-table .inner.special .widget-title,
+#homepage-area-b .byblos-pricing-table .inner.special span.special {
+    color: #53C1EF;
+}
+
+.byblos-pricing-table .inner.special span.special,
+.camera_wrap .camera_pag .camera_pag_ul li:hover > span,
+.sc-slider-wrapper .camera_caption div a.slider-button,
+div#homepage-area-b.homepage-widget-area > .inner,
+body.single-event .event-details span.fa {
+    background-color: #53C1EF;
+}
+
+.sc-slider-wrapper .camera_caption div a.slider-button:hover {
+    background-color: #429FC7;
+} 

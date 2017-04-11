@@ -849,6 +849,19 @@ input[type="submit"] {
 .site-branding.dark #site-toolbar{
     background: transparent;
 }
+.site-branding.dark #site-toolbar .social-bar a {
+  transition: 0.4s all ease;
+    -moz-transition: 0.4s all ease;
+    -webkit-transition: 0.4s all ease;
+}
+
+/*
+.site-branding.dark #site-toolbar .social-bar a .fa {
+    transition: 0.2s all ease;
+    -moz-transition: 0.2s all ease;
+    -webkit-transition: 0.2s all ease;
+}*/
+
 .site-branding.dark #site-toolbar .social-bar a.icon-facebook,
 .site-branding.dark #site-toolbar .social-bar a.icon-twitter,
 .site-branding.dark #site-toolbar .social-bar a.icon-linkedin,
@@ -858,7 +871,6 @@ input[type="submit"] {
 .site-branding.dark #site-toolbar .social-bar a.icon-instagram{
     /*color: rgb(130, 130, 130 );*/
     border-color: rgb(10, 10, 10 );
-    
 }
 .site-branding.dark #site-navigation.main-navigation li a{
     color: rgb( 232, 232, 232 );
@@ -2063,3 +2075,28 @@ div#byblos-page-jumbotron header.entry-header {
     margin-left: 0;
 }
 .gutter-sizer { width: 2%; }
+
+.error404 .page-content {
+    margin-top: 15px;
+    padding-bottom: 0;
+}
+
+.error404 .item-page {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.error404 .item-page i.fa {
+    margin-top: 50px;
+    font-size: 70px;
+    margin-bottom: 30px;
+}
+
+.error404 .item-page h2 {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.error404 .item-page h3.page-subtitle {
+    margin-bottom: 50px;
+}

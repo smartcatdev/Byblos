@@ -12,22 +12,21 @@ get_header();
     <div class="page-content">
         <article class="col-md-<?php echo bylbos_get_width(); ?> item-page">
             
-            <h2 class="post-title"><?php _e('Page Not Found', 'byblos' ); ?></h2>
-            
+            <i class="fa fa-exclamation-triangle icon404"></i>
+
+            <h2>
+                <?php echo esc_html( get_theme_mod( 'byblos_error_page_heading', __( 'Oops!', 'byblos' ) ) ); ?>
+            </h2>
+
+            <h3 class="page-subtitle">
+                <?php echo esc_html( get_theme_mod( 'byblos_error_page_subheading', __( 'It looks like nothing was found at this location, please check the address and try again!', 'byblos' ) ) ); ?>
+            </h3>
+
             <div class="byblos-underline"></div>
             
-            <?php if (byblos_categorized_blog()) : // Only show the widget if site has multiple categories. ?>
-                <div class="error404-content widget widget_categories">
-                    <h2 class="widgettitle center">
-                        <i class="fa fa-exclamation-triangle icon404"></i>
-                        <h3 class="center">Sorry the page you're looking for is not available</h3>
-                        <div class="center mt20">
-                            <?php get_search_form(); ?>
-                        </div>
-                    </h2>
-
-                </div><!-- .widget -->
-            <?php endif; ?>
+            <div class="center mt20">
+                <?php get_search_form(); ?>
+            </div>
             
         </article>
         <div class="col-md-3 byblos-sidebar">
