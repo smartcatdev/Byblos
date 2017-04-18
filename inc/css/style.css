@@ -1213,8 +1213,8 @@ div#branding-wrap {
     right: 10px;
 }
 .cameraCont, .cameraContents{
-    background: url('../../images/overlay-pattern.png') repeat;
-    background: url('../../images/pattern-dotted.png') repeat;
+/*    background: url('../../images/overlay-pattern.png') repeat;
+    background: url('../../images/pattern-dotted.png') repeat;*/
     /*background-size: 2px;*/
     /*background: rgba( 50,50,50,0.1);*/
 }
