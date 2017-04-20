@@ -79,7 +79,7 @@ function byblos_customize_register($wp_customize) {
         public function render_content() { ?>
             
             <div>
-                <a class="button-primary" href="<?php echo esc_url( 'http://byblos.smartcatdev.wpengine.com' ); ?>" title="<?php esc_attr_e( 'View theme demo', 'byblos' ); ?>" target="_blank">
+                <a class="button-primary" href="<?php echo esc_url( 'https://smartcatdesign.net/downloads/byblos-pro/' ); ?>" title="<?php esc_attr_e( 'View theme demo', 'byblos' ); ?>" target="_blank">
                 <?php _e( 'Upgrade to Byblos Pro', 'byblos' ); ?>
                 </a>
 
