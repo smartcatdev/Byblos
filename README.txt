@@ -55,17 +55,13 @@ Byblos is a fully responsive portfolio style theme. It features a full width sli
     - License               SIL Open Font
     - License URL           http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
-9. Slider Image 1 & Screenshot Image
+9. Images
     - URL                   https://pixabay.com/en/woman-model-portrait-attractive-919047/
+                            https://pixabay.com/en/couple-youth-in-love-paris-park-814825/
+                            https://pixabay.com/en/people-man-model-glasses-516370/
+                            https://pixabay.com/en/guitar-classical-guitar-756326/
     - License               CC0
     - License URL           http://creativecommons.org/publicdomain/zero/1.0/deed.en
-    - Photographer          Unsplash                 
-
-10. Slider Image 2
-    - URL                   https://pixabay.com/en/people-man-model-glasses-516370/
-    - License               CC0
-    - License URL           http://creativecommons.org/publicdomain/zero/1.0/deed.en
-    - Photographer          hahanriji                 
 
 
 13. Animate

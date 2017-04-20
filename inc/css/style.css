@@ -810,8 +810,8 @@ input[type="submit"] {
 }
 
 .site-branding{
-    /*margin-top: 75px;*/
-    width: 350px;
+    
+    width: 300px;
     height: 100%;
     position: fixed;
     top: 0;
@@ -1458,7 +1458,7 @@ article{
     /*padding-top: 30px;*/
 }
 .site-content-wrapper{
-    margin-left: 350px;
+    margin-left: 300px;
     background: rgb(245,245,245);
 }
 .site-content-wrapper .page-content{
