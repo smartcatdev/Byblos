@@ -74,6 +74,76 @@ function byblos_customize_register($wp_customize) {
     // ****************** LOGO  *****************
     // *********************************************
     
+    
+    class ByblosCustomizerPanel extends WP_Customize_Control {
+        public function render_content() { ?>
+            
+            <div>
+                <a class="button-primary" href="<?php echo esc_url( 'http://byblos.smartcatdev.wpengine.com' ); ?>" title="<?php esc_attr_e( 'View theme demo', 'byblos' ); ?>" target="_blank">
+                <?php _e( 'Upgrade to Byblos Pro', 'byblos' ); ?>
+                </a>
+
+                <a class="button-secondary" href="<?php echo esc_url( 'http://byblos.smartcatdev.wpengine.com' ); ?>" title="<?php esc_attr_e( 'View theme demo', 'byblos' ); ?>" target="_blank">
+                <?php _e( 'Live Demo', 'byblos' ); ?>
+                </a>
+            </div>       
+            <br>
+
+            <h3><?php _e( 'Pro Version Features', 'byblos' ); ?></h3>
+            <ol>
+                <li><?php _e( 'Jumbotron Slider - Up to 6 slides', 'byblos' ); ?></li>
+                <li><?php _e( 'Interactive Map section', 'byblos' ); ?></li>
+                <li><?php _e( 'Additional Call To Action widget areas on the Frontpage', 'byblos' ); ?></li>
+                <li><?php _e( 'Clients list, Testimonials carousel widgets', 'byblos' ); ?></li>
+                <li><?php _e( 'Contact Form & Contact Info widgets', 'byblos' ); ?></li>
+                <li><?php _e( 'Call-to-action and Pricing Table widgets', 'byblos' ); ?></li>
+                <li><?php _e( 'Recent Articles & WooCommerce Products widgets', 'byblos' ); ?></li>
+                <li><?php _e( '2 Additional Blog Styles', 'byblos' ); ?></li>
+                <li><?php _e( 'Author Bio widget', 'byblos' ); ?></li>
+                <li><?php _e( 'Remove "Designed by Smartcat"', 'byblos' ); ?></li>
+            </ol>
+
+            <p>
+                <?php _e('Click on the button to view a live demo of the theme, get some inspiration from this demo!','byblos');?>
+            </p>
+            <p>
+                <?php _e( 'Byblos allows you to easily create a frontpage, blog page, e-commerce shop page, and it also <b>includes templates</b> allowing you to customize where the sidebars are located', 'byblos' ); ?>
+            </p>
+            <p>
+                <?php _e( 'The <b>Frontpage</b> section includes customization options for your Frontpage. You can select a post, page or WooCommerce product to be featured in the main jumbotron. There are 3 sections that allow you to feature your pages, posts or products.', 'byblos' ); ?>
+            </p>
+            <p>
+                <?php _e( 'You can select if you want your homepage to show the Blog or the Frontpage from <b> Frontpage -> Static Front Page</b>', 'byblos' ); ?>
+            </p>
+            <h4>
+                <?php _e( 'Enjoy this free theme! If you have any recommendations, comments or suggestions please leave us a comment on our', 'byblos' ); ?>
+                <a href="https://www.facebook.com/SmartcatDesign/" target="_BLANK"><?php _e( 'Facebook page', 'byblos' ); ?></a>
+            </h4>
+        <?php }
+    }
+    
+    $wp_customize->add_section('byblos_demo', array(
+        'title'     => __( 'Theme Demo & Instructions', 'byblos'),
+        'priority'  => 0.5,
+    ));
+
+        $wp_customize->add_setting( 'byblos_demo_details', array(
+            'default'           => false,
+            'capability'        => 'edit_theme_options',
+            'sanitize_callback' => 'wp_filter_nohtml_kses',
+        ));
+        $wp_customize->add_control(
+            new ByblosCustomizerPanel(
+            $wp_customize,
+            'byblos_demo',
+                array(
+                    'label'     => __('Byblos Demo','byblos'),
+                    'section'   => 'byblos_demo',
+                    'settings'  => 'byblos_demo_details',
+                )
+            )
+        );
+    
     $wp_customize->add_panel('logo', array(
         'title' => __('Logo, Title & Favicon', 'byblos'),
         'description' => __('set the logo image, site title, description and site icon favicon', 'byblos'),

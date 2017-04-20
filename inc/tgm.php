@@ -57,20 +57,19 @@ function byblos_register_required_plugins() {
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.
 	 */
-	$plugins = array(
-
+        $plugins = array (
+            // This is an example of how to include a plugin from the WordPress Plugin Repository.
             array (
-                'name' => 'Our Team Showcase',
+                'name' => __( 'Our Team Showcase', 'byblos' ),
                 'slug' => 'our-team-enhanced',
                 'required' => false,
             ),
-            array(
-                'name'      => 'WP Construction Mode',
-                'slug'      => 'wp-construction-mode',
-                'required'  => false,
+            array (
+                'name' => __( 'uCare - Support Ticket System', 'byblos' ),
+                'slug' => 'ucare-support-system',
+                'required' => false,
             ),
-
-	);
+        );
 
 	/*
 	 * Array of configuration settings. Amend each line as needed.
