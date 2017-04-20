@@ -17,15 +17,15 @@ function byblos_get_options() {
         'sc_instagram_url'      => '#',
         'sc_pinterest_url'      => '#',
         'sc_soundcloud_url'     => '#',
-        'sc_theme_color'        => 'red',
+        'sc_theme_color'        => 'yellow',
         'sc_font_size'          => '20px',
         'sc_font_family'        => 'Abel, sans-serif',
         'sc_slider_bool'        => 'yes',
-        'sc_slide1_image'       => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'sc_slide1_image'       => get_template_directory_uri() . '/inc/images/dress.jpg',
         'sc_slide1_text'        => __( 'Welcome to Byblos', 'byblos' ),
-        'sc_slide2_image'       => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'sc_slide2_image'       => get_template_directory_uri() . '/inc/images/couple.jpg',
         'sc_slide2_text'        => __( 'Responsive WordPress theme', 'byblos' ),
-        'sc_slide3_image'       => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'sc_slide3_image'       => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'sc_slide3_text'        => __( 'Featuring a fullscreen responsive slider', 'byblos' ),
         'sc_banner_bool'        => 'yes',
         'sc_cta_bool'           => 'yes',
@@ -33,17 +33,17 @@ function byblos_get_options() {
         'sc_cta1_text'          => __( 'Byblos is a reponsive theme that looks great on desktop, tablet and mobile', 'byblos' ),
         'sc_cta1_url'           => '#',
         'sc_cta1_button'           => __('Learn More', 'byblos' ),
-        'sc_box1_image'         => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'sc_box1_image'         => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'sc_cta2_title'         => __( 'Appealing', 'byblos' ),
         'sc_cta2_text'          => __( 'Byblos is a reponsive theme that looks great on desktop, tablet and mobile', 'byblos' ),
         'sc_cta2_url'           => '#',
         'sc_cta2_button'           => __('Learn More', 'byblos' ),
-        'sc_box2_image'         => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'sc_box2_image'         => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'sc_cta3_title'         => __( 'Customizable', 'byblos' ),
         'sc_cta3_text'          => __( 'Byblos is a reponsive theme that looks great on desktop, tablet and mobile', 'byblos' ),
         'sc_cta3_url'           => '#',
         'sc_cta3_button'           => __('Learn More', 'byblos' ),
-        'sc_box3_image'         => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'sc_box3_image'         => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'sc_footer_text'        => __( 'Company Name', 'byblos' ),
         'sc_cta_section_title'  => __( 'Our Specialities', 'byblos' ),
         'phone'                 => '#',
@@ -276,7 +276,7 @@ function byblos_customize_register($wp_customize) {
 
     // 1st slide
     $wp_customize->add_setting('byblos[sc_slide1_image]', array(
-        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'default' => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'transport' => 'refresh',
         'type'  => 'option',
         'sanitize_callback' => 'byblos_text_sanitize'
@@ -307,7 +307,7 @@ function byblos_customize_register($wp_customize) {
 
     // 2nd slide
     $wp_customize->add_setting('byblos[sc_slide2_image]', array(
-        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'default' => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'transport' => 'refresh',
         'type'  => 'option',
         'sanitize_callback' => 'byblos_text_sanitize'
@@ -337,7 +337,7 @@ function byblos_customize_register($wp_customize) {
 
     // 3rd slide
     $wp_customize->add_setting('byblos[sc_slide3_image]', array(
-        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'default' => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'transport' => 'refresh',
         'type'  => 'option',
         'sanitize_callback' => 'byblos_text_sanitize'
@@ -471,7 +471,7 @@ function byblos_customize_register($wp_customize) {
     // Callout #1
     // Image
     $wp_customize->add_setting('byblos[sc_box1_image]', array(
-        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'default' => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'transport' => 'refresh',
         'type'  => 'option',
         'sanitize_callback' => 'byblos_text_sanitize'
@@ -548,7 +548,7 @@ function byblos_customize_register($wp_customize) {
     // Callout #2
     // Image
     $wp_customize->add_setting('byblos[sc_box2_image]', array(
-        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'default' => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'transport' => 'refresh',
         'type'  => 'option',
         'sanitize_callback' => 'byblos_text_sanitize'
@@ -625,7 +625,7 @@ function byblos_customize_register($wp_customize) {
     // Callout #3
     // Image
     $wp_customize->add_setting('byblos[sc_box3_image]', array(
-        'default' => get_template_directory_uri() . '/inc/images/bride.jpg',
+        'default' => get_template_directory_uri() . '/inc/images/guitarist.jpg',
         'transport' => 'refresh',
         'type'  => 'option',
         'sanitize_callback' => 'byblos_text_sanitize'
