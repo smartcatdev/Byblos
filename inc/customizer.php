@@ -6,6 +6,12 @@
  * @package byblos
  */
 
+function byblos_customize_enqueue() {
+    
+    wp_enqueue_script( 'byblos-customizer-js', get_template_directory_uri() . '/inc/js/customizer.js', array( 'jquery', 'customize-controls' ), false, true );
+}
+add_action( 'customize_controls_enqueue_scripts', 'byblos_customize_enqueue' );
+
 function byblos_get_options() {
     
     return get_option('byblos', array(
@@ -91,26 +97,22 @@ function byblos_customize_register($wp_customize) {
 
             <h3><?php _e( 'Pro Version Features', 'byblos' ); ?></h3>
             <ol>
-                <li><?php _e( 'Jumbotron Slider - Up to 6 slides', 'byblos' ); ?></li>
-                <li><?php _e( 'Interactive Map section', 'byblos' ); ?></li>
+                <li><?php _e( 'Jumbotron Slider - Up to 6 slides with customizable settings', 'byblos' ); ?></li>
+                <li><?php _e( 'Unlimited skin color options', 'byblos' ); ?></li>
+                <li><?php _e( 'More font options', 'byblos' ); ?></li>
                 <li><?php _e( 'Additional Call To Action widget areas on the Frontpage', 'byblos' ); ?></li>
-                <li><?php _e( 'Clients list, Testimonials carousel widgets', 'byblos' ); ?></li>
-                <li><?php _e( 'Contact Form & Contact Info widgets', 'byblos' ); ?></li>
-                <li><?php _e( 'Call-to-action and Pricing Table widgets', 'byblos' ); ?></li>
-                <li><?php _e( 'Recent Articles & WooCommerce Products widgets', 'byblos' ); ?></li>
-                <li><?php _e( '2 Additional Blog Styles', 'byblos' ); ?></li>
-                <li><?php _e( 'Author Bio widget', 'byblos' ); ?></li>
-                <li><?php _e( 'Remove "Designed by Smartcat"', 'byblos' ); ?></li>
+                <li><?php _e( 'Alternative designs for CTA boxes', 'byblos' ); ?></li>
+                <li><?php _e( 'Page templates', 'byblos' ); ?></li>
+                <li><?php _e( 'Events & Image Gallery widgets & page templates', 'byblos' ); ?></li>
+                <li><?php _e( 'Contact form & contact info custom widgets', 'byblos' ); ?></li>
+                <li><?php _e( 'Call-to-action & Pricing Table widgets', 'byblos' ); ?></li>
             </ol>
 
             <p>
                 <?php _e('Click on the button to view a live demo of the theme, get some inspiration from this demo!','byblos');?>
             </p>
             <p>
-                <?php _e( 'Byblos allows you to easily create a frontpage, blog page, e-commerce shop page, and it also <b>includes templates</b> allowing you to customize where the sidebars are located', 'byblos' ); ?>
-            </p>
-            <p>
-                <?php _e( 'The <b>Frontpage</b> section includes customization options for your Frontpage. You can select a post, page or WooCommerce product to be featured in the main jumbotron. There are 3 sections that allow you to feature your pages, posts or products.', 'byblos' ); ?>
+                <?php _e( 'Byblos allows you to easily create a frontpage or blog page and it also <b>includes templates</b> allowing you to customize where the sidebars are located', 'byblos' ); ?>
             </p>
             <p>
                 <?php _e( 'You can select if you want your homepage to show the Blog or the Frontpage from <b> Frontpage -> Static Front Page</b>', 'byblos' ); ?>

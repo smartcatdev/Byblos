@@ -11,7 +11,7 @@ if (!function_exists('byblos_setup')) :
             $content_width = 1060;
         }
 
-        define('BYBLOS_VERSION', '3.2.0');
+        define('BYBLOS_VERSION', '3.2.1');
         load_theme_textdomain('byblos', get_template_directory() . '/languages');
 
         // Add default posts and comments RSS feed links to head.
