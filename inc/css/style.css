@@ -2105,3 +2105,25 @@ div#byblos-page-jumbotron header.entry-header {
 .error404 .item-page h3.page-subtitle {
     margin-bottom: 50px;
 }
+
+.sc_team_single_member .wp-post-image {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.sc_team_single_member .sc_single_side .name {
+    line-height: 24px;
+    margin-bottom: 0;
+}
+
+.sc_team_single_member .sc_single_side .social {
+    text-align: center;
+}
+
+
+.sc_team_single_member .sc_single_main,
+.sc_team_single_member .inner{
+    background: #fff;
+    border: 1px solid rgb(234, 234, 234);
+}
