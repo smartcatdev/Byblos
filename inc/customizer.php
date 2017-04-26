@@ -10,7 +10,10 @@ function byblos_customize_enqueue() {
     
     wp_enqueue_script( 'byblos-customizer-js', get_template_directory_uri() . '/inc/js/customizer.js', array( 'jquery', 'customize-controls' ), false, true );
 }
-add_action( 'customize_controls_enqueue_scripts', 'byblos_customize_enqueue' );
+
+if( !function_exists( 'byblos_pro_init' ) ) :
+    add_action( 'customize_controls_enqueue_scripts', 'byblos_customize_enqueue' );
+endif;
 
 function byblos_get_options() {
     
@@ -129,22 +132,22 @@ function byblos_customize_register($wp_customize) {
         'priority'  => 0.5,
     ));
 
-        $wp_customize->add_setting( 'byblos_demo_details', array(
-            'default'           => false,
-            'capability'        => 'edit_theme_options',
-            'sanitize_callback' => 'wp_filter_nohtml_kses',
-        ));
-        $wp_customize->add_control(
-            new ByblosCustomizerPanel(
-            $wp_customize,
-            'byblos_demo',
-                array(
-                    'label'     => __('Byblos Demo','byblos'),
-                    'section'   => 'byblos_demo',
-                    'settings'  => 'byblos_demo_details',
-                )
-            )
-        );
+//        $wp_customize->add_setting( 'byblos_demo_details', array(
+//            'default'           => false,
+//            'capability'        => 'edit_theme_options',
+//            'sanitize_callback' => 'wp_filter_nohtml_kses',
+//        ));
+//        $wp_customize->add_control(
+//            new ByblosCustomizerPanel(
+//            $wp_customize,
+//            'byblos_demo',
+//                array(
+//                    'label'     => __('Byblos Demo','byblos'),
+//                    'section'   => 'byblos_demo',
+//                    'settings'  => 'byblos_demo_details',
+//                )
+//            )
+//        );
     
     $wp_customize->add_panel('logo', array(
         'title' => __('Logo, Title & Favicon', 'byblos'),
