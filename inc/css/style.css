@@ -834,6 +834,13 @@ input[type="submit"] {
 }
 .site-branding.dark .search-bar .search-field{
     background: transparent;
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+}
+
+.site-branding.dark .search-bar .search-field:focus{
+    color: #fff;
 }
 
 .site-branding #site-toolbar{
