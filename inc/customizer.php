@@ -257,7 +257,7 @@ function byblos_customize_register($wp_customize) {
 
     $wp_customize->add_panel('slider', array(
         'title' => __('Slider', 'byblos'),
-        'description' => __('Customize the slider. Byblos includes 3 slides, and the pro version supports up to 5', 'byblos'),
+        'description' => __('Customize the slider. Byblos includes 3 slides, and the pro version supports up to 6', 'byblos'),
         'priority' => 10
     ));
 
