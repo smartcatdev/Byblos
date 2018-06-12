@@ -213,40 +213,46 @@ function byblos_slider() {
 
                 <?php if ('' != $byblos_options['sc_slide1_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide1_image'] ); ?>">
-                        <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : 'fadeFromRight'; ?>">
-                            <span><?php echo esc_attr( $byblos_options['sc_slide1_text'] );?></span>
-                            <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_1_button_toggle', 'off' ) == 'on' ) : ?>
-                                <a class="slider-button" href="<?php echo get_theme_mod( 'slide_1_button_url', '#' ); ?>">
-                                    <?php echo get_theme_mod( 'slide_1_button_label', 'See More' ); ?>
-                                </a>
-                            <?php endif; ?>
-                        </div>
+                        <?php if ('' != $byblos_options['sc_slide1_text'] ) : ?>
+                            <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : 'fadeFromRight'; ?>">
+                                <span><?php echo esc_attr( $byblos_options['sc_slide1_text'] );?></span>
+                                <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_1_button_toggle', 'off' ) == 'on' ) : ?>
+                                    <a class="slider-button" href="<?php echo get_theme_mod( 'slide_1_button_url', '#' ); ?>">
+                                        <?php echo get_theme_mod( 'slide_1_button_label', 'See More' ); ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ('' != $byblos_options['sc_slide2_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide2_image'] ); ?>">
-                        <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : 'fadeFromRight'; ?>">
-                            <span><?php echo esc_attr( $byblos_options['sc_slide2_text'] );?></span>
-                            <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_2_button_toggle', 'off' ) == 'on' ) : ?>
-                                <a class="slider-button" href="<?php echo get_theme_mod( 'slide_2_button_url', '#' ); ?>">
-                                    <?php echo get_theme_mod( 'slide_2_button_label', 'See More' ); ?>
-                                </a>
-                            <?php endif; ?>
-                        </div>
+                        <?php if ('' != $byblos_options['sc_slide2_text'] ) : ?>
+                            <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : 'fadeFromRight'; ?>">
+                                <span><?php echo esc_attr( $byblos_options['sc_slide2_text'] );?></span>
+                                <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_2_button_toggle', 'off' ) == 'on' ) : ?>
+                                    <a class="slider-button" href="<?php echo get_theme_mod( 'slide_2_button_url', '#' ); ?>">
+                                        <?php echo get_theme_mod( 'slide_2_button_label', 'See More' ); ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ('' != $byblos_options['sc_slide3_image'] ) : ?>
                     <div class="camera_inner" data-thumb="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>" data-src="<?php echo esc_url( $byblos_options['sc_slide3_image'] ); ?>">
-                        <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : 'fadeFromRight'; ?>">
-                            <span><?php echo esc_attr( $byblos_options['sc_slide3_text'] );?></span>
-                            <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_3_button_toggle', 'off' ) == 'on' ) : ?>
-                                <a class="slider-button" href="<?php echo get_theme_mod( 'slide_3_button_url', '#' ); ?>">
-                                    <?php echo get_theme_mod( 'slide_3_button_label', 'See More' ); ?>
-                                </a>
-                            <?php endif; ?>
-                        </div>
+                        <?php if ('' != $byblos_options['sc_slide3_text'] ) : ?>
+                            <div class="camera_caption <?php echo get_theme_mod( 'homepage_banner_location', 'over' ) == 'over' ? 'moveFromRight' : 'fadeFromRight'; ?>">
+                                <span><?php echo esc_attr( $byblos_options['sc_slide3_text'] );?></span>
+                                <?php if ( get_theme_mod( 'homepage_banner_location', 'over' ) == 'below' && get_theme_mod( 'slide_3_button_toggle', 'off' ) == 'on' ) : ?>
+                                    <a class="slider-button" href="<?php echo get_theme_mod( 'slide_3_button_url', '#' ); ?>">
+                                        <?php echo get_theme_mod( 'slide_3_button_label', 'See More' ); ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
